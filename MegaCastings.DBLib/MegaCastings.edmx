@@ -1,0 +1,390 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MegaCastingsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Identifiant" />
+          </Key>
+          <Property Name="Identifiant" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom" Type="varchar" MaxLength="25" />
+          <Property Name="Prenom" Type="varchar" MaxLength="25" />
+          <Property Name="Telephone" Type="varchar" MaxLength="25" />
+          <Property Name="NumRue" Type="varchar" MaxLength="25" />
+          <Property Name="NomRue" Type="varchar" MaxLength="25" />
+          <Property Name="CodePostal" Type="varchar" MaxLength="25" />
+          <Property Name="Ville" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="DomaineMetier">
+          <Key>
+            <PropertyRef Name="Identifiant" />
+          </Key>
+          <Property Name="Identifiant" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Intitule" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="Metier">
+          <Key>
+            <PropertyRef Name="Identifiant" />
+          </Key>
+          <Property Name="Identifiant" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom" Type="varchar" MaxLength="25" />
+          <Property Name="IdentifiantDomaineMetier" Type="int" />
+        </EntityType>
+        <EntityType Name="OffreCasting">
+          <Key>
+            <PropertyRef Name="Identifiant" />
+          </Key>
+          <Property Name="Identifiant" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Intitule" Type="varchar" MaxLength="50" />
+          <Property Name="Reference" Type="varchar" MaxLength="25" />
+          <Property Name="DateDebut" Type="date" />
+          <Property Name="NombrePoste" Type="varchar" MaxLength="25" />
+          <Property Name="Localisation" Type="varchar" MaxLength="25" />
+          <Property Name="DescriptionPoste" Type="varchar" MaxLength="500" />
+          <Property Name="DescriptionProfil" Type="varchar" MaxLength="500" />
+          <Property Name="Contact" Type="varchar" MaxLength="500" />
+          <Property Name="IdentifiantClient" Type="int" />
+          <Property Name="IdentifiantDomaineMetier" Type="int" />
+          <Property Name="IdentifiantTypeContrat" Type="int" />
+          <Property Name="IdentifiantMetier" Type="int" />
+        </EntityType>
+        <EntityType Name="TypeContrat">
+          <Key>
+            <PropertyRef Name="Identifiant" />
+          </Key>
+          <Property Name="Identifiant" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="bit" />
+        </EntityType>
+        <Association Name="FK_Metier_Identifiant_DomaineMetier">
+          <End Role="DomaineMetier" Type="Self.DomaineMetier" Multiplicity="0..1" />
+          <End Role="Metier" Type="Self.Metier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DomaineMetier">
+              <PropertyRef Name="Identifiant" />
+            </Principal>
+            <Dependent Role="Metier">
+              <PropertyRef Name="IdentifiantDomaineMetier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OffreCasting_Identifiant_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="OffreCasting" Type="Self.OffreCasting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Identifiant" />
+            </Principal>
+            <Dependent Role="OffreCasting">
+              <PropertyRef Name="IdentifiantClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OffreCasting_Identifiant_DomaineMetier">
+          <End Role="DomaineMetier" Type="Self.DomaineMetier" Multiplicity="0..1" />
+          <End Role="OffreCasting" Type="Self.OffreCasting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DomaineMetier">
+              <PropertyRef Name="Identifiant" />
+            </Principal>
+            <Dependent Role="OffreCasting">
+              <PropertyRef Name="IdentifiantDomaineMetier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OffreCasting_Identifiant_Metier">
+          <End Role="Metier" Type="Self.Metier" Multiplicity="0..1" />
+          <End Role="OffreCasting" Type="Self.OffreCasting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Metier">
+              <PropertyRef Name="Identifiant" />
+            </Principal>
+            <Dependent Role="OffreCasting">
+              <PropertyRef Name="IdentifiantMetier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OffreCasting_Identifiant_TypeContrat">
+          <End Role="TypeContrat" Type="Self.TypeContrat" Multiplicity="0..1" />
+          <End Role="OffreCasting" Type="Self.OffreCasting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeContrat">
+              <PropertyRef Name="Identifiant" />
+            </Principal>
+            <Dependent Role="OffreCasting">
+              <PropertyRef Name="IdentifiantTypeContrat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MegaCastingsModelStoreContainer">
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DomaineMetier" EntityType="Self.DomaineMetier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Metier" EntityType="Self.Metier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OffreCasting" EntityType="Self.OffreCasting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeContrat" EntityType="Self.TypeContrat" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Metier_Identifiant_DomaineMetier" Association="Self.FK_Metier_Identifiant_DomaineMetier">
+            <End Role="DomaineMetier" EntitySet="DomaineMetier" />
+            <End Role="Metier" EntitySet="Metier" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OffreCasting_Identifiant_Client" Association="Self.FK_OffreCasting_Identifiant_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="OffreCasting" EntitySet="OffreCasting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OffreCasting_Identifiant_DomaineMetier" Association="Self.FK_OffreCasting_Identifiant_DomaineMetier">
+            <End Role="DomaineMetier" EntitySet="DomaineMetier" />
+            <End Role="OffreCasting" EntitySet="OffreCasting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OffreCasting_Identifiant_Metier" Association="Self.FK_OffreCasting_Identifiant_Metier">
+            <End Role="Metier" EntitySet="Metier" />
+            <End Role="OffreCasting" EntitySet="OffreCasting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OffreCasting_Identifiant_TypeContrat" Association="Self.FK_OffreCasting_Identifiant_TypeContrat">
+            <End Role="TypeContrat" EntitySet="TypeContrat" />
+            <End Role="OffreCasting" EntitySet="OffreCasting" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MegaCastingsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Identifiant" />
+          </Key>
+          <Property Name="Identifiant" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Prenom" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Telephone" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="NumRue" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="NomRue" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="CodePostal" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Ville" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="OffreCastings" Relationship="Self.FK_OffreCasting_Identifiant_Client" FromRole="Client" ToRole="OffreCasting" />
+        </EntityType>
+        <EntityType Name="DomaineMetier">
+          <Key>
+            <PropertyRef Name="Identifiant" />
+          </Key>
+          <Property Name="Identifiant" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Intitule" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Metiers" Relationship="Self.FK_Metier_Identifiant_DomaineMetier" FromRole="DomaineMetier" ToRole="Metier" />
+          <NavigationProperty Name="OffreCastings" Relationship="Self.FK_OffreCasting_Identifiant_DomaineMetier" FromRole="DomaineMetier" ToRole="OffreCasting" />
+        </EntityType>
+        <EntityType Name="Metier">
+          <Key>
+            <PropertyRef Name="Identifiant" />
+          </Key>
+          <Property Name="Identifiant" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="IdentifiantDomaineMetier" Type="Int32" />
+          <NavigationProperty Name="DomaineMetier" Relationship="Self.FK_Metier_Identifiant_DomaineMetier" FromRole="Metier" ToRole="DomaineMetier" />
+          <NavigationProperty Name="OffreCastings" Relationship="Self.FK_OffreCasting_Identifiant_Metier" FromRole="Metier" ToRole="OffreCasting" />
+        </EntityType>
+        <EntityType Name="OffreCasting">
+          <Key>
+            <PropertyRef Name="Identifiant" />
+          </Key>
+          <Property Name="Identifiant" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Intitule" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Reference" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="DateDebut" Type="DateTime" Precision="0" />
+          <Property Name="NombrePoste" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Localisation" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="DescriptionPoste" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DescriptionProfil" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Contact" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="IdentifiantClient" Type="Int32" />
+          <Property Name="IdentifiantDomaineMetier" Type="Int32" />
+          <Property Name="IdentifiantTypeContrat" Type="Int32" />
+          <Property Name="IdentifiantMetier" Type="Int32" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_OffreCasting_Identifiant_Client" FromRole="OffreCasting" ToRole="Client" />
+          <NavigationProperty Name="DomaineMetier" Relationship="Self.FK_OffreCasting_Identifiant_DomaineMetier" FromRole="OffreCasting" ToRole="DomaineMetier" />
+          <NavigationProperty Name="Metier" Relationship="Self.FK_OffreCasting_Identifiant_Metier" FromRole="OffreCasting" ToRole="Metier" />
+          <NavigationProperty Name="TypeContrat" Relationship="Self.FK_OffreCasting_Identifiant_TypeContrat" FromRole="OffreCasting" ToRole="TypeContrat" />
+        </EntityType>
+        <EntityType Name="TypeContrat">
+          <Key>
+            <PropertyRef Name="Identifiant" />
+          </Key>
+          <Property Name="Identifiant" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="Boolean" />
+          <NavigationProperty Name="OffreCastings" Relationship="Self.FK_OffreCasting_Identifiant_TypeContrat" FromRole="TypeContrat" ToRole="OffreCasting" />
+        </EntityType>
+        <Association Name="FK_OffreCasting_Identifiant_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="OffreCasting" Type="Self.OffreCasting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Identifiant" />
+            </Principal>
+            <Dependent Role="OffreCasting">
+              <PropertyRef Name="IdentifiantClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Metier_Identifiant_DomaineMetier">
+          <End Role="DomaineMetier" Type="Self.DomaineMetier" Multiplicity="0..1" />
+          <End Role="Metier" Type="Self.Metier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DomaineMetier">
+              <PropertyRef Name="Identifiant" />
+            </Principal>
+            <Dependent Role="Metier">
+              <PropertyRef Name="IdentifiantDomaineMetier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OffreCasting_Identifiant_DomaineMetier">
+          <End Role="DomaineMetier" Type="Self.DomaineMetier" Multiplicity="0..1" />
+          <End Role="OffreCasting" Type="Self.OffreCasting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DomaineMetier">
+              <PropertyRef Name="Identifiant" />
+            </Principal>
+            <Dependent Role="OffreCasting">
+              <PropertyRef Name="IdentifiantDomaineMetier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OffreCasting_Identifiant_Metier">
+          <End Role="Metier" Type="Self.Metier" Multiplicity="0..1" />
+          <End Role="OffreCasting" Type="Self.OffreCasting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Metier">
+              <PropertyRef Name="Identifiant" />
+            </Principal>
+            <Dependent Role="OffreCasting">
+              <PropertyRef Name="IdentifiantMetier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OffreCasting_Identifiant_TypeContrat">
+          <End Role="TypeContrat" Type="Self.TypeContrat" Multiplicity="0..1" />
+          <End Role="OffreCasting" Type="Self.OffreCasting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeContrat">
+              <PropertyRef Name="Identifiant" />
+            </Principal>
+            <Dependent Role="OffreCasting">
+              <PropertyRef Name="IdentifiantTypeContrat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MegaCastingsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clients" EntityType="Self.Client" />
+          <EntitySet Name="DomaineMetiers" EntityType="Self.DomaineMetier" />
+          <EntitySet Name="Metiers" EntityType="Self.Metier" />
+          <EntitySet Name="OffreCastings" EntityType="Self.OffreCasting" />
+          <EntitySet Name="TypeContrats" EntityType="Self.TypeContrat" />
+          <AssociationSet Name="FK_OffreCasting_Identifiant_Client" Association="Self.FK_OffreCasting_Identifiant_Client">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="OffreCasting" EntitySet="OffreCastings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Metier_Identifiant_DomaineMetier" Association="Self.FK_Metier_Identifiant_DomaineMetier">
+            <End Role="DomaineMetier" EntitySet="DomaineMetiers" />
+            <End Role="Metier" EntitySet="Metiers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OffreCasting_Identifiant_DomaineMetier" Association="Self.FK_OffreCasting_Identifiant_DomaineMetier">
+            <End Role="DomaineMetier" EntitySet="DomaineMetiers" />
+            <End Role="OffreCasting" EntitySet="OffreCastings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OffreCasting_Identifiant_Metier" Association="Self.FK_OffreCasting_Identifiant_Metier">
+            <End Role="Metier" EntitySet="Metiers" />
+            <End Role="OffreCasting" EntitySet="OffreCastings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OffreCasting_Identifiant_TypeContrat" Association="Self.FK_OffreCasting_Identifiant_TypeContrat">
+            <End Role="TypeContrat" EntitySet="TypeContrats" />
+            <End Role="OffreCasting" EntitySet="OffreCastings" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MegaCastingsModelStoreContainer" CdmEntityContainer="MegaCastingsEntities">
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="MegaCastingsModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="Identifiant" ColumnName="Identifiant" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="NumRue" ColumnName="NumRue" />
+                <ScalarProperty Name="NomRue" ColumnName="NomRue" />
+                <ScalarProperty Name="CodePostal" ColumnName="CodePostal" />
+                <ScalarProperty Name="Ville" ColumnName="Ville" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DomaineMetiers">
+            <EntityTypeMapping TypeName="MegaCastingsModel.DomaineMetier">
+              <MappingFragment StoreEntitySet="DomaineMetier">
+                <ScalarProperty Name="Identifiant" ColumnName="Identifiant" />
+                <ScalarProperty Name="Intitule" ColumnName="Intitule" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Metiers">
+            <EntityTypeMapping TypeName="MegaCastingsModel.Metier">
+              <MappingFragment StoreEntitySet="Metier">
+                <ScalarProperty Name="Identifiant" ColumnName="Identifiant" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="IdentifiantDomaineMetier" ColumnName="IdentifiantDomaineMetier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OffreCastings">
+            <EntityTypeMapping TypeName="MegaCastingsModel.OffreCasting">
+              <MappingFragment StoreEntitySet="OffreCasting">
+                <ScalarProperty Name="Identifiant" ColumnName="Identifiant" />
+                <ScalarProperty Name="Intitule" ColumnName="Intitule" />
+                <ScalarProperty Name="Reference" ColumnName="Reference" />
+                <ScalarProperty Name="DateDebut" ColumnName="DateDebut" />
+                <ScalarProperty Name="NombrePoste" ColumnName="NombrePoste" />
+                <ScalarProperty Name="Localisation" ColumnName="Localisation" />
+                <ScalarProperty Name="DescriptionPoste" ColumnName="DescriptionPoste" />
+                <ScalarProperty Name="DescriptionProfil" ColumnName="DescriptionProfil" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="IdentifiantClient" ColumnName="IdentifiantClient" />
+                <ScalarProperty Name="IdentifiantDomaineMetier" ColumnName="IdentifiantDomaineMetier" />
+                <ScalarProperty Name="IdentifiantTypeContrat" ColumnName="IdentifiantTypeContrat" />
+                <ScalarProperty Name="IdentifiantMetier" ColumnName="IdentifiantMetier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeContrats">
+            <EntityTypeMapping TypeName="MegaCastingsModel.TypeContrat">
+              <MappingFragment StoreEntitySet="TypeContrat">
+                <ScalarProperty Name="Identifiant" ColumnName="Identifiant" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

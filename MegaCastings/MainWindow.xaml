@@ -1,0 +1,66 @@
+﻿<Window x:Class="MegaCastings.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MegaCastings"
+        mc:Ignorable="d"
+        Title="MegaCastings" Height="350" Width="525" MinWidth="900" MinHeight="600" WindowState="Maximized">
+
+    <Grid ShowGridLines="true">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*" MaxHeight="280" MinHeight="80"/>
+            <RowDefinition Height="*" MaxHeight="280" MinHeight="80"/>
+            <RowDefinition Height="*" MaxHeight="280" MinHeight="80"/>
+            <RowDefinition Height="200"/>
+            <!-- * signifie % -->
+            <RowDefinition Height="5"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width ="10"/>
+            <ColumnDefinition Width ="Auto"/>
+            <ColumnDefinition Width ="50"/>
+            <ColumnDefinition Width ="*"/>
+            <ColumnDefinition Width ="10"/>
+        </Grid.ColumnDefinitions>
+
+        <Menu Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" ForceCursor="True" FontSize="17">
+            <MenuItem Header="Fichier">
+                <MenuItem Header="XML" Click="MenuItemXML_Click"/>
+                <MenuItem Header="Quitter" Click="Button_Click_Quitter"/>
+            </MenuItem>
+
+            <MenuItem Header="?">
+                <MenuItem Header="Aide"/>
+                <MenuItem Header="À propos"/>
+            </MenuItem>
+        </Menu>
+
+        <Button Grid.Column="1" Grid.Row="3" Height="70" Cursor="Hand" Click="Button_Click_GestionClients" >
+            <TextBlock Text="Gestion des clients" FontSize="20"/>
+        </Button>
+
+        <Button Grid.Column="1" Grid.Row="4" Height="70" Cursor="Hand" Click="Button_Click_GestionCastings">
+            <TextBlock Text="Gestion des castings" FontSize="20"/>
+        </Button>
+
+        <Button Grid.Column="1" Grid.Row="5" Height="70" Cursor="Hand" Click="Button_Click_GestionPartenaires">
+            <TextBlock Text="Gestion des partenaires" FontSize="20"/>
+        </Button>
+
+        <GroupBox x:Name="MainGroupBox" Header="" Grid.Row="3" Grid.Column="3" Grid.RowSpan="4" >
+
+ <!--          <GridView x:Name="MainGridView">
+ A finir lol
+            </GridView> -->
+
+            <StackPanel x:Name="StackPanelButtons"></StackPanel>
+        </GroupBox>
+
+
+    </Grid>
+</Window>

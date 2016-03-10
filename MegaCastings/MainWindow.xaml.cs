@@ -23,6 +23,7 @@ namespace MegaCastings
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
@@ -30,6 +31,9 @@ namespace MegaCastings
             
         }
 
+        /// <summary>
+        /// Initialise le GrigView avec la liste des clients
+        /// </summary>
         private void InitGridView()
         {
             MainGroupBox.Header = "Clients";
@@ -43,21 +47,81 @@ namespace MegaCastings
 
 
         }
-        private void Button_Click_Quitter(object sender, RoutedEventArgs e)
+        private void Button_Click_Close(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
 
-        private void Button_Click_AddClient(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Ouvre une fenêtre modale pour ajouter un client ou bien une offre de casting, ou encore un partenaire
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_Click_Add(object sender, RoutedEventArgs e)
         {
-            AjouterPersonne fenetreAjoutPersonne = new AjouterPersonne();
-            fenetreAjoutPersonne.ShowDialog();
-            DBLib.MegaCastingsEntities db = new MegaCastingsEntities();
+            if(MainGroupBox.Header.Equals("Clients"))
+            {
+                //AjouterPersonne fenetreAjoutPersonne = new AjouterPersonne();
+                //fenetreAjoutPersonne.ShowDialog();
+                //DBLib.MegaCastingsEntities db = new MegaCastingsEntities();
+            }
+            else if(MainGroupBox.Header.Equals("Partenaires"))
+            {
 
+            }
 
+            else if(MainGroupBox.Equals("Castings"))
+            {
+
+            }
         }
 
-        private void Button_Click_ManageClients(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// /// Ouvre une fenêtre modale pour modifier un client ou bien une offre de casting, ou encore un partenaire
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_Click_Manage(object sender, RoutedEventArgs e)
+        {
+            if (MainGroupBox.Header.Equals("Clients"))
+            {
+                
+            }
+            else if (MainGroupBox.Header.Equals("Partenaires"))
+            {
+
+            }
+
+            else if (MainGroupBox.Equals("Castings"))
+            {
+
+            }
+        }
+
+        /// Ouvre une fenêtre modale pour supprimer un client ou bien une offre de casting, ou encore un partenaire
+        private void Button_Click_Delete(object sender, RoutedEventArgs e)
+        {
+            if (MainGroupBox.Header.Equals("Clients"))
+            {
+               
+            }
+            else if (MainGroupBox.Header.Equals("Partenaires"))
+            {
+
+            }
+
+            else if (MainGroupBox.Equals("Castings"))
+            {
+
+            }
+        }
+
+        /// <summary>
+        /// /// Affiche via le GridView la liste des clients
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_Click_DisplayClients(object sender, RoutedEventArgs e)
         {
             MainGroupBox.Header = "Clients";
             //MainGridView.Columns.Clear();
@@ -67,20 +131,30 @@ namespace MegaCastings
 
             if (StackPanelButtons.Children.Count == 0)
             {
-               // Button b_ajouter = new Button();
-               // b_ajouter.Content = "Ajouter";
-               // b_ajouter.Click += new System.Windows.RoutedEventHandler(this.Button_Click_AjouterClient);
+                // Button b_ajouter = new Button();
+                // b_ajouter.Content = "Ajouter";
+                // b_ajouter.Click += new System.Windows.RoutedEventHandler(this.Button_Click_AjouterClient);
                 //StackPanelButtons.Children.Add(b_ajouter);
             }
 
         }
 
-        private void Button_Click_GestionCastings(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Affiche via le GridView la liste des castings
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_Click_DisplayCastings(object sender, RoutedEventArgs e)
         {
             MainGroupBox.Header = "Castings";
         }
 
-        private void Button_Click_GestionPartenaires(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// /// Affiche via le GridView la liste des partenaires
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_Click_DisplayPartenaires(object sender, RoutedEventArgs e)
         {
             MainGroupBox.Header = "Partenaires";
         }

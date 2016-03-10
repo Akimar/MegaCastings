@@ -31,7 +31,7 @@
         <Menu Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" ForceCursor="True" FontSize="17">
             <MenuItem Header="Fichier">
                 <MenuItem Header="XML" Click="MenuItemXML_Click"/>
-                <MenuItem Header="Quitter" Click="Button_Click_Quitter"/>
+                <MenuItem Header="Quitter" Click="Button_Click_Close"/>
             </MenuItem>
 
             <MenuItem Header="?">
@@ -40,15 +40,15 @@
             </MenuItem>
         </Menu>
 
-        <Button Grid.Column="1" Grid.Row="3" Height="70" Cursor="Hand" Click="Button_Click_ManageClients" >
+        <Button Grid.Column="1" Grid.Row="3" Height="70" Cursor="Hand" Click="Button_Click_DisplayClients" >
             <TextBlock Text="Gestion des clients" FontSize="20"/>
         </Button>
 
-        <Button Grid.Column="1" Grid.Row="4" Height="70" Cursor="Hand" Click="Button_Click_GestionCastings">
+        <Button Grid.Column="1" Grid.Row="4" Height="70" Cursor="Hand" Click="Button_Click_DisplayCastings">
             <TextBlock Text="Gestion des castings" FontSize="20"/>
         </Button>
 
-        <Button Grid.Column="1" Grid.Row="5" Height="70" Cursor="Hand" Click="Button_Click_GestionPartenaires">
+        <Button Grid.Column="1" Grid.Row="5" Height="70" Cursor="Hand" Click="Button_Click_DisplayPartenaires">
             <TextBlock Text="Gestion des partenaires" FontSize="20"/>
         </Button>
 
@@ -57,7 +57,7 @@
                 <ListView x:Name="MainListView">
                     <ListView.View>
                         <GridView x:Name="MainGridView">
-                        <GridViewColumn Header="Nom" Width="269"
+                            <GridViewColumn Header="Nom" Width="269"
                        DisplayMemberBinding="{Binding Path= LastName}"/>
                             <GridViewColumn Header="Prénom" Width="269"
                        DisplayMemberBinding="{Binding Path=FirstName}"/>
@@ -69,15 +69,25 @@
                        DisplayMemberBinding="{Binding Path=ZipCode}"/>
                             <GridViewColumn Header="Ville" Width="269"
                        DisplayMemberBinding="{Binding Path=City}"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </ScrollViewer>
         </GroupBox>
 
-        <StackPanel x:Name="StackPanelButtons">
-            <Button x:Name="Add" 
-</StackPanel>
-      
+        <StackPanel Orientation="Horizontal" x:Name="StackPanelButtons" Grid.Row="6" Grid.Column="3">
+            <Button Cursor="Hand"  Click="Button_Click_Add" Width="100" Height="40" Margin="7">
+                <TextBlock Text="Ajouter" FontSize="20"/>
+            </Button>
+
+            <Button Cursor="Hand"  Click="Button_Click_Manage" Width="100" Height="40" Margin="7" IsEnabled="False">
+                <TextBlock Text="Modifier" FontSize="20"/>
+            </Button>
+
+            <Button Cursor="Hand"  Click="Button_Click_Delete" Width="100" Height="40" Margin="7" IsEnabled="False">
+                <TextBlock Text="Supprimer" FontSize="20"/>
+            </Button>
+        </StackPanel>
+
     </Grid>
 </Window>

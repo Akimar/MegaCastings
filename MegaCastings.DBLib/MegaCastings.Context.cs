@@ -25,10 +25,10 @@ namespace MegaCastings.DBLib
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<CastingOffer> CastingOffers { get; set; }
         public virtual DbSet<Client> Clients { get; set; }
-        public virtual DbSet<DomaineMetier> DomaineMetiers { get; set; }
-        public virtual DbSet<Metier> Metiers { get; set; }
-        public virtual DbSet<OffreCasting> OffreCastings { get; set; }
-        public virtual DbSet<TypeContrat> TypeContrats { get; set; }
+        public virtual DbSet<ContractType> ContractTypes { get; set; }
+        public virtual DbSet<Profession> Professions { get; set; }
+        public virtual DbSet<ProfessionField> ProfessionFields { get; set; }
     }
 }

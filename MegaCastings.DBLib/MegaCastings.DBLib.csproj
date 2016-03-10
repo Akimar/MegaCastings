@@ -51,12 +51,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CastingOffer.cs">
+      <DependentUpon>MegaCastings.tt</DependentUpon>
+    </Compile>
     <Compile Include="Client.cs">
       <DependentUpon>MegaCastings.tt</DependentUpon>
     </Compile>
-    <Compile Include="DomaineMetier.cs">
+    <Compile Include="ContractType.cs">
       <DependentUpon>MegaCastings.tt</DependentUpon>
     </Compile>
+    <Compile Include="DBLibClient.cs" />
     <Compile Include="MegaCastings.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -72,16 +76,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MegaCastings.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Metier.cs">
+    <Compile Include="Profession.cs">
       <DependentUpon>MegaCastings.tt</DependentUpon>
     </Compile>
-    <Compile Include="OffreCasting.cs">
+    <Compile Include="ProfessionField.cs">
       <DependentUpon>MegaCastings.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TypeContrat.cs">
-      <DependentUpon>MegaCastings.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />

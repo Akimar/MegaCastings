@@ -26,8 +26,19 @@ namespace MegaCastings
         public MainWindow()
         {
             InitializeComponent();
+            InitGridView();
+            
         }
 
+        private void InitGridView()
+        {
+            MainGroupBox.Header = "Clients";
+            MegaCastingsEntities db = new MegaCastingsEntities();
+            List<Client> ListeClients = db.Clients.ToList();
+            MainListView.ItemsSource = ListeClients;
+
+
+        }
         private void Button_Click_Quitter(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
@@ -52,10 +63,10 @@ namespace MegaCastings
 
             if (StackPanelButtons.Children.Count == 0)
             {
-                Button b_ajouter = new Button();
-                b_ajouter.Content = "Ajouter";
-                b_ajouter.Click += new System.Windows.RoutedEventHandler(this.Button_Click_AjouterClient);
-                StackPanelButtons.Children.Add(b_ajouter);
+               // Button b_ajouter = new Button();
+               // b_ajouter.Content = "Ajouter";
+               // b_ajouter.Click += new System.Windows.RoutedEventHandler(this.Button_Click_AjouterClient);
+                //StackPanelButtons.Children.Add(b_ajouter);
             }
 
         }

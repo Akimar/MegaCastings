@@ -12,23 +12,21 @@ namespace MegaCastings.DBLib
     using System;
     using System.Collections.Generic;
     
-    public partial class Client
+    public partial class ProfessionField
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Client()
+        public ProfessionField()
         {
             this.CastingOffers = new HashSet<CastingOffer>();
+            this.Professions = new HashSet<Profession>();
         }
     
-        public int Id { get; set; }
-        public string LastName { get; set; }
-        public string FirstName { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Address { get; set; }
-        public string ZipCode { get; set; }
-        public string City { get; set; }
+        public short Id { get; set; }
+        public string Title { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CastingOffer> CastingOffers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Profession> Professions { get; set; }
     }
 }

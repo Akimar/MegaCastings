@@ -8,21 +8,21 @@ namespace MegaCastings.DBLib
 {
     public partial class Client
     {
-        private String _Address;
-
-        public String Adresse
+     
+        public void FormatPhoneNumberForDisplay()
         {
-            get { return String.Format("{0} {1}", NumRue, NomRue); }
+            int i = 2;
+
+            String phoneNumber = PhoneNumber.Substring(0, 2);
+
+            while (i< PhoneNumber.Length)
+            {
+             phoneNumber = String.Format("{0}-{1}", phoneNumber, PhoneNumber.Substring(i, 2));
+
+                i += 2;
+            }
+
+            PhoneNumber = phoneNumber;
         }
-
-        private String _FormatTelNumber;
-
-        public String FormatPhoneNumber
-        {
-            get { return T; }
-           
-        }
-
-
     }
 }

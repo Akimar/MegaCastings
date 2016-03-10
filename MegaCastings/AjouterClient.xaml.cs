@@ -38,20 +38,20 @@ namespace MegaCastings
         /// </summary>
         private void b_ok_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(tbNom.Text) && !string.IsNullOrEmpty(tbPrenom.Text) && !string.IsNullOrEmpty(tbTel.Text) && !string.IsNullOrEmpty(tbNumRue.Text) && !string.IsNullOrEmpty(tbNomRue.Text) && !string.IsNullOrEmpty(tbCp.Text) && !string.IsNullOrEmpty(tbVille.Text))
+            if (!string.IsNullOrEmpty(tbLastName.Text) && !string.IsNullOrEmpty(tbFirstName.Text) && !string.IsNullOrEmpty(tbPhoneNumber.Text) && !string.IsNullOrEmpty(tbAddress.Text) && !string.IsNullOrEmpty(tbZipCode.Text) && !string.IsNullOrEmpty(tbCity.Text))
             {
                 DBLib.MegaCastingsEntities dblib = new DBLib.MegaCastingsEntities();
-                DBLib.Client nouveauClient = new DBLib.Client();
-                nouveauClient.Nom = tbNom.Text.ToUpper();
-                nouveauClient.Prenom = tbPrenom.Text;
-                nouveauClient.Telephone = tbTel.Text;
-                nouveauClient.NumRue = tbNumRue.Text;
-                nouveauClient.NomRue = tbNomRue.Text;
-                nouveauClient.CodePostal = tbCp.Text;
-                nouveauClient.Ville = tbVille.Text;
+                DBLib.Client newClient = new DBLib.Client();
+                newClient.LastName = tbLastName.Text.ToUpper();
+                newClient.FirstName = tbFirstName.Text;
+                newClient.PhoneNumber = tbPhoneNumber.Text;
+                newClient.Address = tbAddress.Text;
+                newClient.ZipCode = tbZipCode.Text;
+                newClient.City = tbCity.Text;
+
                 try
                 {
-                    dblib.Clients.Add(nouveauClient);
+                    dblib.Clients.Add(newClient);
                     dblib.SaveChanges();
                     MessageBox.Show("Ajout effectué avec succès ! ");
 

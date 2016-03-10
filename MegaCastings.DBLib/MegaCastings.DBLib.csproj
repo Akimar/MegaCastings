@@ -60,7 +60,7 @@
     <Compile Include="ContractType.cs">
       <DependentUpon>MegaCastings.tt</DependentUpon>
     </Compile>
-    <Compile Include="DBLibClient.cs" />
+    <Compile Include="DBLib.Client.cs" />
     <Compile Include="MegaCastings.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

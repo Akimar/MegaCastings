@@ -32,19 +32,17 @@
         <TextBlock Grid.Column="1" Grid.Row="1"  Text="Nom :"/>
         <TextBlock Grid.Column="1"  Grid.Row="2" Text="Prénom :"/>
         <TextBlock Grid.Column="1"  Grid.Row="3" Text="Téléphone :"/>
-        <TextBlock Grid.Column="1"  Grid.Row="4" Text="Numéro de rue"/>
-        <TextBlock Grid.Column="1"  Grid.Row="5" Text="Nom de rue"/>
-        <TextBlock Grid.Column="1"  Grid.Row="6" Text="Code postal"/>
-        <TextBlock Grid.Column="1"  Grid.Row="7" Text="Ville"/>
+        <TextBlock Grid.Column="1"  Grid.Row="4" Text="Adresse"/>
+        <TextBlock Grid.Column="1"  Grid.Row="5" Text="Code postal"/>
+        <TextBlock Grid.Column="1"  Grid.Row="6" Text="Ville"/>
 
-        <TextBox x:Name="tbNom" Grid.Row="1"  Grid.Column="2" Margin="2"/>
-        <TextBox x:Name="tbPrenom" Grid.Row="2" Grid.Column="2" Margin="0,1,2,3"/>
+        <TextBox x:Name="tbLastName" Grid.Row="1"  Grid.Column="2" Margin="2"/>
+        <TextBox x:Name="tbFirstName" Grid.Row="2" Grid.Column="2" Margin="0,1,2,3"/>
         <!-- gauche, droite, haut, bas -->
-        <TextBox x:Name="tbTel" Grid.Row="3"  Grid.Column="2" Margin="2"/>
-        <TextBox x:Name="tbNumRue" Grid.Row="4" Grid.Column="2" Margin="0,1,2,3"/>
-        <TextBox x:Name="tbNomRue" Grid.Row="5"  Grid.Column="2" Margin="2"/>
-        <TextBox x:Name="tbCp" Grid.Row="6" Grid.Column="2" Margin="0,1,2,3"/>
-        <TextBox x:Name="tbVille" Grid.Row="7"  Grid.Column="2" Margin="2"/>
+        <TextBox x:Name="tbPhoneNumber" Grid.Row="3"  Grid.Column="2" Margin="2"/>
+        <TextBox x:Name="tbAddress" Grid.Row="4" Grid.Column="2" Margin="0,1,2,3"/>
+        <TextBox x:Name="tbZipCode" Grid.Row="5" Grid.Column="2" Margin="0,1,2,3"/>
+        <TextBox x:Name="tbCity" Grid.Row="6"  Grid.Column="2" Margin="2"/>
    
 
         <StackPanel Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal" FlowDirection="RightToLeft" VerticalAlignment="Bottom">

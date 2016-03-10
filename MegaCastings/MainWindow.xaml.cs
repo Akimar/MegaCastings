@@ -34,8 +34,12 @@ namespace MegaCastings
         {
             MainGroupBox.Header = "Clients";
             MegaCastingsEntities db = new MegaCastingsEntities();
-            List<Client> ListeClients = db.Clients.ToList();
-            MainListView.ItemsSource = ListeClients;
+            List<Client> ClientsList = db.Clients.ToList();
+            foreach (var client in ClientsList)
+            {
+                client.FormatPhoneNumberForDisplay();
+            }
+            MainListView.ItemsSource = ClientsList;
 
 
         }
@@ -44,7 +48,7 @@ namespace MegaCastings
             Application.Current.Shutdown();
         }
 
-        private void Button_Click_AjouterClient(object sender, RoutedEventArgs e)
+        private void Button_Click_AddClient(object sender, RoutedEventArgs e)
         {
             AjouterPersonne fenetreAjoutPersonne = new AjouterPersonne();
             fenetreAjoutPersonne.ShowDialog();
@@ -53,7 +57,7 @@ namespace MegaCastings
 
         }
 
-        private void Button_Click_GestionClients(object sender, RoutedEventArgs e)
+        private void Button_Click_ManageClients(object sender, RoutedEventArgs e)
         {
             MainGroupBox.Header = "Clients";
             //MainGridView.Columns.Clear();

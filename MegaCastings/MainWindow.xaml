@@ -40,7 +40,7 @@
             </MenuItem>
         </Menu>
 
-        <Button Grid.Column="1" Grid.Row="3" Height="70" Cursor="Hand" Click="Button_Click_GestionClients" >
+        <Button Grid.Column="1" Grid.Row="3" Height="70" Cursor="Hand" Click="Button_Click_ManageClients" >
             <TextBlock Text="Gestion des clients" FontSize="20"/>
         </Button>
 
@@ -58,24 +58,26 @@
                     <ListView.View>
                         <GridView x:Name="MainGridView">
                         <GridViewColumn Header="Nom" Width="269"
-                       DisplayMemberBinding="{Binding Path= Nom}"/>
+                       DisplayMemberBinding="{Binding Path= LastName}"/>
                             <GridViewColumn Header="Prénom" Width="269"
-                       DisplayMemberBinding="{Binding Path=Prenom}"/>
+                       DisplayMemberBinding="{Binding Path=FirstName}"/>
                             <GridViewColumn Header="Téléphone" Width="269"
-                       DisplayMemberBinding="{Binding Path= Telephone}" />
+                       DisplayMemberBinding="{Binding Path= PhoneNumber}" />
                             <GridViewColumn Header="Adresse" Width="269"
-                       DisplayMemberBinding="{Binding Path= Adresse}" />
+                       DisplayMemberBinding="{Binding Path= Address}" />
                             <GridViewColumn Header="Code Postal" Width="269"
-                       DisplayMemberBinding="{Binding Path=CodePostal}"/>
+                       DisplayMemberBinding="{Binding Path=ZipCode}"/>
                             <GridViewColumn Header="Ville" Width="269"
-                       DisplayMemberBinding="{Binding Path=Ville}"/>
+                       DisplayMemberBinding="{Binding Path=City}"/>
                     </GridView>
                 </ListView.View>
             </ListView>
             </ScrollViewer>
         </GroupBox>
 
-        <StackPanel x:Name="StackPanelButtons"></StackPanel>
+        <StackPanel x:Name="StackPanelButtons">
+            <Button x:Name="Add" 
+</StackPanel>
       
     </Grid>
 </Window>

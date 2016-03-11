@@ -48,14 +48,14 @@
             <TextBlock Text="Gestion des castings" FontSize="20"/>
         </Button>
 
-        <Button Grid.Column="1" Grid.Row="5" Height="70" Cursor="Hand" Click="Button_Click_DisplayPartenaires">
+        <Button Grid.Column="1" Grid.Row="5" Height="70" Cursor="Hand" Click="Button_Click_DisplayCollaborators">
             <TextBlock Text="Gestion des partenaires" FontSize="20"/>
         </Button>
 
         <GroupBox x:Name="MainGroupBox" Header="" Grid.Row="3" Grid.Column="3" Grid.RowSpan="3" >
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <ListView x:Name="MainListView">
-                    <ListView.View>
+                    <!--<ListView.View>
                         <GridView x:Name="MainGridView">
                             <GridViewColumn Header="Nom" Width="269"
                        DisplayMemberBinding="{Binding Path= LastName}"/>
@@ -70,7 +70,7 @@
                             <GridViewColumn Header="Ville" Width="269"
                        DisplayMemberBinding="{Binding Path=City}"/>
                         </GridView>
-                    </ListView.View>
+                    </ListView.View>-->
                 </ListView>
             </ScrollViewer>
         </GroupBox>

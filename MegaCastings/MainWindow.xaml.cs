@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using MegaCastings.DBLib;
 using System.Xml;
 using System.Xml.Linq;
+using System.Collections.ObjectModel;
 
 namespace MegaCastings
 {
@@ -27,26 +28,36 @@ namespace MegaCastings
         public MainWindow()
         {
             InitializeComponent();
-            InitGridView();
+            //InitGridView();
             
         }
 
         /// <summary>
         /// Initialise le GrigView avec la liste des clients
-        /// </summary>
+        /// </summary> 
         private void InitGridView()
         {
             MainGroupBox.Header = "Clients";
             MegaCastingsEntities db = new MegaCastingsEntities();
             List<Client> ClientsList = db.Clients.ToList();
+
             foreach (var client in ClientsList)
             {
                 client.FormatPhoneNumberForDisplay();
             }
-            MainListView.ItemsSource = ClientsList;
 
+            
+            MainListView.ItemsSource = ClientsList;
+            db = null;
 
         }
+
+        #region Button Events
+        /// <summary>
+        /// Ferme l'application
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Click_Close(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
@@ -61,9 +72,9 @@ namespace MegaCastings
         {
             if(MainGroupBox.Header.Equals("Clients"))
             {
-                //AjouterPersonne fenetreAjoutPersonne = new AjouterPersonne();
-                //fenetreAjoutPersonne.ShowDialog();
-                //DBLib.MegaCastingsEntities db = new MegaCastingsEntities();
+                AddClient AddClientFrame = new AddClient();
+                AddClientFrame.ShowDialog();
+                DBLib.MegaCastingsEntities db = new MegaCastingsEntities();
             }
             else if(MainGroupBox.Header.Equals("Partenaires"))
             {
@@ -124,18 +135,29 @@ namespace MegaCastings
         private void Button_Click_DisplayClients(object sender, RoutedEventArgs e)
         {
             MainGroupBox.Header = "Clients";
-            //MainGridView.Columns.Clear();
-            //MainGridView.Columns.Add(new GridViewColumn());
-            //MainGridView.Columns[0].Header = "Test";
-            //MainGridView.Columns[0].Width = 50;
+            CustomGridView customGridView = new CustomGridView();
+            customGridView.BuildGridView(0);
 
-            if (StackPanelButtons.Children.Count == 0)
+            //ListViewItem tata = new ListViewItem();
+            //tata.Content = customGridView.MainGridView;
+            MainListView.View = customGridView.MainGridView;
+
+            MegaCastingsEntities db = new MegaCastingsEntities();
+            List<Client> ClientsList = db.Clients.ToList();
+            //ObservableCollection<Client> ClientsList = new ObservableCollection<Client>();
+
+            //foreach (var item in toto)
+            //{
+            //    ClientsList.Add(item);
+            //}
+           
+            foreach (var client in ClientsList)
             {
-                // Button b_ajouter = new Button();
-                // b_ajouter.Content = "Ajouter";
-                // b_ajouter.Click += new System.Windows.RoutedEventHandler(this.Button_Click_AjouterClient);
-                //StackPanelButtons.Children.Add(b_ajouter);
+                client.FormatPhoneNumberForDisplay();
             }
+
+            MainListView.ItemsSource = ClientsList;
+            db = null;
 
         }
 
@@ -147,6 +169,14 @@ namespace MegaCastings
         private void Button_Click_DisplayCastings(object sender, RoutedEventArgs e)
         {
             MainGroupBox.Header = "Castings";
+            //foreach (var item in MainGridView.Columns)
+            //{
+            //    item.Header = "toto";
+            //}
+            //MegaCastingsEntities db = new MegaCastingsEntities();
+            //List<CastingOffer> CastingsList = db.CastingOffers.ToList();
+            //MainListView.ItemsSource = CastingsList;
+            //db = null;
         }
 
         /// <summary>
@@ -154,10 +184,16 @@ namespace MegaCastings
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Button_Click_DisplayPartenaires(object sender, RoutedEventArgs e)
+        private void Button_Click_DisplayCollaborators(object sender, RoutedEventArgs e)
         {
             MainGroupBox.Header = "Partenaires";
+            //MegaCastingsEntities db = new MegaCastingsEntities();
+            //List<Client> ClientsList = db..ToList();
+            //MainListView.ItemsSource = ClientsList;
+            //db = null;
         }
+
+        #endregion
 
         private void MenuItemXML_Click(object sender, RoutedEventArgs e)
         {

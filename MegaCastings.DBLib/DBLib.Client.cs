@@ -24,5 +24,10 @@ namespace MegaCastings.DBLib
 
             PhoneNumber = phoneNumber;
         }
+
+        public void BuildGridView()
+        {
+            
+        }
     }
 }

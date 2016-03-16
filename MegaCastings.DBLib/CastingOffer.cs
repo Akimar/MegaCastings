@@ -18,6 +18,7 @@ namespace MegaCastings.DBLib
         public string Title { get; set; }
         public string Reference { get; set; }
         public System.DateTime StartingDate { get; set; }
+        public Nullable<System.DateTime> EndingDate { get; set; }
         public byte PostNumber { get; set; }
         public string Location { get; set; }
         public string PostDescription { get; set; }

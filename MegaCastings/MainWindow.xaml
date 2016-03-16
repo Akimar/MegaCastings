@@ -76,15 +76,15 @@
         </GroupBox>
 
         <StackPanel Orientation="Horizontal" x:Name="StackPanelButtons" Grid.Row="6" Grid.Column="3">
-            <Button Cursor="Hand"  Click="Button_Click_Add" Width="100" Height="40" Margin="7">
+            <Button Cursor="Hand"  Click="Button_Click_Add" Width="100" Height="40" Margin="30,7,7,7">
                 <TextBlock Text="Ajouter" FontSize="20"/>
             </Button>
 
-            <Button Cursor="Hand"  Click="Button_Click_Manage" Width="100" Height="40" Margin="7" IsEnabled="False">
+            <Button Cursor="Hand"  Click="Button_Click_Manage" Width="100" Height="40" Margin="110, 7, 7, 7" IsEnabled="False">
                 <TextBlock Text="Modifier" FontSize="20"/>
             </Button>
 
-            <Button Cursor="Hand"  Click="Button_Click_Delete" Width="100" Height="40" Margin="7" IsEnabled="False">
+            <Button Cursor="Hand"  Click="Button_Click_Delete" Width="100" Height="40" Margin="140, 7, 7, 7" IsEnabled="False">
                 <TextBlock Text="Supprimer" FontSize="20"/>
             </Button>
         </StackPanel>

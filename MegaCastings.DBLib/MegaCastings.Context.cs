@@ -27,8 +27,10 @@ namespace MegaCastings.DBLib
     
         public virtual DbSet<CastingOffer> CastingOffers { get; set; }
         public virtual DbSet<Client> Clients { get; set; }
+        public virtual DbSet<Collaborator> Collaborators { get; set; }
         public virtual DbSet<ContractType> ContractTypes { get; set; }
         public virtual DbSet<Profession> Professions { get; set; }
         public virtual DbSet<ProfessionField> ProfessionFields { get; set; }
+        public virtual DbSet<Representative> Representatives { get; set; }
     }
 }

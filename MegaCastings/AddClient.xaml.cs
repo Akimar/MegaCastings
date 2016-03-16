@@ -42,12 +42,14 @@ namespace MegaCastings
             {
                 DBLib.MegaCastingsEntities dblib = new DBLib.MegaCastingsEntities();
                 DBLib.Client newClient = new DBLib.Client();
-                newClient.LastName = tbLastName.Text.ToUpper();
-                newClient.FirstName = tbFirstName.Text;
-                newClient.PhoneNumber = tbPhoneNumber.Text;
-                newClient.Address = tbAddress.Text;
-                newClient.ZipCode = tbZipCode.Text;
-                newClient.City = tbCity.Text;
+                //newClient.LastName = tbLastName.Text.ToUpper();
+                //newClient.FirstName = tbFirstName.Text;
+                //newClient.PhoneNumber = tbPhoneNumber.Text;
+                //newClient.Address = tbAddress.Text;
+                //newClient.ZipCode = tbZipCode.Text;
+                //newClient.City = tbCity.Text;
+
+                
 
                 try
                 {

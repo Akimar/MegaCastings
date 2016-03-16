@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
@@ -68,8 +69,8 @@ namespace MegaCastings
         {
             MainGridView = new GridView();
             ClientGridViewColumNames = new String[6];
-            CollaboratorGridViewColumNames = new String[5];
-            OfferGridViewColumNames = new String[6];
+            CollaboratorGridViewColumNames = new String[6];
+            OfferGridViewColumNames = new String[13];
         }
 
         #endregion
@@ -79,12 +80,30 @@ namespace MegaCastings
 
         private String[] PopulateCollaboratorColumNamesArray()
         {
+            CollaboratorGridViewColumNames[0] = "Nom";
+            CollaboratorGridViewColumNames[1] = "Téléphone";
+            CollaboratorGridViewColumNames[2] = "Adresse";
+            CollaboratorGridViewColumNames[3] = "Code Postal";
+            CollaboratorGridViewColumNames[4] = "Ville";
 
             return CollaboratorGridViewColumNames;
         }
 
         private String[] PopulateOfferColumNamesArray()
         {
+            OfferGridViewColumNames[0] = "Intitulé";
+            OfferGridViewColumNames[1] = "Référence";
+            OfferGridViewColumNames[2] = "Date de début";
+            OfferGridViewColumNames[3] = "Date de fin";
+            OfferGridViewColumNames[4] = "Durée";
+            OfferGridViewColumNames[5] = "Nombre de postes";
+            OfferGridViewColumNames[6] = "Description du poste";
+            OfferGridViewColumNames[7] = "Description du profil";
+            OfferGridViewColumNames[8] = "Contact";
+            OfferGridViewColumNames[9] = "Client";
+            OfferGridViewColumNames[10] = "Métier";
+            OfferGridViewColumNames[11] = "Domaine Métier";
+            OfferGridViewColumNames[12] = "Type de contrat";
 
             return OfferGridViewColumNames;
         }
@@ -92,11 +111,11 @@ namespace MegaCastings
         private String[] PopulateClientColumNamesArray()
         {
             ClientGridViewColumNames[0] = "Nom";
-            ClientGridViewColumNames[1] = "Prénom";
-            ClientGridViewColumNames[2] = "Téléphone";
-            ClientGridViewColumNames[3] = "Adresse";
-            ClientGridViewColumNames[4] = "Code Postal";
-            ClientGridViewColumNames[5] = "Ville";
+            ClientGridViewColumNames[1] = "Téléphone";
+            ClientGridViewColumNames[2] = "Adresse";
+            ClientGridViewColumNames[3] = "Code Postal";
+            ClientGridViewColumNames[4] = "Ville";
+           // ClientGridViewColumNames[5] = "Représentants";
 
             return ClientGridViewColumNames;
         }
@@ -113,8 +132,9 @@ namespace MegaCastings
 
             if (dataIndex == 0)
             {
-                bindingArray = new String[] { "LastName", "FirstName", "PhoneNumber", "Address", "ZipCode", "City" };
+                bindingArray = new String[] { "Name", "PhoneNumber", "Address", "ZipCode", "City" };
                 columnNames = PopulateClientColumNamesArray();
+
 
             }
             else if(dataIndex == 1)
@@ -129,7 +149,7 @@ namespace MegaCastings
             }
             
 
-            for (int i = 0; i < columnNames.Length; i++)
+            for (int i = 0; i < columnNames.Length-1; i++)
             {
                 GridViewColumn gridViewColumn = new GridViewColumn()
                 {
@@ -140,8 +160,32 @@ namespace MegaCastings
                 };
 
                 MainGridView.Columns.Add(gridViewColumn);
+                
             }
 
+            String toto = "toto";
+
+            GridViewColumn lastColumn = new GridViewColumn()
+            {
+                Header = "Représentants",
+                CellTemplate = new DataTemplate(toto),
+                Width = 269
+
+            };
+
+            MainGridView.Columns.Add(lastColumn);
+
+            //DataTemplate toto = new DataTemplate("toto");
+
+            //GridViewColumn gridViewColumn1 = new GridViewColumn()
+            //{
+            //    Header = ClientGridViewColumNames[ClientGridViewColumNames.Length - 1],
+            //    Width = 269,
+            //    CellTemplate = toto
+
+
+            //};
+            // MainGridView.Columns.Add(gridViewColumn1);
         }
             #endregion
         }

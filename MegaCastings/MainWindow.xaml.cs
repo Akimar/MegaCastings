@@ -35,22 +35,6 @@ namespace MegaCastings
         /// <summary>
         /// Initialise le GrigView avec la liste des clients
         /// </summary> 
-        private void InitGridView()
-        {
-            MainGroupBox.Header = "Clients";
-            MegaCastingsEntities db = new MegaCastingsEntities();
-            List<Client> ClientsList = db.Clients.ToList();
-
-            foreach (var client in ClientsList)
-            {
-                client.FormatPhoneNumberForDisplay();
-            }
-
-            
-            MainListView.ItemsSource = ClientsList;
-            db = null;
-
-        }
 
         #region Button Events
         /// <summary>
@@ -134,31 +118,18 @@ namespace MegaCastings
         /// <param name="e"></param>
         private void Button_Click_DisplayClients(object sender, RoutedEventArgs e)
         {
-            MainGroupBox.Header = "Clients";
-            CustomGridView customGridView = new CustomGridView();
-            customGridView.BuildGridView(0);
-
-            //ListViewItem tata = new ListViewItem();
-            //tata.Content = customGridView.MainGridView;
-            MainListView.View = customGridView.MainGridView;
-
             MegaCastingsEntities db = new MegaCastingsEntities();
             List<Client> ClientsList = db.Clients.ToList();
-            //ObservableCollection<Client> ClientsList = new ObservableCollection<Client>();
 
-            //foreach (var item in toto)
-            //{
-            //    ClientsList.Add(item);
-            //}
            
             foreach (var client in ClientsList)
             {
                 client.FormatPhoneNumberForDisplay();
             }
 
-            MainListView.ItemsSource = ClientsList;
-            db = null;
+            //MainDataGrid.ItemsSource = ClientsList;
 
+            db = null;
         }
 
         /// <summary>

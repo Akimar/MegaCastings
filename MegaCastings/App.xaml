@@ -3,7 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:MegaCastings"
              StartupUri="MainWindow.xaml">
-    <Application.Resources>
-         
-    </Application.Resources>
+    <!--<Application.Resources>
+
+        <DataTemplate x:Key="DataGridClient">
+            <DataGridTemplateColumn Header="Nom" Binding="{Binding Name}"/>
+            <DataGridTextColumn Header="Téléphone" Binding="{Binding PhoneNumber}"/>
+            <DataGridTextColumn Header="Adresse" Binding="{Binding Address}"/>
+            <DataGridTextColumn Header="Code Postal" Binding="{Binding ZipCode}"/>
+            <DataGridTextColumn Header="Ville" Binding="{Binding City}"/>
+            <DataGridTemplateColumn Header="Utilisation">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <Button x:Name="btnHistorique" Margin="5.0">Historique</Button>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+        </DataTemplate>
+    </Application.Resources>-->
 </Application>

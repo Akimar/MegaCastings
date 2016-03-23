@@ -73,7 +73,7 @@ namespace MegaCastings
                 GridLinesVisibility = DataGridGridLinesVisibility.None,
                 
             };
-            ClientDataGridColumNames = new String[6];
+            ClientDataGridColumNames = new String[5];
             CollaboratorDataGridColumNames = new String[6];
             OfferDataGridColumNames = new String[13];
         }
@@ -152,7 +152,7 @@ namespace MegaCastings
             }
             
 
-            for (int i = 0; i < columnNames.Length-1; i++)
+            for (int i = 0; i < columnNames.Length; i++)
             {
                 DataGridTextColumn DataGridColumn = new DataGridTextColumn()
                 {
@@ -177,9 +177,19 @@ namespace MegaCastings
 
             //};
 
-           // MainDataGrid.Columns.Add(lastColumn);
+            // MainDataGrid.Columns.Add(lastColumn);
 
-            DataTemplate toto = new DataTemplate("toto");
+            //DataGridTemplateColumn col1 = new DataGridTemplateColumn();
+            //col1.Header = "MyHeader";
+            //FrameworkElementFactory factory1 = new FrameworkElementFactory(typeof(CheckBox));
+            //Binding b1 = new Binding("IsSelected");
+            //b1.Mode = BindingMode.TwoWay;
+            //factory1.SetValue(CheckBox.IsCheckedProperty, b1);
+            
+            //DataTemplate cellTemplate1 = new DataTemplate();
+            //cellTemplate1.VisualTree = factory1;
+            //col1.CellTemplate = cellTemplate1;
+            //MainDataGrid.Columns.Add(col1);
 
             //DataGridColumn DataGridColumn1 = new DataGridColumn()
             //{

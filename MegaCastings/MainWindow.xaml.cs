@@ -28,13 +28,10 @@ namespace MegaCastings
         public MainWindow()
         {
             InitializeComponent();
-            //InitGridView();
+          
             
         }
 
-        /// <summary>
-        /// Initialise le GrigView avec la liste des clients
-        /// </summary> 
 
         #region Button Events
         /// <summary>
@@ -118,6 +115,8 @@ namespace MegaCastings
         /// <param name="e"></param>
         private void Button_Click_DisplayClients(object sender, RoutedEventArgs e)
         {
+            MainGroupBox.Header = "Castings";
+
             MegaCastingsEntities db = new MegaCastingsEntities();
             List<Client> ClientsList = db.Clients.ToList();
 
@@ -127,7 +126,10 @@ namespace MegaCastings
                 client.FormatPhoneNumberForDisplay();
             }
 
-            //MainDataGrid.ItemsSource = ClientsList;
+
+            CustomDataGrid DataGrid = new CustomDataGrid();
+            DataGrid.BuildDataGrid(0);
+            DataGrid.MainDataGrid.ItemsSource = ClientsList;
 
             db = null;
         }

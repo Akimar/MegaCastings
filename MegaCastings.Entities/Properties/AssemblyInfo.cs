@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MegaCastings.DBLib")]
+[assembly: AssemblyTitle("MegaCastings.Entities")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MegaCastings.DBLib")]
+[assembly: AssemblyProduct("MegaCastings.Entities")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("d8123419-4f2f-4e07-9ff4-49b425994695")]
+[assembly: Guid("afcaf9b8-3d06-461a-b3a2-bd50b8f88ead")]
 
 // Version information for an assembly consists of the following four values:
 //

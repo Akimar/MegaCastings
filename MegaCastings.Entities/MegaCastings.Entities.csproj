@@ -40,8 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CastingOffer.cs" />
     <Compile Include="Client.cs" />
+    <Compile Include="ContactDetails.cs" />
     <Compile Include="ContractType.cs" />
+    <Compile Include="Collaborator.cs" />
     <Compile Include="Profession.cs" />
     <Compile Include="ProfessionField.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

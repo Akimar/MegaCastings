@@ -9,13 +9,47 @@ namespace MegaCastings.Entities
    public class ContractType
     {
 
-        private int myVar;
+        #region Attributes & Properties
 
-        public int MyProperty
+        private int _Id;
+
+        /// <summary>
+        /// Affecte ou obtient l'id du type de contrat
+        /// </summary>
+        public virtual int Id
         {
-            get { return myVar; }
-            set { myVar = value; }
+            get { return _Id; }
+            set { _Id = value; }
         }
+
+
+
+        private Boolean _ConType;
+
+        /// <summary>
+        /// Affecte ou obtient le booleen déterminant si le contrat est à durée déterminée ou non
+        /// </summary>		
+        public virtual Boolean ConType
+        {
+            get { return _ConType; }
+            set { _ConType = value; }
+        }
+
+        #endregion
+
+        #region Constructors
+
+        public ContractType()
+        {
+
+        }
+
+        public ContractType(Boolean conType)
+        {
+            this.ConType = conType;
+        }
+
+        #endregion
 
     }
 }

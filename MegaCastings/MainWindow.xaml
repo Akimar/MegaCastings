@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MegaCastings"
         mc:Ignorable="d"
-        Title="MegaCastings" Height="350" Width="525" MinWidth="900" MinHeight="600" WindowState="Maximized">
+        Title="MegaCastings" Height="350" Width="525" MinWidth="900" MinHeight="600" WindowState="Maximized" DataContext="this">
 
     <Grid ShowGridLines="true">
         <Grid.RowDefinitions>
@@ -30,7 +30,7 @@
 
         <Menu Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" ForceCursor="True" FontSize="17">
             <MenuItem Header="Fichier">
-                <MenuItem Header="XML" Click="MenuItemXML_Click"/>
+                <MenuItem Header="XML"/>
                 <MenuItem Header="Quitter" Click="Button_Click_Close"/>
             </MenuItem>
 
@@ -52,23 +52,35 @@
             <TextBlock Text="Gestion des partenaires" FontSize="20"/>
         </Button>
 
-        <GroupBox x:Name="MainGroupBox" Header="" Grid.Row="3" Grid.Column="3" Grid.RowSpan="3" >
-            <!--<DataGrid x:Name="MainDataGrid" GridLinesVisibility="None" IsReadOnly="True" AutoGenerateColumns="False" ColumnWidth="*">
+        <GroupBox x:Name="GroupBoxClients" Header="Clients" Grid.Row="3" Grid.Column="3" Grid.RowSpan="3" Visibility="Hidden">
+            <DataGrid x:Name="DataGridClients" GridLinesVisibility="None" IsReadOnly="True" AutoGenerateColumns="False" ColumnWidth="*">
                 <DataGrid.Columns >
                     <DataGridTextColumn Header="Nom" Binding="{Binding Name}"/>
-                        <DataGridTextColumn Header="Téléphone" Binding="{Binding PhoneNumber}"/>
-                        <DataGridTextColumn Header="Adresse" Binding="{Binding Address}"/>
-                        <DataGridTextColumn Header="Code Postal" Binding="{Binding ZipCode}"/>
-                        <DataGridTextColumn Header="Ville" Binding="{Binding City}"/>
-                        <DataGridTemplateColumn Header="Utilisation">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button x:Name="btnHistorique" Margin="5.0">Historique</Button>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Téléphone" Binding="{Binding PhoneNumber}"/>
+                    <DataGridTextColumn Header="Adresse" Binding="{Binding Address}"/>
+                    <DataGridTextColumn Header="Code Postal" Binding="{Binding ZipCode}"/>
+                    <DataGridTextColumn Header="Ville" Binding="{Binding City}"/>
+                    <DataGridTemplateColumn Header="Utilisation">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="btnHistorique" Margin="5.0">Historique</Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
-            </DataGrid>-->
+            </DataGrid>
+        </GroupBox>
+
+        <GroupBox x:Name="GroupBoxCastings" Header="Castings" Grid.Row="3" Grid.Column="3" Grid.RowSpan="3" Visibility="Hidden">
+            <DataGrid x:Name="DataGridCastings" GridLinesVisibility="None" IsReadOnly="True" AutoGenerateColumns="True" ColumnWidth="*" >
+                
+            </DataGrid>
+        </GroupBox>
+
+        <GroupBox x:Name="GroupBoxCollaborators" Header="Collaborateurs" Grid.Row="3" Grid.Column="3" Grid.RowSpan="3" Visibility="Hidden">
+            <DataGrid x:Name="DataGridPartenaires" GridLinesVisibility="None" IsReadOnly="True" AutoGenerateColumns="True" ColumnWidth="*">
+                
+            </DataGrid>
         </GroupBox>
 
         <StackPanel Orientation="Horizontal" x:Name="StackPanelButtons" Grid.Row="6" Grid.Column="3">
@@ -84,6 +96,5 @@
                 <TextBlock Text="Supprimer" FontSize="20"/>
             </Button>
         </StackPanel>
-
     </Grid>
 </Window>

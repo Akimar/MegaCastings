@@ -15,7 +15,7 @@ namespace MegaCastings.Entities
         /// <summary>
         /// Affecte ou obtient l'id
         /// </summary>
-        public int Id
+        public virtual int Id
         {
             get { return _Id; }
             set { _Id = value; }

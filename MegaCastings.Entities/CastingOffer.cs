@@ -75,7 +75,7 @@ namespace MegaCastings.Entities
         /// <summary>
         /// Affecte ou obtient la durée de validité de l'offre
         /// </summary>		
-        public DateTime ValidityDuration
+        public virtual DateTime ValidityDuration
         {
             get { return _ValidityDuration; }
             set { _ValidityDuration = value; }

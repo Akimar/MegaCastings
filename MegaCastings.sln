@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MegaCasting.WPF", "MegaCastings\MegaCasting.WPF.csproj", "{BA0570D1-3883-49F8-A1AB-0638813FC846}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MegaCastings.WPF", "MegaCastings\MegaCastings.WPF.csproj", "{BA0570D1-3883-49F8-A1AB-0638813FC846}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MegaCastings.Test", "MegaCastings.Test\MegaCastings.Test.csproj", "{7CB8CC93-AD06-443B-87EB-AC3374A3F81B}"
 EndProject

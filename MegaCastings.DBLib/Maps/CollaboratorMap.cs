@@ -1,21 +1,24 @@
-﻿using System;
+﻿using FluentNHibernate.Mapping;
+using MegaCastings.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FluentNHibernate.Mapping;
-using MegaCastings.Entities;
 
 namespace MegaCastings.DBLib.Maps
 {
-    public class ClientMap : ClassMap<Client>
-
+    public class CollaboratorMap : ClassMap<Collaborator>
     {
-        public ClientMap()
+        public CollaboratorMap()
         {
-            Table("Client");
+            Table("Collaborator");
 
             Id(c => c.Id).GeneratedBy.Identity();
+
+            Map(c => c.Login).Not.Nullable().Length(8);
+
+            Map(c => c.Password).Not.Nullable().Length(64);
 
             Map(c => c.Name).Not.Nullable().Length(25);
 
@@ -27,9 +30,8 @@ namespace MegaCastings.DBLib.Maps
 
             Map(c => c.ZipCode).Not.Nullable().Length(5);
 
-            HasMany(c => c.Representatives).LazyLoad().Inverse().Cascade.All().AsSet(); 
+            HasMany(c => c.CastingOffers).LazyLoad().Inverse().Cascade.All().AsSet();
 
         }
-
     }
 }

@@ -40,8 +40,8 @@ namespace MegaCastings
         {
             if (!string.IsNullOrEmpty(tbLastName.Text) && !string.IsNullOrEmpty(tbFirstName.Text) && !string.IsNullOrEmpty(tbPhoneNumber.Text) && !string.IsNullOrEmpty(tbAddress.Text) && !string.IsNullOrEmpty(tbZipCode.Text) && !string.IsNullOrEmpty(tbCity.Text))
             {
-                DBLib.MegaCastingsEntities dblib = new DBLib.MegaCastingsEntities();
-                DBLib.Client newClient = new DBLib.Client();
+               // DBLib.MegaCastingsEntities dblib = new DBLib.MegaCastingsEntities();
+                //DBLib.Client newClient = new DBLib.Client();
                 //newClient.LastName = tbLastName.Text.ToUpper();
                 //newClient.FirstName = tbFirstName.Text;
                 //newClient.PhoneNumber = tbPhoneNumber.Text;
@@ -53,8 +53,8 @@ namespace MegaCastings
 
                 try
                 {
-                    dblib.Clients.Add(newClient);
-                    dblib.SaveChanges();
+                    //dblib.Clients.Add(newClient);
+                    //dblib.SaveChanges();
                     MessageBox.Show("Ajout effectué avec succès ! ");
 
                 }

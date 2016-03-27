@@ -55,12 +55,12 @@ namespace MegaCastings.Entities
 
         public Collaborator()
         {
-
+            this.CastingOffers = new HashSet<CastingOffer>();
         }
 
 
 
-        public Collaborator(String login, String password, String name, String phoneNumber, String zipCode, String address, String city)
+        public Collaborator(String login, String password, String name, String phoneNumber, String zipCode, String address, String city) : this()
         {
             this.Login = login;
             this.Password = password;

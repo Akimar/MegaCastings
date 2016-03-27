@@ -55,7 +55,7 @@ namespace MegaCastings
             {
                 AddClient AddClientFrame = new AddClient();
                 AddClientFrame.ShowDialog();
-                DBLib.MegaCastingsEntities db = new MegaCastingsEntities();
+                //DBLib.MegaCastingsEntities db = new MegaCastingsEntities();
             }
             else if(MainGroupBox.Header.Equals("Partenaires"))
             {
@@ -117,21 +117,21 @@ namespace MegaCastings
         {
             MainGroupBox.Header = "Castings";
 
-            MegaCastingsEntities db = new MegaCastingsEntities();
-            List<Client> ClientsList = db.Clients.ToList();
+            //MegaCastingsEntities db = new MegaCastingsEntities();
+            //List<Client> ClientsList = db.Clients.ToList();
 
            
-            foreach (var client in ClientsList)
-            {
-                client.FormatPhoneNumberForDisplay();
-            }
+            //foreach (var client in ClientsList)
+            //{
+            //    client.FormatPhoneNumberForDisplay();
+            //}
 
 
-            CustomDataGrid DataGrid = new CustomDataGrid();
-            DataGrid.BuildDataGrid(0);
-            DataGrid.MainDataGrid.ItemsSource = ClientsList;
+            //CustomDataGrid DataGrid = new CustomDataGrid();
+            //DataGrid.BuildDataGrid(0);
+            //DataGrid.MainDataGrid.ItemsSource = ClientsList;
 
-            db = null;
+            //db = null;
         }
 
         /// <summary>

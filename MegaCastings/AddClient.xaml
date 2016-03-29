@@ -16,38 +16,34 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <!-- * signifie % -->
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width ="50*"/>
-            <ColumnDefinition Width ="100"/>
+            <ColumnDefinition Width ="Auto"/>
             <ColumnDefinition Width ="200"/>
             <ColumnDefinition Width ="50*"/>
         </Grid.ColumnDefinitions>
 
 
-        <TextBlock Grid.Column="1" Grid.Row="1"  Text="Nom :"/>
-        <TextBlock Grid.Column="1"  Grid.Row="2" Text="Prénom :"/>
-        <TextBlock Grid.Column="1"  Grid.Row="3" Text="Téléphone :"/>
-        <TextBlock Grid.Column="1"  Grid.Row="4" Text="Adresse"/>
-        <TextBlock Grid.Column="1"  Grid.Row="5" Text="Code postal"/>
-        <TextBlock Grid.Column="1"  Grid.Row="6" Text="Ville"/>
+        <TextBlock Grid.Column="1" Grid.Row="1"  Text="Nom :" Margin="5.0"/>
+        <TextBlock Grid.Column="1"  Grid.Row="2" Text="Téléphone :" Margin="5.0"/>
+        <TextBlock Grid.Column="1"  Grid.Row="3" Text="Adresse :" Margin="5.0"/>
+        <TextBlock Grid.Column="1"  Grid.Row="4" Text="Code postal :" Margin="5.0"/>
+        <TextBlock Grid.Column="1"  Grid.Row="5" Text="Ville :" Margin="5.0"/>
 
-        <TextBox x:Name="tbLastName" Grid.Row="1"  Grid.Column="2" Margin="2"/>
-        <TextBox x:Name="tbFirstName" Grid.Row="2" Grid.Column="2" Margin="0,1,2,3"/>
+        <TextBox x:Name="tbName" Grid.Row="1"  Grid.Column="2" Margin="2"/>
         <!-- gauche, droite, haut, bas -->
-        <TextBox x:Name="tbPhoneNumber" Grid.Row="3"  Grid.Column="2" Margin="2"/>
-        <TextBox x:Name="tbAddress" Grid.Row="4" Grid.Column="2" Margin="0,1,2,3"/>
-        <TextBox x:Name="tbZipCode" Grid.Row="5" Grid.Column="2" Margin="0,1,2,3"/>
-        <TextBox x:Name="tbCity" Grid.Row="6"  Grid.Column="2" Margin="2"/>
+        <TextBox x:Name="tbPhoneNumber" Grid.Row="2"  Grid.Column="2" Margin="2"/>
+        <TextBox x:Name="tbAddress" Grid.Row="3" Grid.Column="2" Margin="0,1,2,3"/>
+        <TextBox x:Name="tbZipCode" Grid.Row="4" Grid.Column="2" Margin="0,1,2,3"/>
+        <TextBox x:Name="tbCity" Grid.Row="5"  Grid.Column="2" />
    
 
-        <StackPanel Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal" FlowDirection="RightToLeft" VerticalAlignment="Bottom">
-            <Button x:Name="b_cancel" Content="Annuler" Click="b_cancel_Click"/>
-            <Button x:Name="b_ok" Content="Ok" Click="b_ok_Click"/>
+        <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal" FlowDirection="RightToLeft" VerticalAlignment="Bottom">
+            <Button x:Name="b_cancel" Content="Annuler" Margin="5.0" Width="60" Click="b_cancel_Click"/>
+            <Button x:Name="b_ok" Content="Ok" Margin="5.0" Width="60" Click="b_ok_Click"/>
         </StackPanel>
 
     </Grid>

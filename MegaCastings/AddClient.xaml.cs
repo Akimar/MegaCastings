@@ -26,6 +26,17 @@ namespace MegaCastings
             InitializeComponent();
         }
 
+        public AddClient(Client toModifie)
+        {
+            InitializeComponent();
+            AddedClient = toModifie;
+            tbName.Text = toModifie.Name;
+            tbPhoneNumber.Text = toModifie.PhoneNumber;
+            tbAddress.Text = toModifie.Address;
+            tbZipCode.Text = toModifie.ZipCode;
+            tbCity.Text = toModifie.City;
+        }
+
         private Client _addedClient;
 
         public Client AddedClient
@@ -33,7 +44,7 @@ namespace MegaCastings
             get { return _addedClient; }
             set { _addedClient = value; }
         }
-        
+
 
         /// <summary>
         /// Evènement click bouton "Annuler"
@@ -49,10 +60,20 @@ namespace MegaCastings
         /// </summary>
         private void b_ok_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(tbLastName.Text) && !string.IsNullOrEmpty(tbFirstName.Text) && !string.IsNullOrEmpty(tbPhoneNumber.Text) && !string.IsNullOrEmpty(tbAddress.Text) && !string.IsNullOrEmpty(tbZipCode.Text) && !string.IsNullOrEmpty(tbCity.Text))
+            Client newClient = null;
+            if (!string.IsNullOrEmpty(tbName.Text) && !string.IsNullOrEmpty(tbPhoneNumber.Text) && !string.IsNullOrEmpty(tbAddress.Text) && !string.IsNullOrEmpty(tbZipCode.Text) && !string.IsNullOrEmpty(tbCity.Text))
             {
-                Client newClient = new Client();
-                newClient.Name = tbLastName.Text.ToUpper() + " " + tbFirstName.Text.ToUpperInvariant();
+                if (AddedClient == null)
+                {
+                    newClient = new Client();
+                }
+
+                else
+                {
+                    newClient = AddedClient;
+                }
+
+                newClient.Name = tbName.Text;
                 newClient.PhoneNumber = tbPhoneNumber.Text;
                 newClient.Address = tbAddress.Text;
                 newClient.ZipCode = tbZipCode.Text;
@@ -67,7 +88,7 @@ namespace MegaCastings
                         {
                             try
                             {
-                                session.Save(newClient);
+                                session.SaveOrUpdate(newClient);
                                 transaction.Commit();
                                 AddedClient = newClient;
                             }
@@ -78,7 +99,7 @@ namespace MegaCastings
                             }
                         }
                     }
-                    MessageBox.Show("Ajout effectué avec succès ! ");
+                    MessageBox.Show("Effectué avec succès ! ");
 
                 }
                 catch (Exception ex)

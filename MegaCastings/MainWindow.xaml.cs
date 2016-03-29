@@ -95,7 +95,15 @@ namespace MegaCastings
         {
             if (GroupBoxClients.Visibility == Visibility.Visible)
             {
-
+                Client toModifie = null;
+                if (DataGridClients.SelectedItem != null)
+                {
+                    toModifie = (Client)DataGridClients.SelectedItem;
+                    AddClient AddClientFrame = new AddClient(toModifie);
+                    AddClientFrame.ShowDialog();
+                    BindingClient[BindingClient.IndexOf(toModifie)] = AddClientFrame.AddedClient;
+                    BindingClient.RaiseListChangedEvents = true;
+                }
             }
             else if (GroupBoxCastings.Visibility == Visibility.Visible)
             {
@@ -189,7 +197,7 @@ namespace MegaCastings
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings[System.Configuration.ConfigurationManager.AppSettings["currentConnectionString"]].ConnectionString;
 
             Assembly ass = Assembly.Load("MegaCastings.DBLib");
-            
+
             FluentConfiguration Fluconfig = Fluently.Configure()
                 .Database(FluentNHibernate.Cfg.Db.MySQLConfiguration.Standard.ConnectionString(connectionString).ShowSql())
               .Mappings(m =>

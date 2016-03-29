@@ -53,7 +53,7 @@
         </Button>
 
         <GroupBox x:Name="GroupBoxClients" Header="Clients" Grid.Row="3" Grid.Column="3" Grid.RowSpan="3" Visibility="Hidden">
-            <DataGrid x:Name="DataGridClients" GridLinesVisibility="None" IsReadOnly="True" AutoGenerateColumns="False" ColumnWidth="*">
+            <DataGrid x:Name="DataGridClients" GridLinesVisibility="None" IsReadOnly="True" AutoGenerateColumns="False" ColumnWidth="*" SelectionMode="Single" >
                 <DataGrid.Columns >
                     <DataGridTextColumn Header="Nom" Binding="{Binding Name}"/>
                     <DataGridTextColumn Header="Téléphone" Binding="{Binding PhoneNumber}"/>
@@ -72,13 +72,13 @@
         </GroupBox>
 
         <GroupBox x:Name="GroupBoxCastings" Header="Castings" Grid.Row="3" Grid.Column="3" Grid.RowSpan="3" Visibility="Hidden">
-            <DataGrid x:Name="DataGridCastings" GridLinesVisibility="None" IsReadOnly="True" AutoGenerateColumns="True" ColumnWidth="*" >
+            <DataGrid x:Name="DataGridCastings" GridLinesVisibility="None" IsReadOnly="True" AutoGenerateColumns="True" ColumnWidth="*" SelectionMode="Single" >
                 
             </DataGrid>
         </GroupBox>
 
         <GroupBox x:Name="GroupBoxCollaborators" Header="Collaborateurs" Grid.Row="3" Grid.Column="3" Grid.RowSpan="3" Visibility="Hidden">
-            <DataGrid x:Name="DataGridPartenaires" GridLinesVisibility="None" IsReadOnly="True" AutoGenerateColumns="True" ColumnWidth="*">
+            <DataGrid x:Name="DataGridPartenaires" GridLinesVisibility="None" IsReadOnly="True" AutoGenerateColumns="True" ColumnWidth="*" SelectionMode="Single" >
                 
             </DataGrid>
         </GroupBox>
@@ -88,7 +88,7 @@
                 <TextBlock Text="Ajouter" FontSize="20"/>
             </Button>
 
-            <Button Cursor="Hand"  Click="Button_Click_Manage" Width="100" Height="40" Margin="110, 7, 7, 7" IsEnabled="False">
+            <Button Cursor="Hand"  Click="Button_Click_Manage" Width="100" Height="40" Margin="110, 7, 7, 7" > 
                 <TextBlock Text="Modifier" FontSize="20"/>
             </Button>
 

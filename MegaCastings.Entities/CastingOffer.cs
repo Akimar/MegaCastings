@@ -22,7 +22,6 @@ namespace MegaCastings.Entities
             set { _Id = value; }
         }
 
-
         private String _Title;
 
         /// <summary>
@@ -56,8 +55,6 @@ namespace MegaCastings.Entities
             get { return _StartingDate; }
             set { _StartingDate = value; }
         }
-
-
 
         private DateTime _EndingDate;
 
@@ -151,6 +148,11 @@ namespace MegaCastings.Entities
         /// </summary>
         public virtual ContractType ContractType { get; set; }
 
+
+
+
+
+        /*GET HASHCODE, CompareTo et Equals A SURCHARGER*/
         #endregion
 
 

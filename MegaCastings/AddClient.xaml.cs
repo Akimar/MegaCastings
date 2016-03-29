@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MegaCastings.Entities;
+using NHibernate;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +26,15 @@ namespace MegaCastings
             InitializeComponent();
         }
 
+        private Client _addedClient;
+
+        public Client AddedClient
+        {
+            get { return _addedClient; }
+            set { _addedClient = value; }
+        }
+        
+
         /// <summary>
         /// Evènement click bouton "Annuler"
         /// </summary>
@@ -40,25 +51,37 @@ namespace MegaCastings
         {
             if (!string.IsNullOrEmpty(tbLastName.Text) && !string.IsNullOrEmpty(tbFirstName.Text) && !string.IsNullOrEmpty(tbPhoneNumber.Text) && !string.IsNullOrEmpty(tbAddress.Text) && !string.IsNullOrEmpty(tbZipCode.Text) && !string.IsNullOrEmpty(tbCity.Text))
             {
-                /*DBLib.MegaCastingsEntities dblib = new DBLib.MegaCastingsEntities();
-                DBLib.Client newClient = new DBLib.Client();
-                //newClient.LastName = tbLastName.Text.ToUpper();
-                //newClient.FirstName = tbFirstName.Text;
-                //newClient.PhoneNumber = tbPhoneNumber.Text;
-                //newClient.Address = tbAddress.Text;
-                //newClient.ZipCode = tbZipCode.Text;
-                //newClient.City = tbCity.Text;
-
-                
+                Client newClient = new Client();
+                newClient.Name = tbLastName.Text.ToUpper() + " " + tbFirstName.Text.ToUpperInvariant();
+                newClient.PhoneNumber = tbPhoneNumber.Text;
+                newClient.Address = tbAddress.Text;
+                newClient.ZipCode = tbZipCode.Text;
+                newClient.City = tbCity.Text;
 
                 try
                 {
-                    dblib.Clients.Add(newClient);
-                    dblib.SaveChanges();
+                    ISessionFactory isessionfactory = MainWindow.CreateSessionFactory("");
+                    using (ISession session = isessionfactory.OpenSession())//ouverture
+                    {
+                        using (ITransaction transaction = session.BeginTransaction())
+                        {
+                            try
+                            {
+                                session.Save(newClient);
+                                transaction.Commit();
+                                AddedClient = newClient;
+                            }
+                            catch (Exception)
+                            {
+                                transaction.Rollback();
+                                throw;
+                            }
+                        }
+                    }
                     MessageBox.Show("Ajout effectué avec succès ! ");
 
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
@@ -70,7 +93,6 @@ namespace MegaCastings
             else
             {
                 MessageBox.Show("Merci de remplir tous les champs.");
-            }*/
             }
         }
     }

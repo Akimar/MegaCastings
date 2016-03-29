@@ -19,6 +19,8 @@ namespace MegaCastings
     public partial class MainWindow : Window
     {
         #region Attributes & Properties
+        // Création de la session de bdd
+        private ISessionFactory isessionfactory = CreateSessionFactory("type à préciser");
 
         private BindingList<Client> BindingClient { get; set; }
 
@@ -32,37 +34,21 @@ namespace MegaCastings
         public MainWindow()
         {
             //Initialisation des propriétes de binding
-            BindingClient = new BindingList<Client>();
-            BindingCastings = new BindingList<CastingOffer>();
-            BindingCollaborator = new BindingList<Collaborator>();
-
             InitializeComponent();
 
+            using (ISession session = isessionfactory.OpenSession())//ouverture
+            {
+                BindingClient = new BindingList<Client>(session.QueryOver<Client>().List());
+                BindingCastings = new BindingList<CastingOffer>(session.QueryOver<CastingOffer>().List());
+                BindingCollaborator = new BindingList<Collaborator>(session.QueryOver<Collaborator>().List());
+                isessionfactory.Close();
+            }
             DataGridClients.ItemsSource = BindingClient;
             DataGridCastings.ItemsSource = BindingCastings;
             DataGridPartenaires.ItemsSource = BindingCollaborator;
-
-            ISessionFactory isessionfactory = CreateSessionFactory("type à préciser");
-
-            using (ISession session = isessionfactory.OpenSession())
-            {
-                using (ITransaction transaction = session.BeginTransaction())
-                {
-                    try
-                    {
-                        transaction.Commit();
-                    }
-                    catch (Exception)
-                    {
-                        transaction.Rollback();
-                        throw;
-                    }
-                }
-            }
         }
 
         #endregion
-
 
         #region Methods
         #region Button Events
@@ -87,6 +73,7 @@ namespace MegaCastings
             {
                 AddClient AddClientFrame = new AddClient();
                 AddClientFrame.ShowDialog();
+                BindingClient.Add(AddClientFrame.AddedClient);
             }
             else if (GroupBoxCastings.Visibility == Visibility.Visible)
             {
@@ -197,7 +184,7 @@ namespace MegaCastings
         /// </summary>
         /// <param name="typeBDD">A FAIRE</param>
         /// <returns>Objet de base de données</returns>
-        private static ISessionFactory CreateSessionFactory(string typeBDD)
+        public static ISessionFactory CreateSessionFactory(string typeBDD)
         {
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings[System.Configuration.ConfigurationManager.AppSettings["currentConnectionString"]].ConnectionString;
 

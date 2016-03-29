@@ -20,7 +20,7 @@ namespace MegaCastings
     {
         #region Attributes & Properties
         // Création de la session de bdd
-        private ISessionFactory isessionfactory = CreateSessionFactory("type à préciser");
+        private ISessionFactory isessionfactory = CreateSessionFactory();
 
         private BindingList<Client> BindingClient { get; set; }
 
@@ -192,14 +192,30 @@ namespace MegaCastings
         /// </summary>
         /// <param name="typeBDD">A FAIRE</param>
         /// <returns>Objet de base de données</returns>
-        public static ISessionFactory CreateSessionFactory(string typeBDD)
+        public static ISessionFactory CreateSessionFactory()
         {
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings[System.Configuration.ConfigurationManager.AppSettings["currentConnectionString"]].ConnectionString;
+            string typeBDD = System.Configuration.ConfigurationManager.AppSettings["DatabaseType"];
+            FluentNHibernate.Cfg.Db.IPersistenceConfigurer BDD = null ;
+            switch (typeBDD)
+            {
+                case "MySQL":
+                    BDD = FluentNHibernate.Cfg.Db.MySQLConfiguration.Standard.ConnectionString(connectionString);
+                    break;
+
+                case "SQLServer2012":
+                    BDD = FluentNHibernate.Cfg.Db.MsSqlConfiguration.MsSql2012.ConnectionString(connectionString);
+                    break;
+                case "SQLServer2008":
+                    BDD = FluentNHibernate.Cfg.Db.MsSqlConfiguration.MsSql2008.ConnectionString(connectionString);
+                    break;
+
+            }
 
             Assembly ass = Assembly.Load("MegaCastings.DBLib");
 
             FluentConfiguration Fluconfig = Fluently.Configure()
-                .Database(FluentNHibernate.Cfg.Db.MySQLConfiguration.Standard.ConnectionString(connectionString).ShowSql())
+                .Database(BDD)
               .Mappings(m =>
                 m.FluentMappings.AddFromAssembly(ass));
 

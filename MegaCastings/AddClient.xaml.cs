@@ -81,7 +81,7 @@ namespace MegaCastings
 
                 try
                 {
-                    ISessionFactory isessionfactory = MainWindow.CreateSessionFactory("");
+                    ISessionFactory isessionfactory = MainWindow.CreateSessionFactory();
                     using (ISession session = isessionfactory.OpenSession())//ouverture
                     {
                         using (ITransaction transaction = session.BeginTransaction())

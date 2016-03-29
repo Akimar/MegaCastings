@@ -18,7 +18,7 @@ namespace MegaCastings.DBLib.Maps
 
             Map(c => c.Title).Not.Nullable().Length(25);
 
-            Map(c => c.Refernce).Not.Nullable().Length(10).UniqueKey("UkCastingOffer");
+            Map(c => c.Reference).Not.Nullable().Length(10).UniqueKey("UkCastingOffer");
 
             Map(c => c.StartingDate).Not.Nullable();
 

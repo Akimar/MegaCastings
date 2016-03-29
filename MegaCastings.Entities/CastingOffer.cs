@@ -38,7 +38,7 @@ namespace MegaCastings.Entities
         /// <summary>
         /// Affecte ou obtient la référence de l'offre
         /// </summary>		
-        public virtual String Refernce
+        public virtual String Reference
         {
             get { return _Reference; }
             set { _Reference = value; }
@@ -173,7 +173,7 @@ namespace MegaCastings.Entities
             this.Profession = profession;
             this.ProfessionField = ProfessionField;
             this.ProfileDescription = profilrDecription;
-            this.Refernce = reference;
+            this.Reference = reference;
             this.StartingDate = startingDate;
             this.Title = title;
             this.ValidityDuration = ValidityDuration;

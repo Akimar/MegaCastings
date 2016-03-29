@@ -45,7 +45,7 @@ namespace MegaCastings
             }
             DataGridClients.ItemsSource = BindingClient;
             DataGridCastings.ItemsSource = BindingCastings;
-            DataGridPartenaires.ItemsSource = BindingCollaborator;
+            DataGridCollaborators.ItemsSource = BindingCollaborator;
         }
 
         #endregion
@@ -79,12 +79,16 @@ namespace MegaCastings
             }
             else if (GroupBoxCastings.Visibility == Visibility.Visible)
             {
-
+              
             }
 
             else if (GroupBoxCollaborators.Visibility == Visibility.Visible)
             {
-
+                CollaboratorManagement CollaboratorManagementFrame = new CollaboratorManagement();
+                if (CollaboratorManagementFrame.ShowDialog().Value == true)
+                {
+                    BindingCollaborator.Add(CollaboratorManagementFrame.CurrentCollaborator);
+                }
             }
         }
 
@@ -110,12 +114,21 @@ namespace MegaCastings
             }
             else if (GroupBoxCastings.Visibility == Visibility.Visible)
             {
-
+                
             }
 
             else if (GroupBoxCollaborators.Visibility == Visibility.Visible)
             {
-
+                Collaborator toModify = null;
+                if ((toModify = (Collaborator)DataGridCollaborators.SelectedItem) != null)
+                {
+                    CollaboratorManagement CollaboratorManagementFrame = new CollaboratorManagement(toModify);
+                    if (CollaboratorManagementFrame.ShowDialog().Value == true)
+                    {
+                        BindingCollaborator[BindingCollaborator.IndexOf(toModify)] = CollaboratorManagementFrame.CurrentCollaborator;
+                        BindingClient.RaiseListChangedEvents = true;
+                    }
+                }
             }
         }
 

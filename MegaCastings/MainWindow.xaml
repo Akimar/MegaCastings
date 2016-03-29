@@ -77,8 +77,16 @@
             </DataGrid>
         </GroupBox>
 
-        <GroupBox x:Name="GroupBoxCollaborators" Header="Collaborateurs" Grid.Row="3" Grid.Column="3" Grid.RowSpan="3" Visibility="Hidden">
-            <DataGrid x:Name="DataGridPartenaires" GridLinesVisibility="None" IsReadOnly="True" AutoGenerateColumns="True" ColumnWidth="*" SelectionMode="Single" >
+        <GroupBox x:Name="GroupBoxCollaborators" Header="Partenaires" Grid.Row="3" Grid.Column="3" Grid.RowSpan="3" Visibility="Hidden">
+            <DataGrid x:Name="DataGridCollaborators" GridLinesVisibility="None" IsReadOnly="True" AutoGenerateColumns="False" ColumnWidth="*" SelectionMode="Single" >
+                <DataGrid.Columns >
+                    <DataGridTextColumn Header="Login" Binding="{Binding Login}"/>
+                    <DataGridTextColumn Header="Nom" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Téléphone" Binding="{Binding PhoneNumber}"/>
+                    <DataGridTextColumn Header="Adresse" Binding="{Binding Address}"/>
+                    <DataGridTextColumn Header="Code Postal" Binding="{Binding ZipCode}"/>
+                    <DataGridTextColumn Header="Ville" Binding="{Binding City}"/>
+                </DataGrid.Columns>
                 
             </DataGrid>
         </GroupBox>

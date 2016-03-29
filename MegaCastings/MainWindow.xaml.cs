@@ -72,8 +72,10 @@ namespace MegaCastings
             if (GroupBoxClients.Visibility == Visibility.Visible)
             {
                 AddClient AddClientFrame = new AddClient();
-                AddClientFrame.ShowDialog();
-                BindingClient.Add(AddClientFrame.AddedClient);
+                if (AddClientFrame.ShowDialog().Value == true)
+                {
+                    BindingClient.Add(AddClientFrame.AddedClient);
+                }
             }
             else if (GroupBoxCastings.Visibility == Visibility.Visible)
             {
@@ -96,13 +98,14 @@ namespace MegaCastings
             if (GroupBoxClients.Visibility == Visibility.Visible)
             {
                 Client toModifie = null;
-                if (DataGridClients.SelectedItem != null)
+                if ((toModifie = (Client)DataGridClients.SelectedItem) != null)
                 {
-                    toModifie = (Client)DataGridClients.SelectedItem;
                     AddClient AddClientFrame = new AddClient(toModifie);
-                    AddClientFrame.ShowDialog();
-                    BindingClient[BindingClient.IndexOf(toModifie)] = AddClientFrame.AddedClient;
-                    BindingClient.RaiseListChangedEvents = true;
+                    if (AddClientFrame.ShowDialog().Value == true)
+                    {
+                        BindingClient[BindingClient.IndexOf(toModifie)] = AddClientFrame.AddedClient;
+                        BindingClient.RaiseListChangedEvents = true;
+                    }
                 }
             }
             else if (GroupBoxCastings.Visibility == Visibility.Visible)
@@ -121,7 +124,35 @@ namespace MegaCastings
         {
             if (GroupBoxClients.Visibility == Visibility.Visible)
             {
-
+                Client toDel = null;
+                if ((toDel = (Client)DataGridClients.SelectedItem) != null)
+                {
+                    if (MessageBox.Show("Voulez-vous supprimer le client " + toDel.Name + " ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        using (ISession session = isessionfactory.OpenSession())
+                        {
+                            using (var transaction = session.BeginTransaction())
+                            {
+                                try
+                                {
+                                    string queryString = string.Format("delete {0} where id = :id", typeof(Client));
+                                    session.CreateQuery(queryString)
+                                           .SetParameter("id", toDel.Id)
+                                           .ExecuteUpdate();
+                                    transaction.Commit();
+                                    BindingClient.RemoveAt(BindingClient.IndexOf(toDel));
+                                    MessageBox.Show("Supprimé avec succès.", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show(ex.Message);
+                                }
+                                transaction.Dispose();
+                            }
+                            isessionfactory.Close();
+                        }
+                    }
+                }
             }
             else if (GroupBoxCastings.Visibility == Visibility.Visible)
             {
@@ -187,6 +218,9 @@ namespace MegaCastings
             gb.Visibility = Visibility.Visible;
         }
 
+
+
+
         /// <summary>
         /// Créer l'objet base de donnée et la construit si besoin (connexion string dans app.config)
         /// </summary>
@@ -196,7 +230,7 @@ namespace MegaCastings
         {
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings[System.Configuration.ConfigurationManager.AppSettings["currentConnectionString"]].ConnectionString;
             string typeBDD = System.Configuration.ConfigurationManager.AppSettings["DatabaseType"];
-            FluentNHibernate.Cfg.Db.IPersistenceConfigurer BDD = null ;
+            FluentNHibernate.Cfg.Db.IPersistenceConfigurer BDD = null;
             switch (typeBDD)
             {
                 case "MySQL":

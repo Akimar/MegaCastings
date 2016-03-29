@@ -150,8 +150,6 @@ namespace MegaCastings.Entities
 
 
 
-
-
         /*GET HASHCODE, CompareTo et Equals A SURCHARGER*/
         #endregion
 

@@ -92,7 +92,7 @@
                 <TextBlock Text="Modifier" FontSize="20"/>
             </Button>
 
-            <Button Cursor="Hand"  Click="Button_Click_Delete" Width="100" Height="40" Margin="140, 7, 7, 7" IsEnabled="False">
+            <Button Cursor="Hand"  Click="Button_Click_Delete" Width="100" Height="40" Margin="140, 7, 7, 7" >
                 <TextBlock Text="Supprimer" FontSize="20"/>
             </Button>
         </StackPanel>

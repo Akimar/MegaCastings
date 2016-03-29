@@ -98,6 +98,7 @@ namespace MegaCastings
                                 throw;
                             }
                         }
+                        session.Close();
                     }
                     MessageBox.Show("Effectué avec succès ! ");
 

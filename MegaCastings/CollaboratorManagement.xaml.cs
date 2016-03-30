@@ -49,14 +49,10 @@ namespace MegaCastings
 
         public CollaboratorManagement(Collaborator toModify)
         {
-           // this.DataContext = this;
+          
             CurrentCollaborator = toModify;
             InitializeComponent();
-            //tbName.Text = toModifie.Name;
-            //tbPhoneNumber.Text = toModifie.PhoneNumber;
-            //tbAddress.Text = toModifie.Address;
-            //tbZipCode.Text = toModifie.ZipCode;
-            //tbCity.Text = toModifie.City;
+           
         }
 
         #endregion
@@ -112,12 +108,13 @@ namespace MegaCastings
                             {
                                 if (CurrentCollaborator.Id == 0)
                                 {
-                                    session.SaveOrUpdate(CurrentCollaborator);
+                                    session.Save(CurrentCollaborator);
                                 }
 
                                 else
                                 {
-                                    session.Flush();
+                                    session.Update(CurrentCollaborator);
+                                    //session.Flush();
                                 }
                              
                                 transaction.Commit();

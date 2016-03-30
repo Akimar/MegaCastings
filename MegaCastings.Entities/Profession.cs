@@ -55,5 +55,20 @@ namespace MegaCastings.Entities
             this.ProfessionField = professionField;
         }
         #endregion
+
+        public override int GetHashCode()
+        {
+            return ((!string.IsNullOrEmpty(Name) ? Name.GetHashCode() : 0));
+        }
+
+        public override bool Equals(object obj)
+        {
+            return GetHashCode().Equals(obj.GetHashCode());
+        }
+
+        public int CompareTo(CastingOffer other)
+        {
+            return GetHashCode().CompareTo(other.GetHashCode());
+        }
     }
 }

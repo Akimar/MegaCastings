@@ -54,5 +54,20 @@ namespace MegaCastings.Entities
         }
 
         #endregion
+
+        public override int GetHashCode()
+        {
+            return ((!string.IsNullOrEmpty(Title) ? Title.GetHashCode() : 0));
+        }
+
+        public override bool Equals(object obj)
+        {
+            return GetHashCode().Equals(obj.GetHashCode());
+        }
+
+        public int CompareTo(CastingOffer other)
+        {
+            return GetHashCode().CompareTo(other.GetHashCode());
+        }
     }
 }

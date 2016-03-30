@@ -80,5 +80,21 @@ namespace MegaCastings.Entities
         }
 
         #endregion
+
+
+        public override int GetHashCode()
+        {
+            return (FirstName.GetHashCode() + LastName.GetHashCode() + PhoneNumber.GetHashCode());
+        }
+
+        public override bool Equals(object obj)
+        {
+            return GetHashCode().Equals(obj.GetHashCode());
+        }
+
+        public int CompareTo(CastingOffer other)
+        {
+            return GetHashCode().CompareTo(other.GetHashCode());
+        }
     }
 }

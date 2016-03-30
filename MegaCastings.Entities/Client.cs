@@ -49,12 +49,27 @@ namespace MegaCastings.Entities
             this.ZipCode = zipCode;
             this.City = city;
         }
+        #endregion
 
         public override string ToString()
         {
             return this.Name;
         }
-        #endregion
+
+        public override int GetHashCode()
+        {
+            return ((!string.IsNullOrEmpty(Name) ? Name.GetHashCode() : 0));
+        }
+
+        public override bool Equals(object obj)
+        {
+            return GetHashCode().Equals(obj.GetHashCode());
+        }
+
+        public int CompareTo(CastingOffer other)
+        {
+            return GetHashCode().CompareTo(other.GetHashCode());
+        }
 
     }
 }

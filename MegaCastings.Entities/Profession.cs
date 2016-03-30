@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MegaCastings.Entities
 {
-    public class Profession
+    public class Profession : IComparable<Profession>
     {
         #region Attributes & Properties
 
@@ -71,7 +71,7 @@ namespace MegaCastings.Entities
             return GetHashCode().Equals(obj.GetHashCode());
         }
 
-        public virtual int CompareTo(CastingOffer other)
+        public int CompareTo(Profession other)
         {
             return GetHashCode().CompareTo(other.GetHashCode());
         }

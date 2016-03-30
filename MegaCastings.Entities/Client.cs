@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MegaCastings.Entities
 {
-    public class Client : ContactDetails
+    public class Client : ContactDetails, IComparable<Client>
     {
 
         #region Attributes & Properties
@@ -64,6 +64,11 @@ namespace MegaCastings.Entities
         public override bool Equals(object obj)
         {
             return GetHashCode().Equals(obj.GetHashCode());
+        }
+
+        public int CompareTo(Client other)
+        {
+            return GetHashCode().CompareTo(other.GetHashCode());
         }
 
 

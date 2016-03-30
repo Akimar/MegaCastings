@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MegaCastings.Entities
 {
-   public class ContractType 
+   public class ContractType : IComparable<ContractType>
     {
 
         #region Attributes & Properties
@@ -61,7 +61,7 @@ namespace MegaCastings.Entities
             return GetHashCode().Equals(obj.GetHashCode());
         }
 
-        public virtual int CompareTo(CastingOffer other)
+        public virtual int CompareTo(ContractType other)
         {
             return GetHashCode().CompareTo(other.GetHashCode());
         }

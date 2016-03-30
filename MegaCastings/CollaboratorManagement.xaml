@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MegaCastings"
         mc:Ignorable="d"
-        Title="Gérér un partenaire" Height="500" Width="400">
+        Title="Gérér un partenaire" Height="500" Width="400" DataContext="{Binding RelativeSource={RelativeSource Self}}">
    
     <Grid>
         <Grid.RowDefinitions>
@@ -36,10 +36,10 @@
         <TextBlock Grid.Column="1"  Grid.Row="6" Text="Ville :" Margin="5.0"/>
 
 
-        <TextBox x:Name="tbLogin" Grid.Row="1"  Grid.Column="2" Margin="2" IsReadOnly="True" Text="{Binding Path=CurrentCollaborator.Login, Mode=TwoWay}"/>
+        <TextBox x:Name="tbLogin" Grid.Row="1"  Grid.Column="2" Margin="2" IsReadOnly="True" Text="{Binding CurrentCollaborator.Login, Mode=TwoWay}"/>
         <TextBox x:Name="tbName" Grid.Row="2"  Grid.Column="2" Margin="2" Text="{Binding Path=CurrentCollaborator.Name, Mode=TwoWay}"/>
         <!-- gauche, droite, haut, bas -->
-        <TextBox x:Name="tbPhoneNumber" Grid.Row="3"  Grid.Column="2" Margin="2" Text="{Binding Path=CurrentCollaboratorPhone.Number, Mode=TwoWay}"/>
+        <TextBox x:Name="tbPhoneNumber" Grid.Row="3"  Grid.Column="2" Margin="2" Text="{Binding Path=CurrentCollaborator.PhoneNumber, Mode=TwoWay}"/>
         <TextBox x:Name="tbAddress" Grid.Row="4" Grid.Column="2" Margin="0,1,2,3" Text="{Binding Path=CurrentCollaborator.Address, Mode=TwoWay}"/>
         <TextBox x:Name="tbZipCode" Grid.Row="5" Grid.Column="2" Margin="0,1,2,3" Text="{Binding Path=CurrentCollaborator.ZipCode, Mode=TwoWay}"/>
         <TextBox x:Name="tbCity" Grid.Row="6"  Grid.Column="2" Text="{Binding Path=CurrentCollaborator.City, Mode=TwoWay}" />

@@ -17,13 +17,13 @@ namespace MegaCastings.DBLib.Maps
 
             Id(r => r.Id).GeneratedBy.Identity();
 
-            Map(r => r.FirstName).Not.Nullable().Length(15);
+            Map(r => r.FirstName).Not.Nullable().Length(20).UniqueKey("UkRepresentative");
 
-            Map(r => r.LastName).Not.Nullable().Length(15);
+            Map(r => r.LastName).Not.Nullable().Length(20).UniqueKey("UkRepresentative");
 
-            Map(r => r.PhoneNumber).Not.Nullable().Length(10);
+            Map(r => r.PhoneNumber).Not.Nullable().Length(20).UniqueKey("UkRepresentative");
 
-            References(r => r.Client).Not.Nullable();
+            References(r => r.Client).Not.Nullable().Index("IxRepresentativeClient");
 
         }
     }

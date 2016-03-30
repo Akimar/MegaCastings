@@ -16,9 +16,9 @@ namespace MegaCastings.DBLib.Maps
 
             Id(p => p.Id).GeneratedBy.Identity();
 
-            Map(p => p.Name).Not.Nullable().Length(20);
+            Map(p => p.Name).Not.Nullable().Length(50).UniqueKey("UkProfession");
 
-            References(p => p.ProfessionField).Not.Nullable();
+            References(p => p.ProfessionField).Not.Nullable().Index("IxProfessionProfessionField");
         }
 
     }

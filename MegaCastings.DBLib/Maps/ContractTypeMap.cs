@@ -16,7 +16,7 @@ namespace MegaCastings.DBLib.Maps
 
             Id(c => c.Id).GeneratedBy.Identity();
 
-            Map(c => c.ConType).Not.Nullable();
+            Map(c => c.ConType).Not.Nullable().Length(100).UniqueKey("UkContractType");
 
         }
     }

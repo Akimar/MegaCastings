@@ -16,9 +16,9 @@ namespace MegaCastings.DBLib.Maps
 
             Id(c => c.Id).GeneratedBy.Identity();
 
-            Map(c => c.Title).Not.Nullable().Length(25);
+            Map(c => c.Title).Not.Nullable().Length(100);
 
-            Map(c => c.Reference).Not.Nullable().Length(10).UniqueKey("UkCastingOffer");
+            Map(c => c.Reference).Not.Nullable().Length(25).UniqueKey("UkCastingOffer");
 
             Map(c => c.StartingDate).Not.Nullable();
 
@@ -30,15 +30,13 @@ namespace MegaCastings.DBLib.Maps
 
             Map(c => c.ProfileDescription).Not.Nullable().Length(500);
 
-            Map(c => c.Contact).Not.Nullable().Length(15);
+            References(c => c.Client).Not.Nullable().Index("IxCastingOfferClient");
 
-            References(c => c.Client).Not.Nullable();
+            References(c => c.Profession).Not.Nullable().Index("IxCastingOfferProfession"); ;
 
-            References(c => c.Profession).Not.Nullable();
+            References(c => c.ProfessionField).Not.Nullable().Index("IxCastingOfferProfessionField"); ;
 
-            References(c => c.ProfessionField).Not.Nullable();
-
-            References(c => c.ContractType).Not.Nullable();
+            References(c => c.ContractType).Not.Nullable().Index("IxCastingOfferContractType"); ;
 
         }
     }

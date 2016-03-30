@@ -24,12 +24,12 @@ namespace MegaCastings.Entities
 
 
 
-        private Boolean _ConType;
+        private String _ConType;
 
         /// <summary>
-        /// Affecte ou obtient le booleen déterminant si le contrat est à durée déterminée ou non
+        /// Affecte ou obtient le type de contrat
         /// </summary>		
-        public virtual Boolean ConType
+        public virtual String ConType
         {
             get { return _ConType; }
             set { _ConType = value; }
@@ -44,7 +44,7 @@ namespace MegaCastings.Entities
 
         }
 
-        public ContractType(Boolean conType)
+        public ContractType(String conType)
         {
             this.ConType = conType;
         }

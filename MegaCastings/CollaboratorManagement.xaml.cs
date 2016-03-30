@@ -49,9 +49,9 @@ namespace MegaCastings
 
         public CollaboratorManagement(Collaborator toModify)
         {
-            InitializeComponent();
-
+           // this.DataContext = this;
             CurrentCollaborator = toModify;
+            InitializeComponent();
             //tbName.Text = toModifie.Name;
             //tbPhoneNumber.Text = toModifie.PhoneNumber;
             //tbAddress.Text = toModifie.Address;
@@ -83,15 +83,17 @@ namespace MegaCastings
                 if (CurrentCollaborator == null)
                 {
                     CurrentCollaborator = new Collaborator();
-                    
+
+                    CurrentCollaborator.Name = tbName.Text;
+                    CurrentCollaborator.PhoneNumber = tbPhoneNumber.Text;
+                    CurrentCollaborator.Address = tbAddress.Text;
+                    CurrentCollaborator.ZipCode = tbZipCode.Text;
+                    CurrentCollaborator.City = tbCity.Text;
+
                 }
 
 
-                CurrentCollaborator.Name = tbName.Text;
-                CurrentCollaborator.PhoneNumber = tbPhoneNumber.Text;
-                CurrentCollaborator.Address = tbAddress.Text;
-                CurrentCollaborator.ZipCode = tbZipCode.Text;
-                CurrentCollaborator.City = tbCity.Text;
+               
 
                 if(CurrentCollaborator.Id == 0)
                 {

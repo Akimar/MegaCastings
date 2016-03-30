@@ -17,15 +17,15 @@ namespace MegaCastings.DBLib.Maps
 
             Id(c => c.Id).GeneratedBy.Identity();
 
-            Map(c => c.Name).Not.Nullable().Length(25);
+            Map(c => c.Name).Not.Nullable().Length(25).UniqueKey("UkClient");
 
-            Map(c => c.PhoneNumber).Length(10);
+            Map(c => c.PhoneNumber).Length(25);
 
             Map(c => c.Address).Not.Nullable().Length(75);
 
-            Map(c => c.City).Not.Nullable().Length(50);
+            Map(c => c.City).Not.Nullable().Length(75);
 
-            Map(c => c.ZipCode).Not.Nullable().Length(5);
+            Map(c => c.ZipCode).Not.Nullable().Length(10);
 
             HasMany(c => c.Representatives).LazyLoad().Inverse().Cascade.All().AsSet(); 
 

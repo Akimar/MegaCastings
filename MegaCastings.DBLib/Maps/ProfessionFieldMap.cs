@@ -16,7 +16,7 @@ namespace MegaCastings.DBLib.Maps
 
             Id(p => p.Id).GeneratedBy.Identity();
 
-            Map(p => p.Title).Not.Nullable().Length(25);
+            Map(p => p.Title).Not.Nullable().Length(100).UniqueKey("UkProfessionField");
 
             HasMany(p => p.Professions).LazyLoad().Inverse().Cascade.All().AsSet();
         }

@@ -174,12 +174,40 @@ namespace MegaCastings
             }
             else if (GroupBoxCastings.Visibility == Visibility.Visible)
             {
-
+               
             }
 
             else if (GroupBoxCollaborators.Visibility == Visibility.Visible)
             {
-
+                Collaborator toDel = null;
+                if ((toDel = (Collaborator)DataGridCollaborators.SelectedItem) != null)
+                {
+                    if (MessageBox.Show("Voulez-vous supprimer le partenaire " + toDel.Name + " ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        using (ISession session = isessionfactory.OpenSession())
+                        {
+                            using (var transaction = session.BeginTransaction())
+                            {
+                                try
+                                {
+                                    string queryString = string.Format("delete {0} where id = :id", typeof(Collaborator));
+                                    session.CreateQuery(queryString)
+                                           .SetParameter("id", toDel.Id)
+                                           .ExecuteUpdate();
+                                    transaction.Commit();
+                                    BindingClient.RemoveAt(BindingCollaborator.IndexOf(toDel));
+                                    MessageBox.Show("Supprimé avec succès.", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show(ex.Message);
+                                }
+                                transaction.Dispose();
+                            }
+                            isessionfactory.Close();
+                        }
+                    }
+                }
             }
         }
 

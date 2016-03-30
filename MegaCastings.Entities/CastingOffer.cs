@@ -89,7 +89,6 @@ namespace MegaCastings.Entities
             set { _PostNumber = value; }
         }
 
-
         private String _PostDescription;
 
         /// <summary>
@@ -111,7 +110,6 @@ namespace MegaCastings.Entities
             get { return _ProfileDescription; }
             set { _ProfileDescription = value; }
         }
-
 
         private String _Contact;
 

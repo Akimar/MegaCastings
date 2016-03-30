@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MegaCastings" Height="350" Width="525" MinWidth="900" MinHeight="600" WindowState="Maximized" DataContext="this">
 
-    <Grid ShowGridLines="true">
+    <Grid ShowGridLines="False">
         <Grid.RowDefinitions>
             <RowDefinition Height="5"/>
             <RowDefinition Height="Auto"/>
@@ -72,8 +72,16 @@
         </GroupBox>
 
         <GroupBox x:Name="GroupBoxCastings" Header="Castings" Grid.Row="3" Grid.Column="3" Grid.RowSpan="3" Visibility="Hidden">
-            <DataGrid x:Name="DataGridCastings" GridLinesVisibility="None" IsReadOnly="True" AutoGenerateColumns="True" ColumnWidth="*" SelectionMode="Single" >
-                
+            <DataGrid x:Name="DataGridCastings" GridLinesVisibility="None" IsReadOnly="True" AutoGenerateColumns="False" ColumnWidth="*" SelectionMode="Single" FrozenColumnCount="2" >
+                <DataGrid.Columns >
+                    <DataGridTextColumn Header="Intitulé" Binding="{Binding Title}"/>
+                    <DataGridTextColumn Header="Référence" Binding="{Binding Reference}"/>
+                    <DataGridTextColumn Header="Du" Binding="{Binding StartingDate, StringFormat=\{0:dd/MM/yyyy\}}"/>
+                    <DataGridTextColumn Header="Au" Binding="{Binding EndingingDate, StringFormat=\{0:dd/MM/yyyy\}}" />
+                    <DataGridTextColumn Header="N°" Binding="{Binding PostNumber}" />
+                    <DataGridTextColumn Header="Description" Binding="{Binding PostDescription}" />
+                    <DataGridTextColumn Header="Au" Binding="{Binding EndingingDate}" />
+                </DataGrid.Columns>
             </DataGrid>
         </GroupBox>
 
@@ -87,22 +95,22 @@
                     <DataGridTextColumn Header="Code Postal" Binding="{Binding ZipCode}"/>
                     <DataGridTextColumn Header="Ville" Binding="{Binding City}"/>
                 </DataGrid.Columns>
-                
+        <GroupBox x:Name="GroupBoxCollaborators" Header="Collaborateurs" Grid.Row="3" Grid.Column="3" Grid.RowSpan="3" Visibility="Hidden">
+            <DataGrid x:Name="DataGridPartenaires" GridLinesVisibility="None" IsReadOnly="True" AutoGenerateColumns="True" ColumnWidth="*" SelectionMode="Single" >
             </DataGrid>
         </GroupBox>
 
-        <StackPanel Orientation="Horizontal" x:Name="StackPanelButtons" Grid.Row="6" Grid.Column="3">
-            <Button Cursor="Hand"  Click="Button_Click_Add" Width="100" Height="40" Margin="30,7,7,7">
-                <TextBlock Text="Ajouter" FontSize="20"/>
-            </Button>
+        <Button Grid.Column="3" Grid.Row="6" Cursor="Hand"  Click="Button_Click_Add" Width="100" Height="40" HorizontalAlignment="Left" Margin="5.0">
+            <TextBlock Text="Ajouter" FontSize="20"/>
+        </Button>
 
-            <Button Cursor="Hand"  Click="Button_Click_Manage" Width="100" Height="40" Margin="110, 7, 7, 7" > 
-                <TextBlock Text="Modifier" FontSize="20"/>
-            </Button>
+        <Button Cursor="Hand"  Click="Button_Click_Manage" 
+                    Width="100" Height="40" Grid.Column="3" Grid.Row="6" >
+            <TextBlock Text="Modifier" FontSize="20"/>
+        </Button>
 
-            <Button Cursor="Hand"  Click="Button_Click_Delete" Width="100" Height="40" Margin="140, 7, 7, 7" >
-                <TextBlock Text="Supprimer" FontSize="20"/>
-            </Button>
-        </StackPanel>
+        <Button Cursor="Hand" Click="Button_Click_Delete" Width="100" Height="40" Grid.Column="3" Grid.Row="6" HorizontalAlignment="Right" Margin="5.0" >
+            <TextBlock Text="Supprimer" FontSize="20"/>
+        </Button>
     </Grid>
 </Window>

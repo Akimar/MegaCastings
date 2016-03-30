@@ -230,10 +230,7 @@ namespace MegaCastings
             }
             gb.Visibility = Visibility.Visible;
         }
-
-
-
-
+        
         /// <summary>
         /// Créer l'objet base de donnée et la construit si besoin (connexion string dans app.config)
         /// </summary>
@@ -256,7 +253,6 @@ namespace MegaCastings
                 case "SQLServer2008":
                     BDD = FluentNHibernate.Cfg.Db.MsSqlConfiguration.MsSql2008.ConnectionString(connectionString);
                     break;
-
             }
 
             Assembly ass = Assembly.Load("MegaCastings.DBLib");

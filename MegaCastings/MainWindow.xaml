@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MegaCastings"
         mc:Ignorable="d"
-        Title="MegaCastings" Height="350" Width="525" MinWidth="900" MinHeight="600" WindowState="Maximized" DataContext="this">
+        Title="MegaCastings" Height="350" Width="525" MinWidth="900" MinHeight="600" WindowState="Maximized" >
 
     <Grid ShowGridLines="False">
         <Grid.RowDefinitions>
@@ -80,7 +80,8 @@
                     <DataGridTextColumn Header="Au" Binding="{Binding EndingingDate, StringFormat=\{0:dd/MM/yyyy\}}" />
                     <DataGridTextColumn Header="N°" Binding="{Binding PostNumber}" />
                     <DataGridTextColumn Header="Description" Binding="{Binding PostDescription}" />
-                    <DataGridTextColumn Header="Au" Binding="{Binding EndingingDate}" />
+                    <DataGridTextColumn Header="Profil recherché" Binding="{Binding ProfileDescription}" />
+                    <DataGridTextColumn Header="Contact" Binding="{Binding Contact}" />
                 </DataGrid.Columns>
             </DataGrid>
         </GroupBox>
@@ -95,8 +96,6 @@
                     <DataGridTextColumn Header="Code Postal" Binding="{Binding ZipCode}"/>
                     <DataGridTextColumn Header="Ville" Binding="{Binding City}"/>
                 </DataGrid.Columns>
-        <GroupBox x:Name="GroupBoxCollaborators" Header="Collaborateurs" Grid.Row="3" Grid.Column="3" Grid.RowSpan="3" Visibility="Hidden">
-            <DataGrid x:Name="DataGridPartenaires" GridLinesVisibility="None" IsReadOnly="True" AutoGenerateColumns="True" ColumnWidth="*" SelectionMode="Single" >
             </DataGrid>
         </GroupBox>
 

@@ -69,9 +69,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="AddClient.xaml">
+    <Page Include="ClientManagement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OfferManagement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="CollaboratorManagement.xaml">
       <SubType>Designer</SubType>
@@ -81,12 +85,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="AddClient.xaml.cs">
-      <DependentUpon>AddClient.xaml</DependentUpon>
+    <Compile Include="ClientManagement.xaml.cs">
+      <DependentUpon>ClientManagement.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OfferManagement.xaml.cs">
+      <DependentUpon>OfferManagement.xaml</DependentUpon>
     </Compile>
     <Compile Include="CollaboratorManagement.xaml.cs">
       <DependentUpon>CollaboratorManagement.xaml</DependentUpon>

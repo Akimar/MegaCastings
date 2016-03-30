@@ -35,6 +35,7 @@ namespace MegaCastings
         {
             //Initialisation des propriétes de binding
             InitializeComponent();
+            this.DataContext = this;
 
             using (ISession session = isessionfactory.OpenSession())//ouverture
             {

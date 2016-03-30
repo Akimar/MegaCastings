@@ -42,7 +42,28 @@ namespace MegaCastings
 
         public OfferManagement()
         {
+            IList<Client> ClientList;
+            IList<Profession> ProfList;
+            List<string> TypeList = new List<string>() ;
+            this.DataContext = this;
+            TypeList.Add("CDD");
+            TypeList.Add("CDI");
+            TypeList.Add("Cachet d'intermitent");
+            TypeList.Add("Stage");
+            ISessionFactory isessionfactory = MainWindow.CreateSessionFactory();
+            using (ISession session = isessionfactory.OpenSession())//ouverture
+            {
+                ClientList = session.QueryOver<Client>().List();
+                ProfList = session.QueryOver<Profession>().List();
+                session.Close();
+            }
+
             InitializeComponent();
+
+            cbClient.ItemsSource = ClientList;
+            cbProfession.ItemsSource = ProfList;
+            cbType.ItemsSource = TypeList;
+
         }
 
 
@@ -52,7 +73,6 @@ namespace MegaCastings
             InitializeComponent();
 
             CurrentOffer = toModify;
-
         }
 
         #endregion

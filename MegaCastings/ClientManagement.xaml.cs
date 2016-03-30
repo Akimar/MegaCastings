@@ -19,14 +19,14 @@ namespace MegaCastings
     /// <summary>
     /// Interaction logic for AddClient.xaml
     /// </summary>
-    public partial class AddClient : Window
+    public partial class ClientManagement : Window
     {
-        public AddClient()
+        public ClientManagement()
         {
             InitializeComponent();
         }
 
-        public AddClient(Client toModifie)
+        public ClientManagement(Client toModifie)
         {
             InitializeComponent();
             AddedClient = toModifie;

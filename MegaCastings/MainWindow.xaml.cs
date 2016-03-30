@@ -72,7 +72,7 @@ namespace MegaCastings
         {
             if (GroupBoxClients.Visibility == Visibility.Visible)
             {
-                AddClient AddClientFrame = new AddClient();
+                ClientManagement AddClientFrame = new ClientManagement();
                 if (AddClientFrame.ShowDialog().Value == true)
                 {
                     BindingClient.Add(AddClientFrame.AddedClient);
@@ -80,7 +80,11 @@ namespace MegaCastings
             }
             else if (GroupBoxCastings.Visibility == Visibility.Visible)
             {
-              
+                OfferManagement AddOfferFrame = new OfferManagement();
+                if (AddOfferFrame.ShowDialog().Value == true)
+                {
+                    
+                }
             }
 
             else if (GroupBoxCollaborators.Visibility == Visibility.Visible)
@@ -105,7 +109,7 @@ namespace MegaCastings
                 Client toModifie = null;
                 if ((toModifie = (Client)DataGridClients.SelectedItem) != null)
                 {
-                    AddClient AddClientFrame = new AddClient(toModifie);
+                    ClientManagement AddClientFrame = new ClientManagement(toModifie);
                     if (AddClientFrame.ShowDialog().Value == true)
                     {
                         BindingClient[BindingClient.IndexOf(toModifie)] = AddClientFrame.AddedClient;

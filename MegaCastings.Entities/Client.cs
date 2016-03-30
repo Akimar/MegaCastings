@@ -50,6 +50,10 @@ namespace MegaCastings.Entities
             this.City = city;
         }
 
+        public override string ToString()
+        {
+            return this.Name;
+        }
         #endregion
 
     }

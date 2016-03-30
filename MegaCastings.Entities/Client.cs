@@ -66,10 +66,6 @@ namespace MegaCastings.Entities
             return GetHashCode().Equals(obj.GetHashCode());
         }
 
-        public int CompareTo(CastingOffer other)
-        {
-            return GetHashCode().CompareTo(other.GetHashCode());
-        }
 
     }
 }

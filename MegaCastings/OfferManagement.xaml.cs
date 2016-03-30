@@ -44,8 +44,13 @@ namespace MegaCastings
         {
             IList<Client> ClientList;
             IList<Profession> ProfList;
-            List<string> TypeList = new List<string>() ;
+            string DateTodayTransformed = DateTime.Now.ToShortDateString();
+            List<string> TypeList = new List<string>();
             this.DataContext = this;
+            CurrentOffer = new CastingOffer();
+            InitializeComponent();
+            DTPDu.SelectedDate = DateTime.Now;
+            DTPAu.SelectedDate = DateTime.Now.AddMonths(1);
             TypeList.Add("CDD");
             TypeList.Add("CDI");
             TypeList.Add("Cachet d'intermitent");
@@ -55,10 +60,12 @@ namespace MegaCastings
             {
                 ClientList = session.QueryOver<Client>().List();
                 ProfList = session.QueryOver<Profession>().List();
+
+                tbRef.Text = DateTodayTransformed + "-" + (session.QueryOver<CastingOffer>().WhereRestrictionOn(c => c.Reference).IsLike(DateTodayTransformed + "%").RowCount() + 1);
+
                 session.Close();
             }
 
-            InitializeComponent();
 
             cbClient.ItemsSource = ClientList;
             cbProfession.ItemsSource = ProfList;
@@ -92,29 +99,8 @@ namespace MegaCastings
         /// </summary>
         private void b_ok_Click(object sender, RoutedEventArgs e)
         {
-           /*
-
-            if (!string.IsNullOrEmpty(tbName.Text) && !string.IsNullOrEmpty(tbPhoneNumber.Text) && !string.IsNullOrEmpty(tbAddress.Text) && !string.IsNullOrEmpty(tbZipCode.Text) && !string.IsNullOrEmpty(tbCity.Text))
+            if (!string.IsNullOrEmpty(tbTitle.Text) && !string.IsNullOrEmpty(tbProfil.Text) && !string.IsNullOrEmpty(tbDescription.Text) && cbClient.SelectedItem != null && !string.IsNullOrEmpty(cbProfession.Text) && !string.IsNullOrEmpty(cbType.Text))
             {
-                if (CurrentCollaborator == null)
-                {
-                    CurrentCollaborator = new Collaborator();
-                    
-                }
-
-
-                CurrentCollaborator.Name = tbName.Text;
-                CurrentCollaborator.PhoneNumber = tbPhoneNumber.Text;
-                CurrentCollaborator.Address = tbAddress.Text;
-                CurrentCollaborator.ZipCode = tbZipCode.Text;
-                CurrentCollaborator.City = tbCity.Text;
-
-                if(CurrentCollaborator.Id == 0)
-                {
-                    CurrentCollaborator.Password = "toto";
-                    CurrentCollaborator.Login = String.Format("{0}{1})", CurrentCollaborator.Name.Substring(0, 3), CurrentCollaborator.ZipCode.Substring(0, 2));// à proteger
-                }
-
                 try
                 {
                     ISessionFactory isessionfactory = MainWindow.CreateSessionFactory();
@@ -124,18 +110,18 @@ namespace MegaCastings
                         {
                             try
                             {
-                                if (CurrentCollaborator.Id == 0)
+                                if (CurrentOffer.Id == 0)
                                 {
-                                    session.SaveOrUpdate(CurrentCollaborator);
+                                    session.SaveOrUpdate(CurrentOffer);
                                 }
 
                                 else
                                 {
                                     session.Flush();
                                 }
-                             
+
                                 transaction.Commit();
-                               
+
                             }
                             catch (Exception)
                             {
@@ -160,7 +146,7 @@ namespace MegaCastings
             else
             {
                 MessageBox.Show("Merci de remplir tous les champs.");
-            }*/
+            }
         }
         #endregion
     }

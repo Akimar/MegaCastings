@@ -113,13 +113,20 @@ namespace MegaCastings
                     if (AddClientFrame.ShowDialog().Value == true)
                     {
                         BindingClient[BindingClient.IndexOf(toModifie)] = AddClientFrame.AddedClient;
-                        BindingClient.RaiseListChangedEvents = true;
                     }
                 }
             }
             else if (GroupBoxCastings.Visibility == Visibility.Visible)
             {
-                
+                CastingOffer toModify = null;
+                if ((toModify = (CastingOffer)DataGridCollaborators.SelectedItem) != null)
+                {
+                    OfferManagement CollaboratorManagementFrame = new OfferManagement(toModify);
+                    if (CollaboratorManagementFrame.ShowDialog().Value == true)
+                    {
+                        BindingCastings[BindingCastings.IndexOf(toModify)] = CollaboratorManagementFrame.CurrentOffer;
+                    }
+                }
             }
 
             else if (GroupBoxCollaborators.Visibility == Visibility.Visible)
@@ -131,7 +138,6 @@ namespace MegaCastings
                     if (CollaboratorManagementFrame.ShowDialog().Value == true)
                     {
                         BindingCollaborator[BindingCollaborator.IndexOf(toModify)] = CollaboratorManagementFrame.CurrentCollaborator;
-                        BindingClient.RaiseListChangedEvents = true;
                     }
                 }
             }

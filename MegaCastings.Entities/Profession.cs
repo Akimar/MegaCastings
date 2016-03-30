@@ -56,6 +56,11 @@ namespace MegaCastings.Entities
         }
         #endregion
 
+        public override string ToString()
+        {
+            return Name;
+        }
+
         public override int GetHashCode()
         {
             return ((!string.IsNullOrEmpty(Name) ? Name.GetHashCode() : 0));
@@ -66,7 +71,7 @@ namespace MegaCastings.Entities
             return GetHashCode().Equals(obj.GetHashCode());
         }
 
-        public int CompareTo(CastingOffer other)
+        public virtual int CompareTo(CastingOffer other)
         {
             return GetHashCode().CompareTo(other.GetHashCode());
         }

@@ -83,7 +83,7 @@ namespace MegaCastings.Entities
         }
 
 
-        public int CompareTo(Collaborator other)
+        public virtual int CompareTo(Collaborator other)
         {
             return GetHashCode().CompareTo(other.GetHashCode());
         }

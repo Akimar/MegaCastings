@@ -66,11 +66,10 @@ namespace MegaCastings.Entities
             return GetHashCode().Equals(obj.GetHashCode());
         }
 
-        public int CompareTo(Client other)
+        public virtual int CompareTo(Client other)
         {
             return GetHashCode().CompareTo(other.GetHashCode());
         }
-
 
     }
 }

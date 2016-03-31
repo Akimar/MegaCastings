@@ -71,7 +71,7 @@ namespace MegaCastings.Entities
             return GetHashCode().Equals(obj.GetHashCode());
         }
 
-        public int CompareTo(Profession other)
+        public virtual int CompareTo(Profession other)
         {
             return GetHashCode().CompareTo(other.GetHashCode());
         }

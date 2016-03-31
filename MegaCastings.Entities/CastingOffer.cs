@@ -111,17 +111,6 @@ namespace MegaCastings.Entities
             set { _ProfileDescription = value; }
         }
 
-        private String _Contact;
-
-        /// <summary>
-        /// Affecte ou obtient le contavt pour l'offre
-        /// </summary>		
-        public virtual String Contact
-        {
-            get { return _Contact; }
-            set { _Contact = value; }
-        }
-
 
         /// <summary>
         /// Affecte ou obtient le client à l'origine de l'offre de casting

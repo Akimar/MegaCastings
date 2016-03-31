@@ -78,13 +78,7 @@ namespace MegaCastings
             {
                 if (CurrentCollaborator == null)
                 {
-                    CurrentCollaborator = new Collaborator();
-
-                    CurrentCollaborator.Name = tbName.Text;
-                    CurrentCollaborator.PhoneNumber = tbPhoneNumber.Text;
-                    CurrentCollaborator.Address = tbAddress.Text;
-                    CurrentCollaborator.ZipCode = tbZipCode.Text;
-                    CurrentCollaborator.City = tbCity.Text;
+                    CurrentCollaborator = new Collaborator(tbName.Text, tbName.Text, tbPhoneNumber.Text, tbZipCode.Text, tbAddress.Text, tbCity.Text);
 
                 }
 

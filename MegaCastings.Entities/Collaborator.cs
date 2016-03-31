@@ -60,10 +60,9 @@ namespace MegaCastings.Entities
 
 
 
-        public Collaborator(String login, String password, String name, String phoneNumber, String zipCode, String address, String city) : this()
+        public Collaborator(String login, String name, String phoneNumber, String zipCode, String address, String city) : this()
         {
             this.Login = login;
-            this.Password = password;
             this.Name = name;
             this.PhoneNumber = phoneNumber;
             this.ZipCode = zipCode;

@@ -10,6 +10,7 @@ using FluentNHibernate.Cfg;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
 using MegaCastings.DBLib.Maps;
+using System.Collections.Generic;
 
 namespace MegaCastings
 {
@@ -40,12 +41,14 @@ namespace MegaCastings
             using (ISession session = isessionfactory.OpenSession())//ouverture
             {
                 BindingClient = new BindingList<Client>(session.QueryOver<Client>().List());
-                BindingCastings = new BindingList<CastingOffer>(session.QueryOver<CastingOffer>().List());
+              //  BindingCastings = new BindingList<CastingOffer>(session.QueryOver<CastingOffer>().List());
                 BindingCollaborator = new BindingList<Collaborator>(session.QueryOver<Collaborator>().List());
-                foreach (CastingOffer cast in BindingCastings)/*a changer => force le chargement*/
+
+                var toto = session.QueryOver<CastingOffer>().List();
+                BindingCastings = new BindingList<CastingOffer>();
+                foreach (CastingOffer offer in toto)/*a changer => force le chargement*/
                 {
-                    var test = cast.Profession.Name;
-                    test = cast.ContractType.ConType;
+                    BindingCastings.Add(new CastingOffer(offer.Title, offer.Reference, offer.StartingDate, offer.EndingDate, offer.PostNumber, offer.PostDescription, offer.ProfileDescription, offer.Client, offer.ProfessionField, offer.ContractType, offer.Profession));
                 }
                 isessionfactory.Close();
             }

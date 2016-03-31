@@ -115,43 +115,7 @@ namespace MegaCastings
         /// <param name="e"></param>
         private void Button_Click_Manage(object sender, RoutedEventArgs e)
         {
-            if (GroupBoxClients.Visibility == Visibility.Visible)
-            {
-                Client toModifie = null;
-                if ((toModifie = (Client)DataGridClients.SelectedItem) != null)
-                {
-                    ClientManagement AddClientFrame = new ClientManagement(toModifie);
-                    if (AddClientFrame.ShowDialog().Value == true)
-                    {
-                        BindingClient[BindingClient.IndexOf(toModifie)] = AddClientFrame.AddedClient;
-                    }
-                }
-            }
-            else if (GroupBoxCastings.Visibility == Visibility.Visible)
-            {
-                CastingOffer toModify = null;
-                if ((toModify = (CastingOffer)DataGridCastings.SelectedItem) != null)
-                {
-                    OfferManagement OfferManagementFrame = new OfferManagement(toModify);
-                    if (OfferManagementFrame.ShowDialog().Value == true)
-                    {
-                        BindingCastings[BindingCastings.IndexOf(toModify)] = OfferManagementFrame.CurrentOffer;
-                    }
-                }
-            }
-
-            else if (GroupBoxCollaborators.Visibility == Visibility.Visible)
-            {
-                Collaborator toModify = null;
-                if ((toModify = (Collaborator)DataGridCollaborators.SelectedItem) != null)
-                {
-                    CollaboratorManagement CollaboratorManagementFrame = new CollaboratorManagement(toModify);
-                    if (CollaboratorManagementFrame.ShowDialog().Value == true)
-                    {
-                        BindingCollaborator[BindingCollaborator.IndexOf(toModify)] = CollaboratorManagementFrame.CurrentCollaborator;
-                    }
-                }
-            }
+            Manage();
         }
 
         /// Ouvre une fenêtre modale pour supprimer un client ou bien une offre de casting, ou encore un partenaire
@@ -191,6 +155,35 @@ namespace MegaCastings
             }
             else if (GroupBoxCastings.Visibility == Visibility.Visible)
             {
+                CastingOffer toDel = null;
+                if ((toDel = (CastingOffer)DataGridCastings.SelectedItem) != null)
+                {
+                    if (MessageBox.Show("Voulez-vous supprimer l'offre " + toDel.Reference + " ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        using (ISession session = isessionfactory.OpenSession())
+                        {
+                            using (var transaction = session.BeginTransaction())
+                            {
+                                try
+                                {
+                                    string queryString = string.Format("delete {0} where id = :id", typeof(CastingOffer));
+                                    session.CreateQuery(queryString)
+                                           .SetParameter("id", toDel.Id)
+                                           .ExecuteUpdate();
+                                    transaction.Commit();
+                                    BindingCastings.RemoveAt(BindingCastings.IndexOf(toDel));
+                                    MessageBox.Show("Supprimé avec succès.", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show(ex.Message);
+                                }
+                                transaction.Dispose();
+                            }
+                            isessionfactory.Close();
+                        }
+                    }
+                }
 
             }
 
@@ -322,5 +315,51 @@ namespace MegaCastings
         }
 
         #endregion
+
+        private void DataGridClients_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Manage();
+        }
+
+        private void Manage()
+        {
+            if (GroupBoxClients.Visibility == Visibility.Visible)
+            {
+                Client toModifie = null;
+                if ((toModifie = (Client)DataGridClients.SelectedItem) != null)
+                {
+                    ClientManagement AddClientFrame = new ClientManagement(toModifie);
+                    if (AddClientFrame.ShowDialog().Value == true)
+                    {
+                        BindingClient[BindingClient.IndexOf(toModifie)] = AddClientFrame.AddedClient;
+                    }
+                }
+            }
+            else if (GroupBoxCastings.Visibility == Visibility.Visible)
+            {
+                CastingOffer toModify = null;
+                if ((toModify = (CastingOffer)DataGridCastings.SelectedItem) != null)
+                {
+                    OfferManagement OfferManagementFrame = new OfferManagement(toModify);
+                    if (OfferManagementFrame.ShowDialog().Value == true)
+                    {
+                        BindingCastings[BindingCastings.IndexOf(toModify)] = OfferManagementFrame.CurrentOffer;
+                    }
+                }
+            }
+
+            else if (GroupBoxCollaborators.Visibility == Visibility.Visible)
+            {
+                Collaborator toModify = null;
+                if ((toModify = (Collaborator)DataGridCollaborators.SelectedItem) != null)
+                {
+                    CollaboratorManagement CollaboratorManagementFrame = new CollaboratorManagement(toModify);
+                    if (CollaboratorManagementFrame.ShowDialog().Value == true)
+                    {
+                        BindingCollaborator[BindingCollaborator.IndexOf(toModify)] = CollaboratorManagementFrame.CurrentCollaborator;
+                    }
+                }
+            }
+        }
     }
 }

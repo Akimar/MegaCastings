@@ -53,7 +53,7 @@
         </Button>
 
         <GroupBox x:Name="GroupBoxClients" Header="Clients" Grid.Row="3" Grid.Column="3" Grid.RowSpan="3" Visibility="Hidden">
-            <DataGrid x:Name="DataGridClients" GridLinesVisibility="None" IsReadOnly="True" AutoGenerateColumns="False" ColumnWidth="*" SelectionMode="Single" >
+            <DataGrid x:Name="DataGridClients" GridLinesVisibility="None" IsReadOnly="True" AutoGenerateColumns="False" ColumnWidth="*" SelectionMode="Single" MouseDoubleClick="DataGridClients_MouseDoubleClick" >
                 <DataGrid.Columns >
                     <DataGridTextColumn Header="Nom" Binding="{Binding Name}"/>
                     <DataGridTextColumn Header="Téléphone" Binding="{Binding PhoneNumber}"/>
@@ -72,7 +72,7 @@
         </GroupBox>
 
         <GroupBox x:Name="GroupBoxCastings" Header="Castings" Grid.Row="3" Grid.Column="3" Grid.RowSpan="3" Visibility="Hidden">
-            <DataGrid x:Name="DataGridCastings" GridLinesVisibility="None" IsReadOnly="True" AutoGenerateColumns="False" ColumnWidth="*" SelectionMode="Single" FrozenColumnCount="2" >
+            <DataGrid x:Name="DataGridCastings" GridLinesVisibility="None" IsReadOnly="True" AutoGenerateColumns="False" ColumnWidth="*" SelectionMode="Single" FrozenColumnCount="2" MouseDoubleClick="DataGridClients_MouseDoubleClick" >
                 <DataGrid.Columns >
                     <DataGridTextColumn Header="Intitulé" Binding="{Binding Title}"/>
                     <DataGridTextColumn Header="Référence" Binding="{Binding Reference}"/>
@@ -87,7 +87,7 @@
         </GroupBox>
 
         <GroupBox x:Name="GroupBoxCollaborators" Header="Partenaires" Grid.Row="3" Grid.Column="3" Grid.RowSpan="3" Visibility="Hidden">
-            <DataGrid x:Name="DataGridCollaborators" GridLinesVisibility="None" IsReadOnly="True" AutoGenerateColumns="False" ColumnWidth="*" SelectionMode="Single" >
+            <DataGrid x:Name="DataGridCollaborators" GridLinesVisibility="None" IsReadOnly="True" AutoGenerateColumns="False" ColumnWidth="*" SelectionMode="Single" MouseDoubleClick="DataGridClients_MouseDoubleClick" >
                 <DataGrid.Columns >
                     <DataGridTextColumn Header="Login" Binding="{Binding Login}"/>
                     <DataGridTextColumn Header="Nom" Binding="{Binding Name}"/>

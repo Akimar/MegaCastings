@@ -17,7 +17,7 @@ namespace MegaCastings.DBLib.Maps
 
             Id(c => c.Id).GeneratedBy.Identity();
 
-            Map(c => c.Name).Not.Nullable().Length(25).UniqueKey("UkClient");
+            Map(c => c.Name).Not.Nullable().Length(75).UniqueKey("UkClient");
 
             Map(c => c.PhoneNumber).Length(25);
 

@@ -65,9 +65,5 @@ namespace MegaCastings.Entities
             set { _City = value; }
         }
 
-
-
-
-
     }
 }

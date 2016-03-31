@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MegaCastings.Entities
 {
-    public class Collaborator : ContactDetails
+    public class Collaborator : ContactDetails, IComparable<Collaborator>
     {
         #region Attributes & Properties
    
@@ -71,6 +71,22 @@ namespace MegaCastings.Entities
             this.City = city;
         }
         #endregion
+
+        public override int GetHashCode()
+        {
+            return ((!string.IsNullOrEmpty(Name) ? Name.GetHashCode() : 0));
+        }
+
+        public override bool Equals(object obj)
+        {
+            return GetHashCode().Equals(obj.GetHashCode());
+        }
+
+
+        public virtual int CompareTo(Collaborator other)
+        {
+            return GetHashCode().CompareTo(other.GetHashCode());
+        }
 
     }
 }

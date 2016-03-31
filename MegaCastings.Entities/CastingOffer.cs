@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MegaCastings.Entities
 {
-    public class CastingOffer
+    public class CastingOffer : IComparable<CastingOffer>
     {
 
         #region Attributes & Properties
@@ -169,6 +169,21 @@ namespace MegaCastings.Entities
         }
 
         #endregion
+
+        public override int GetHashCode()
+        {
+            return ((!string.IsNullOrEmpty(Reference) ? Reference.GetHashCode() : 0));
+        }
+
+        public override bool Equals(object obj)
+        {
+            return GetHashCode().Equals(obj.GetHashCode());
+        }
+
+        public virtual int CompareTo(CastingOffer other)
+        {
+            return GetHashCode().CompareTo(other.GetHashCode());
+        }
 
     }
 }

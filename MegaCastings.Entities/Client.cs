@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MegaCastings.Entities
 {
-    public class Client : ContactDetails
+    public class Client : ContactDetails, IComparable<Client>
     {
 
         #region Attributes & Properties
@@ -49,8 +49,27 @@ namespace MegaCastings.Entities
             this.ZipCode = zipCode;
             this.City = city;
         }
-
         #endregion
+
+        public override string ToString()
+        {
+            return this.Name;
+        }
+
+        public override int GetHashCode()
+        {
+            return ((!string.IsNullOrEmpty(Name) ? Name.GetHashCode() : 0));
+        }
+
+        public override bool Equals(object obj)
+        {
+            return GetHashCode().Equals(obj.GetHashCode());
+        }
+
+        public virtual int CompareTo(Client other)
+        {
+            return GetHashCode().CompareTo(other.GetHashCode());
+        }
 
     }
 }

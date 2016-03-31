@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MegaCastings.Entities
 {
-    public class Profession
+    public class Profession : IComparable<Profession>
     {
         #region Attributes & Properties
 
@@ -55,5 +55,25 @@ namespace MegaCastings.Entities
             this.ProfessionField = professionField;
         }
         #endregion
+
+        public override string ToString()
+        {
+            return Name;
+        }
+
+        public override int GetHashCode()
+        {
+            return ((!string.IsNullOrEmpty(Name) ? Name.GetHashCode() : 0));
+        }
+
+        public override bool Equals(object obj)
+        {
+            return GetHashCode().Equals(obj.GetHashCode());
+        }
+
+        public virtual int CompareTo(Profession other)
+        {
+            return GetHashCode().CompareTo(other.GetHashCode());
+        }
     }
 }

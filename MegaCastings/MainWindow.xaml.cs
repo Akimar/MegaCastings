@@ -72,7 +72,7 @@ namespace MegaCastings
         {
             if (GroupBoxClients.Visibility == Visibility.Visible)
             {
-                AddClient AddClientFrame = new AddClient();
+                ClientManagement AddClientFrame = new ClientManagement();
                 if (AddClientFrame.ShowDialog().Value == true)
                 {
                     BindingClient.Add(AddClientFrame.AddedClient);
@@ -80,7 +80,11 @@ namespace MegaCastings
             }
             else if (GroupBoxCastings.Visibility == Visibility.Visible)
             {
-              
+                OfferManagement AddOfferFrame = new OfferManagement();
+                if (AddOfferFrame.ShowDialog().Value == true)
+                {
+                    
+                }
             }
 
             else if (GroupBoxCollaborators.Visibility == Visibility.Visible)
@@ -105,17 +109,24 @@ namespace MegaCastings
                 Client toModifie = null;
                 if ((toModifie = (Client)DataGridClients.SelectedItem) != null)
                 {
-                    AddClient AddClientFrame = new AddClient(toModifie);
+                    ClientManagement AddClientFrame = new ClientManagement(toModifie);
                     if (AddClientFrame.ShowDialog().Value == true)
                     {
                         BindingClient[BindingClient.IndexOf(toModifie)] = AddClientFrame.AddedClient;
-                        BindingClient.RaiseListChangedEvents = true;
                     }
                 }
             }
             else if (GroupBoxCastings.Visibility == Visibility.Visible)
             {
-                
+                CastingOffer toModify = null;
+                if ((toModify = (CastingOffer)DataGridCollaborators.SelectedItem) != null)
+                {
+                    OfferManagement CollaboratorManagementFrame = new OfferManagement(toModify);
+                    if (CollaboratorManagementFrame.ShowDialog().Value == true)
+                    {
+                        BindingCastings[BindingCastings.IndexOf(toModify)] = CollaboratorManagementFrame.CurrentOffer;
+                    }
+                }
             }
 
             else if (GroupBoxCollaborators.Visibility == Visibility.Visible)
@@ -127,7 +138,6 @@ namespace MegaCastings
                     if (CollaboratorManagementFrame.ShowDialog().Value == true)
                     {
                         BindingCollaborator[BindingCollaborator.IndexOf(toModify)] = CollaboratorManagementFrame.CurrentCollaborator;
-                        BindingClient.RaiseListChangedEvents = true;
                     }
                 }
             }

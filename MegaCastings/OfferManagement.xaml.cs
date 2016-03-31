@@ -25,7 +25,7 @@ namespace MegaCastings
         #region Attributes & Properties
 
         private CastingOffer _CurrentOffer;
-
+        private string generatedRef;
 
         /// <summary>
         /// Affecte ou obtient le partenaire en cours de modification
@@ -42,47 +42,21 @@ namespace MegaCastings
 
         public OfferManagement()
         {
-            IList<Client> ClientList;
-            IList<Profession> ProfList;
-            string DateTodayTransformed = (DateTime.Now.Day.ToString() +"."+ DateTime.Now.Month.ToString("D2")+"." + DateTime.Now.Year.ToString().Substring(2));
-            List<string> TypeList = new List<string>();
-            this.DataContext = this;
-            CurrentOffer = new CastingOffer();
-            CurrentOffer.PostNumber = 1;
+            CurrentOffer = new CastingOffer() { PostNumber = 1};
             InitializeComponent();
+            tbRef.Text = generatedRef;
             DTPDu.Value = DateTime.Now;
             DTPAu.Value = DateTime.Now.AddMonths(1);
-            TypeList.Add("CDD");
-            TypeList.Add("CDI");
-            TypeList.Add("Cachet d'intermitent");
-            TypeList.Add("Stage");
-            ISessionFactory isessionfactory = MainWindow.CreateSessionFactory();
-            using (ISession session = isessionfactory.OpenSession())//ouverture
-            {
-                ClientList = session.QueryOver<Client>().List();
-                ProfList = session.QueryOver<Profession>().List();
-
-                tbRef.Text = DateTodayTransformed + "-" + (session.QueryOver<CastingOffer>().WhereRestrictionOn(c => c.Reference).IsLike(DateTodayTransformed + "%").RowCount() + 1);
-
-                session.Close();
-            }
-
-
-            cbClient.ItemsSource = ClientList;
-            cbProfession.ItemsSource = ProfList;
-            cbType.ItemsSource = TypeList;
-
         }
 
 
 
         public OfferManagement(CastingOffer toModify)
         {
-            InitializeComponent();
-
             CurrentOffer = toModify;
+            InitializeComponent();
+            Loading();
         }
-
         #endregion
 
         #region Events
@@ -133,7 +107,7 @@ namespace MegaCastings
                         session.Close();
                     }
                     MessageBox.Show("Effectué avec succès ! ");
-
+                    isessionfactory.Close();
                 }
                 catch (Exception ex)
                 {
@@ -150,5 +124,29 @@ namespace MegaCastings
             }
         }
         #endregion
+
+        private void Loading()
+        {
+            IList<Client> ClientList;
+            IList<Profession> ProfList;
+            IList<ContractType> TypeList;
+            string DateTodayTransformed = (DateTime.Now.Day.ToString() + "." + DateTime.Now.Month.ToString("D2") + "." + DateTime.Now.Year.ToString().Substring(2));
+
+            this.DataContext = this;
+
+            ISessionFactory isessionfactory = MainWindow.CreateSessionFactory();
+            using (ISession session = isessionfactory.OpenSession())//ouverture
+            {
+                ClientList = session.QueryOver<Client>().List();
+                ProfList = session.QueryOver<Profession>().List();
+                TypeList = session.QueryOver<ContractType>().List();
+                generatedRef = DateTodayTransformed + "-" + (session.QueryOver<CastingOffer>().WhereRestrictionOn(c => c.Reference).IsLike(DateTodayTransformed + "%").RowCount() + 1);
+                session.Close();
+            }
+            isessionfactory.Close();
+            cbClient.ItemsSource = ClientList;
+            cbProfession.ItemsSource = ProfList;
+            cbType.ItemsSource = TypeList;
+        }
     }
 }

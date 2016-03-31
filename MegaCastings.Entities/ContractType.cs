@@ -65,5 +65,10 @@ namespace MegaCastings.Entities
         {
             return GetHashCode().CompareTo(other.GetHashCode());
         }
+
+        public override string ToString()
+        {
+            return ConType;
+        }
     }
 }

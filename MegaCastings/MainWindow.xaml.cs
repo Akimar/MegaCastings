@@ -42,8 +42,16 @@ namespace MegaCastings
                 BindingClient = new BindingList<Client>(session.QueryOver<Client>().List());
                 BindingCastings = new BindingList<CastingOffer>(session.QueryOver<CastingOffer>().List());
                 BindingCollaborator = new BindingList<Collaborator>(session.QueryOver<Collaborator>().List());
+                foreach (CastingOffer cast in BindingCastings)/*a changer => force le chargement*/
+                {
+                    var test = cast.Profession.Name;
+                    test = cast.ContractType.ConType;
+                }
                 isessionfactory.Close();
             }
+
+
+
             DataGridClients.ItemsSource = BindingClient;
             DataGridCastings.ItemsSource = BindingCastings;
             DataGridCollaborators.ItemsSource = BindingCollaborator;
@@ -83,7 +91,7 @@ namespace MegaCastings
                 OfferManagement AddOfferFrame = new OfferManagement();
                 if (AddOfferFrame.ShowDialog().Value == true)
                 {
-                    
+                    BindingCastings.Add(AddOfferFrame.CurrentOffer);
                 }
             }
 
@@ -119,12 +127,12 @@ namespace MegaCastings
             else if (GroupBoxCastings.Visibility == Visibility.Visible)
             {
                 CastingOffer toModify = null;
-                if ((toModify = (CastingOffer)DataGridCollaborators.SelectedItem) != null)
+                if ((toModify = (CastingOffer)DataGridCastings.SelectedItem) != null)
                 {
-                    OfferManagement CollaboratorManagementFrame = new OfferManagement(toModify);
-                    if (CollaboratorManagementFrame.ShowDialog().Value == true)
+                    OfferManagement OfferManagementFrame = new OfferManagement(toModify);
+                    if (OfferManagementFrame.ShowDialog().Value == true)
                     {
-                        BindingCastings[BindingCastings.IndexOf(toModify)] = CollaboratorManagementFrame.CurrentOffer;
+                        BindingCastings[BindingCastings.IndexOf(toModify)] = OfferManagementFrame.CurrentOffer;
                     }
                 }
             }
@@ -180,7 +188,7 @@ namespace MegaCastings
             }
             else if (GroupBoxCastings.Visibility == Visibility.Visible)
             {
-               
+
             }
 
             else if (GroupBoxCollaborators.Visibility == Visibility.Visible)
@@ -269,7 +277,7 @@ namespace MegaCastings
             }
             gb.Visibility = Visibility.Visible;
         }
-        
+
         /// <summary>
         /// Créer l'objet base de donnée et la construit si besoin (connexion string dans app.config)
         /// </summary>

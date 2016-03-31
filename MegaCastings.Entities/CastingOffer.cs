@@ -149,11 +149,9 @@ namespace MegaCastings.Entities
 
         }
 
-        public CastingOffer(String title, String reference, DateTime startingDate, DateTime endingDate, int postNumber, String location, String postDescription, String profilrDecription, String contact, Client client, ProfessionField profesionField, ContractType contractType, Profession profession)
+        public CastingOffer(String title, String reference, DateTime startingDate, DateTime endingDate, int postNumber, String location, String postDescription, String profilrDecription, Client client, ProfessionField profesionField, ContractType contractType, Profession profession)
         {
-
             this.Client = client;
-            this.Contact = contact;
             this.EndingDate = endingDate;
             this.PostDescription = postDescription;
             this.PostNumber = postNumber;

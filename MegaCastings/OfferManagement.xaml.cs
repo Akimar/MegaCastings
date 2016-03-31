@@ -44,13 +44,14 @@ namespace MegaCastings
         {
             IList<Client> ClientList;
             IList<Profession> ProfList;
-            string DateTodayTransformed = DateTime.Now.ToShortDateString();
+            string DateTodayTransformed = (DateTime.Now.Day.ToString() +"."+ DateTime.Now.Month.ToString("D2")+"." + DateTime.Now.Year.ToString().Substring(2));
             List<string> TypeList = new List<string>();
             this.DataContext = this;
             CurrentOffer = new CastingOffer();
+            CurrentOffer.PostNumber = 1;
             InitializeComponent();
-            DTPDu.SelectedDate = DateTime.Now;
-            DTPAu.SelectedDate = DateTime.Now.AddMonths(1);
+            DTPDu.Value = DateTime.Now;
+            DTPAu.Value = DateTime.Now.AddMonths(1);
             TypeList.Add("CDD");
             TypeList.Add("CDI");
             TypeList.Add("Cachet d'intermitent");

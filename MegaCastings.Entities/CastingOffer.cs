@@ -78,6 +78,18 @@ namespace MegaCastings.Entities
             set { _ValidityDuration = value; }
         }
 
+        private String _Location;
+
+        /// <summary>
+        /// Affecte ou obtient le lieu de l'offre de castingss
+        /// </summary>		
+        public virtual String Location
+        {
+            get { return _Location; }
+            set { _Location = value; }
+        }
+
+
         private int _PostNumber;
 
         /// <summary>

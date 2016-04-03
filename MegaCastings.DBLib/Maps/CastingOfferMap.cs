@@ -24,6 +24,8 @@ namespace MegaCastings.DBLib.Maps
 
             Map(c => c.EndingDate).Not.Nullable();
 
+            Map(c => c.Location).Not.Nullable().Length(100);
+
             Map(c => c.PostNumber).Not.Nullable();
 
             Map(c => c.PostDescription).Not.Nullable().Length(500);

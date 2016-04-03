@@ -20,6 +20,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <!-- * signifie % -->
             <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
@@ -36,12 +37,13 @@
         <TextBlock Grid.Column="1" Grid.Row="2"  Text="Référence :" Margin="5.0"/>
         <TextBlock Grid.Column="1"  Grid.Row="3" Text="Du :" Margin="5.0"/>
         <TextBlock Grid.Column="1"  Grid.Row="4" Text="Au :" Margin="5.0"/>
-        <TextBlock Grid.Column="1"  Grid.Row="5" Text="Type de contrat:" Margin="5.0"/>
-        <TextBlock Grid.Column="1"  Grid.Row="6" Text="Nombre de postes :" Margin="5.0"/>
-        <TextBlock Grid.Column="1"  Grid.Row="7" Text="Client :" Margin="5.0"/>
-        <TextBlock Grid.Column="1"  Grid.Row="8" Text="Profession :" Margin="5.0"/>
-        <TextBlock Grid.Column="1"  Grid.Row="9" Text="Profil Recherché :" Margin="5.0"/>
-        <TextBlock Grid.Column="1"  Grid.Row="10" Text="Description :" Margin="5.0"/>
+        <TextBlock Grid.Column="1"  Grid.Row="5" Text="Lieu" Margin="5.0"/>
+        <TextBlock Grid.Column="1"  Grid.Row="6" Text="Type de contrat:" Margin="5.0"/>
+        <TextBlock Grid.Column="1"  Grid.Row="7" Text="Nombre de postes :" Margin="5.0"/>
+        <TextBlock Grid.Column="1"  Grid.Row="8" Text="Client :" Margin="5.0"/>
+        <TextBlock Grid.Column="1"  Grid.Row="9" Text="Profession :" Margin="5.0"/>
+        <TextBlock Grid.Column="1"  Grid.Row="10" Text="Profil Recherché :" Margin="5.0"/>
+        <TextBlock Grid.Column="1"  Grid.Row="11" Text="Description :" Margin="5.0"/>
 <!-- Collaborator id ? -->
 
         <TextBox x:Name="tbTitle" Grid.Row="1"  Grid.Column="2" Margin="2" Text="{Binding Path=CurrentOffer.Title, Mode=TwoWay}"/>
@@ -49,14 +51,15 @@
         <WPF:DateTimePicker x:Name="DTPDu" Grid.Row="3"  Grid.Column="2" Margin="2" Value="{Binding Path=CurrentOffer.StartingDate, Mode=TwoWay}" Format="ShortDate"/>
         <!-- gauche, droite, haut, bas -->
         <WPF:DateTimePicker x:Name="DTPAu" Grid.Row="4"  Grid.Column="2" Margin="2" Value="{Binding Path=CurrentOffer.EndingDate, Mode=TwoWay}" Format="ShortDate"/>
-        <ComboBox x:Name="cbType" Grid.Row="5"  Grid.Column="2" SelectedItem="{Binding Path=CurrentOffer.ContractType, Mode=TwoWay}" />
-        <WPF:ByteUpDown Name="Spinner" Grid.Row="6" Grid.Column="2" Margin="0,1,2,3" Minimum="1" Value ="{Binding Path=CurrentOffer.PostNumber, Mode=TwoWay}"/>
-        <ComboBox x:Name="cbClient" Grid.Row="7" Grid.Column="2" Margin="0,1,2,3" SelectedItem="{Binding Path=CurrentOffer.Client, Mode=TwoWay}"/>
-        <ComboBox x:Name="cbProfession" Grid.Row="8"  Grid.Column="2" SelectedItem="{Binding Path=CurrentOffer.Profession, Mode=TwoWay}" IsEditable="False" />
-        <WPF:MultiLineTextEditor x:Name="tbProfil" Grid.Row="9" Grid.Column="2" Margin="0,1,2,3" Text="{Binding Path=CurrentOffer.ProfileDescription, Mode=TwoWay}"/>
-        <WPF:MultiLineTextEditor x:Name="tbDescription" Grid.Row="10" Grid.Column="2" Margin="0,1,2,3" Text="{Binding Path=CurrentOffer.PostDescription, Mode=TwoWay}"/>
+        <TextBox x:Name="tbLocation" Grid.Row="5"  Grid.Column="2" Margin="2" Text="{Binding Path=CurrentOffer.Location, Mode=TwoWay}"/>
+        <ComboBox x:Name="cbType" Grid.Row="6"  Grid.Column="2" SelectedItem="{Binding Path=CurrentOffer.ContractType, Mode=TwoWay}" />
+        <WPF:ByteUpDown Name="Spinner" Grid.Row="7" Grid.Column="2" Margin="0,1,2,3" Minimum="1" Value ="{Binding Path=CurrentOffer.PostNumber, Mode=TwoWay}"/>
+        <ComboBox x:Name="cbClient" Grid.Row="8" Grid.Column="2" Margin="0,1,2,3" SelectedItem="{Binding Path=CurrentOffer.Client, Mode=TwoWay}"/>
+        <ComboBox x:Name="cbProfession" Grid.Row="9"  Grid.Column="2" SelectedItem="{Binding Path=CurrentOffer.Profession, Mode=TwoWay}" IsEditable="False" />
+        <WPF:MultiLineTextEditor x:Name="tbProfil" Grid.Row="10" Grid.Column="2" Margin="0,1,2,3" Text="{Binding Path=CurrentOffer.ProfileDescription, Mode=TwoWay}"/>
+        <WPF:MultiLineTextEditor x:Name="tbDescription" Grid.Row="11" Grid.Column="2" Margin="0,1,2,3" Text="{Binding Path=CurrentOffer.PostDescription, Mode=TwoWay}"/>
 
-        <StackPanel Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal" FlowDirection="RightToLeft" VerticalAlignment="Bottom">
+        <StackPanel Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal" FlowDirection="RightToLeft" VerticalAlignment="Bottom">
             <Button x:Name="b_cancel" Content="Annuler" Margin="5.0" Width="60" Click="b_cancel_Click"/>
             <Button x:Name="b_ok" Content="Ok" Margin="5.0" Width="60" Click="b_ok_Click"/>
         </StackPanel>

@@ -79,6 +79,7 @@
                     <DataGridTextColumn Header="Du" Binding="{Binding StartingDate, StringFormat=\{0:dd/MM/yyyy\}}"/>
                     <DataGridTextColumn Header="Au" Binding="{Binding EndingingDate, StringFormat=\{0:dd/MM/yyyy\}}" />
                     <DataGridTextColumn Header="N°" Binding="{Binding PostNumber}" />
+                    <DataGridTextColumn Header="Lieu" Binding="{Binding Location}" />
                     <DataGridTextColumn Header="Description" Binding="{Binding PostDescription}" />
                     <DataGridTextColumn Header="Profil recherché" Binding="{Binding ProfileDescription}" />
                     <DataGridTextColumn Header="Contact" Binding="{Binding Contact}" />

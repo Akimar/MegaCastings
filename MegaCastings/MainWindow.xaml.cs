@@ -203,7 +203,7 @@ namespace MegaCastings
                                            .SetParameter("id", toDel.Id)
                                            .ExecuteUpdate();
                                     transaction.Commit();
-                                    BindingClient.RemoveAt(BindingCollaborator.IndexOf(toDel));
+                                    BindingCollaborator.RemoveAt(BindingCollaborator.IndexOf(toDel));
                                     MessageBox.Show("Supprimé avec succès.", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
                                 }
                                 catch (Exception ex)
@@ -304,7 +304,7 @@ namespace MegaCastings
                 m.FluentMappings.AddFromAssembly(ass));
 
             Configuration config = Fluconfig.BuildConfiguration();
-
+             
             // Création du schéma de base de données
             new SchemaUpdate(config).Execute(true, true);
 

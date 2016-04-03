@@ -16,11 +16,28 @@ using System.Windows.Shapes;
 
 namespace MegaCastings
 {
+
     /// <summary>
     /// Interaction logic for AddClient.xaml
     /// </summary>
     public partial class ClientManagement : Window
     {
+
+        #region Attributes & Properties
+
+
+        private Client _AddedClient;
+
+        public Client AddedClient
+        {
+            get { return _AddedClient; }
+            set { _AddedClient = value; }
+        }
+
+        #endregion
+
+        #region Constructors
+
         public ClientManagement()
         {
             InitializeComponent();
@@ -29,6 +46,7 @@ namespace MegaCastings
         public ClientManagement(Client toModifie)
         {
             InitializeComponent();
+
             AddedClient = toModifie;
             tbName.Text = toModifie.Name;
             tbPhoneNumber.Text = toModifie.PhoneNumber;
@@ -37,15 +55,9 @@ namespace MegaCastings
             tbCity.Text = toModifie.City;
         }
 
-        private Client _addedClient;
+        #endregion
 
-        public Client AddedClient
-        {
-            get { return _addedClient; }
-            set { _addedClient = value; }
-        }
-
-
+        #region Methods
         /// <summary>
         /// Evènement click bouton "Annuler"
         /// </summary>
@@ -117,5 +129,7 @@ namespace MegaCastings
                 MessageBox.Show("Merci de remplir tous les champs.");
             }
         }
+
+        #endregion
     }
 }

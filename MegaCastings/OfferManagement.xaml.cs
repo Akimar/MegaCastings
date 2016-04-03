@@ -28,7 +28,7 @@ namespace MegaCastings
         private string generatedRef;
 
         /// <summary>
-        /// Affecte ou obtient le partenaire en cours de modification
+        /// Affecte ou obtient l'offre en cours de modification
         /// </summary>
         public CastingOffer CurrentOffer
         {
@@ -125,14 +125,19 @@ namespace MegaCastings
         }
         #endregion
 
+        /// <summary>
+        /// Récupère en base 
+        /// </summary>
         private void Loading()
         {
             IList<Client> ClientList;
             IList<Profession> ProfList;
             IList<ContractType> TypeList;
+
             string DateTodayTransformed = (DateTime.Now.Day.ToString() + "." + DateTime.Now.Month.ToString("D2") + "." + DateTime.Now.Year.ToString().Substring(2));
 
             this.DataContext = this;
+
 
             ISessionFactory isessionfactory = MainWindow.CreateSessionFactory();
             using (ISession session = isessionfactory.OpenSession())//ouverture

@@ -43,6 +43,7 @@ namespace MegaCastings
                 BindingClient = new BindingList<Client>(session.QueryOver<Client>().List());
                 BindingCastings = new BindingList<CastingOffer>(session.QueryOver<CastingOffer>().List());
                 BindingCollaborator = new BindingList<Collaborator>(session.QueryOver<Collaborator>().List());
+
                 foreach (CastingOffer cast in BindingCastings)/*a changer => force le chargement*/
                 {
                     var test = cast.Profession.Name;
@@ -56,6 +57,8 @@ namespace MegaCastings
             DataGridClients.ItemsSource = BindingClient;
             DataGridCastings.ItemsSource = BindingCastings;
             DataGridCollaborators.ItemsSource = BindingCollaborator;
+
+            ShowDatagrid(GroupBoxClients);
         }
 
         #endregion
@@ -107,7 +110,7 @@ namespace MegaCastings
         }
 
         /// <summary>
-        /// /// Ouvre une fenêtre modale pour modifier un client ou bien une offre de casting, ou encore un partenaire
+        ///Ouvre une fenêtre modale pour modifier un client ou bien une offre de casting, ou encore un partenaire
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -126,28 +129,7 @@ namespace MegaCastings
                 {
                     if (MessageBox.Show("Voulez-vous supprimer le client " + toDel.Name + " ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
-                        using (ISession session = isessionfactory.OpenSession())
-                        {
-                            using (var transaction = session.BeginTransaction())
-                            {
-                                try
-                                {
-                                    string queryString = string.Format("delete {0} where id = :id", typeof(Client));
-                                    session.CreateQuery(queryString)
-                                           .SetParameter("id", toDel.Id)
-                                           .ExecuteUpdate();
-                                    transaction.Commit();
-                                    BindingClient.RemoveAt(BindingClient.IndexOf(toDel));
-                                    MessageBox.Show("Supprimé avec succès.", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
-                                }
-                                catch (Exception ex)
-                                {
-                                    MessageBox.Show(ex.Message);
-                                }
-                                transaction.Dispose();
-                            }
-                            isessionfactory.Close();
-                        }
+                       
                     }
                 }
             }
@@ -249,6 +231,16 @@ namespace MegaCastings
             ShowDatagrid(GroupBoxCollaborators);
         }
 
+        /// <summary>
+        /// Au double clic sur un client, une offre ou un partenaire, ouverture de la fenêtre de modification
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DataGridClients_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Manage();
+        }
+
         #endregion
 
         /// <summary>
@@ -273,52 +265,8 @@ namespace MegaCastings
         }
 
         /// <summary>
-        /// Créer l'objet base de donnée et la construit si besoin (connexion string dans app.config)
+        ///  Ouvre une fenêtre modale pour modifier un client ou bien une offre de casting, ou encore un partenaire en fonction du datagrid visible
         /// </summary>
-        /// <param name="typeBDD">A FAIRE</param>
-        /// <returns>Objet de base de données</returns>
-        public static ISessionFactory CreateSessionFactory()
-        {
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings[System.Configuration.ConfigurationManager.AppSettings["currentConnectionString"]].ConnectionString;
-            string typeBDD = System.Configuration.ConfigurationManager.AppSettings["DatabaseType"];
-            FluentNHibernate.Cfg.Db.IPersistenceConfigurer BDD = null;
-            switch (typeBDD)
-            {
-                case "MySQL":
-                    BDD = FluentNHibernate.Cfg.Db.MySQLConfiguration.Standard.ConnectionString(connectionString);
-                    break;
-
-                case "SQLServer2012":
-                    BDD = FluentNHibernate.Cfg.Db.MsSqlConfiguration.MsSql2012.ConnectionString(connectionString);
-                    break;
-                case "SQLServer2008":
-                    BDD = FluentNHibernate.Cfg.Db.MsSqlConfiguration.MsSql2008.ConnectionString(connectionString);
-                    break;
-            }
-
-            Assembly ass = Assembly.Load("MegaCastings.DBLib");
-
-            FluentConfiguration Fluconfig = Fluently.Configure()
-                .Database(BDD)
-              .Mappings(m =>
-                m.FluentMappings.AddFromAssembly(ass));
-
-            Configuration config = Fluconfig.BuildConfiguration();
-             
-            // Création du schéma de base de données
-            new SchemaUpdate(config).Execute(true, true);
-
-            // Démarrage de la session factory
-            return config.BuildSessionFactory();
-        }
-
-        #endregion
-
-        private void DataGridClients_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            Manage();
-        }
-
         private void Manage()
         {
             if (GroupBoxClients.Visibility == Visibility.Visible)
@@ -359,5 +307,49 @@ namespace MegaCastings
                 }
             }
         }
+
+        /// <summary>
+        /// Crée l'objet base de donnée et la construit si besoin (connexion string dans app.config)
+        /// </summary>
+        /// <param name="typeBDD">A FAIRE</param>
+        /// <returns>Objet de base de données</returns>
+        public static ISessionFactory CreateSessionFactory()
+        {
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings[System.Configuration.ConfigurationManager.AppSettings["currentConnectionString"]].ConnectionString;
+            string typeBDD = System.Configuration.ConfigurationManager.AppSettings["DatabaseType"];
+            FluentNHibernate.Cfg.Db.IPersistenceConfigurer BDD = null;
+            switch (typeBDD)
+            {
+                case "MySQL":
+                    BDD = FluentNHibernate.Cfg.Db.MySQLConfiguration.Standard.ConnectionString(connectionString);
+                    break;
+
+                case "SQLServer2012":
+                    BDD = FluentNHibernate.Cfg.Db.MsSqlConfiguration.MsSql2012.ConnectionString(connectionString);
+                    break;
+                case "SQLServer2008":
+                    BDD = FluentNHibernate.Cfg.Db.MsSqlConfiguration.MsSql2008.ConnectionString(connectionString);
+                    break;
+            }
+
+            Assembly ass = Assembly.Load("MegaCastings.DBLib");
+
+            FluentConfiguration Fluconfig = Fluently.Configure()
+                .Database(BDD)
+              .Mappings(m =>
+                m.FluentMappings.AddFromAssembly(ass));
+
+            Configuration config = Fluconfig.BuildConfiguration();
+
+            // Création du schéma de base de données
+            new SchemaUpdate(config).Execute(true, true);
+
+            // Démarrage de la session factory
+            return config.BuildSessionFactory();
+        }
+
+
+        #endregion
+
     }
 }

@@ -6,7 +6,8 @@
         xmlns:WPF="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         xmlns:local="clr-namespace:MegaCastings"
         Title="Gérér une offre" Height="500" Width="400"
-        DataContext="{Binding RelativeSource={RelativeSource Self}}">
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        WindowStartupLocation="CenterScreen">
    
     <Grid>
         <Grid.RowDefinitions>
@@ -52,8 +53,8 @@
 
 
         <TextBox x:Name="tbTitle" Grid.Row="1"  Grid.Column="2" Margin="2" Text="{Binding Path=CurrentOffer.Title, Mode=TwoWay}"/>
-        
-        <TextBlock x:Name="tbRef" Grid.Row="2"  Grid.Column="2" Margin="2" Text="{Binding Path=CurrentOffer.Reference}"/>
+
+        <TextBlock x:Name="tbRef" Grid.Row="2"  Grid.Column="2" Margin="2" Text="{Binding Path=CurrentOffer.Reference, Mode=TwoWay}"/>
         
         <WPF:DateTimePicker x:Name="DTPFrom" Grid.Row="3"  Grid.Column="2" Margin="2" Value="{Binding Path=CurrentOffer.BroadcastStartingDate, Mode=TwoWay}" Format="ShortDate"/>
         <!-- gauche, droite, haut, bas -->

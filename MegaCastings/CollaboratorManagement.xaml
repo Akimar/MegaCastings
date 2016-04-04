@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:MegaCastings"
         mc:Ignorable="d"
         Title="Gérér un partenaire" Height="500" Width="400"
-        DataContext="{Binding RelativeSource={RelativeSource Self}}">
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        WindowStartupLocation="CenterScreen">
    
     <Grid>
         <Grid.RowDefinitions>

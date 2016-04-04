@@ -130,7 +130,7 @@ namespace MegaCastings
 
             string DateTodayTransformed = (DateTime.Now.Day.ToString("D2") + "." + DateTime.Now.Month.ToString("D2") + "." + DateTime.Now.Year.ToString().Substring(2));//formate la date pour créer la référence de l'offre
 
-            this.DataContext = this;//binding
+
 
 
             ISessionFactory isessionfactory = MainWindow.CreateSessionFactory();

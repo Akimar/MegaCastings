@@ -238,6 +238,28 @@ namespace MegaCastings
             Manage();
         }
 
+        /// <summary>
+        /// Au clic sur le lien graphique correspondant, affiche dans une fenêtre modale la description du profil de l'offre
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LinkProfile_RequestNavigate(object sender, RoutedEventArgs e)
+        {
+            CastingOffer selected = DataGridCastings.SelectedItem as CastingOffer;
+            MessageBox.Show(selected.ProfileDescription, "Profil recherché", MessageBoxButton.OK, MessageBoxImage.None);
+        }
+
+        /// <summary>
+        /// Au clic sur le lien graphique correspondant, affiche dans une fenêtre modale la description du poste
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LinkDescription_RequestNavigate(object sender, RoutedEventArgs e)
+        {
+            CastingOffer selected = DataGridCastings.SelectedItem as CastingOffer;
+            MessageBox.Show(selected.PostDescription, "Description du poste", MessageBoxButton.OK, MessageBoxImage.None);
+        }
+
         #endregion
 
 
@@ -375,16 +397,6 @@ namespace MegaCastings
 
         #endregion
 
-        private void LinkRecherché_RequestNavigate(object sender, RoutedEventArgs e)
-        {
-            CastingOffer selected = DataGridCastings.SelectedItem as CastingOffer;
-            MessageBox.Show(selected.ProfileDescription, "Profil recherché", MessageBoxButton.OK, MessageBoxImage.None);
-        }
-
-        private void LinkDescription_RequestNavigate(object sender, RoutedEventArgs e)
-        {
-            CastingOffer selected = DataGridCastings.SelectedItem as CastingOffer;
-            MessageBox.Show(selected.PostDescription, "Description", MessageBoxButton.OK, MessageBoxImage.None);
-        }
+        
     }
 }

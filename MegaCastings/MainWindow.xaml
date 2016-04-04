@@ -79,6 +79,7 @@
                     <DataGridTextColumn Header="Date de début du contrat" Binding="{Binding ContractStartingDate, StringFormat=\{0:dd/MM/yyyy\}}" />
                     <DataGridTextColumn Header="Nombre de postes" Binding="{Binding PostNumber}" />
                     <DataGridTextColumn Header="Lieu" Binding="{Binding Location}" />
+                    
                     <DataGridTemplateColumn Header="Description">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -92,7 +93,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock HorizontalAlignment="Center">
-                                    <Hyperlink x:Name="LinkRecherché" Click="LinkRecherché_RequestNavigate">[...]</Hyperlink>
+                                    <Hyperlink x:Name="LinkProfile" Click="LinkProfile_RequestNavigate">[...]</Hyperlink>
                                 </TextBlock>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -100,8 +101,6 @@
 
                     <DataGridTextColumn Header="Contact" Binding="{Binding Client.Name}" />
                 </DataGrid.Columns>
-                <!-- <DataGridTextColumn Header="Description" Binding="{Binding PostDescription}" />
-                    <DataGridTextColumn Header="Profil recherché" Binding="{Binding ProfileDescription}" /> -->
             </DataGrid>
         </GroupBox>
 

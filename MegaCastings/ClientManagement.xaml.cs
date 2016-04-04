@@ -47,9 +47,9 @@ namespace MegaCastings
 
         public ClientManagement(Client toModifie)
         {
+            CurrentClient = toModifie;
             InitializeComponent();
 
-            CurrentClient = toModifie;
             TbTitle.Text = "Modifier un client";
         }
 

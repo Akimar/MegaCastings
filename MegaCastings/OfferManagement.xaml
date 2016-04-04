@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:WPF="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         xmlns:local="clr-namespace:MegaCastings"
-        Title="Gérér une offre" Height="500" Width="400">
+        Title="Gérér une offre" Height="500" Width="400" WindowStartupLocation="CenterScreen">
    
     <Grid>
         <Grid.RowDefinitions>

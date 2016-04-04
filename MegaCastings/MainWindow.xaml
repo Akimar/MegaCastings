@@ -9,7 +9,6 @@
 
     <Grid ShowGridLines="False" Background="#b0b0b0" >
         <Grid.RowDefinitions>
-            <RowDefinition Height="5"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="*" MaxHeight="280" MinHeight="80"/>
@@ -28,7 +27,7 @@
             <ColumnDefinition Width ="10"/>
         </Grid.ColumnDefinitions>
 
-        <Menu Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" ForceCursor="True" FontSize="17">
+        <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" ForceCursor="True" FontSize="17">
             <MenuItem Header="Fichier">
                 <MenuItem Header="Quitter" Click="Button_Click_Close"/>
             </MenuItem>
@@ -40,17 +39,17 @@
         </Menu>
 
         <!--Boutons d'affichage des clients, castings et partenaires-->
-        <Button Grid.Column="1" Grid.Row="3" Height="70" Cursor="Hand" Click="Button_Click_DisplayClients" FontSize="20" Content="Gestion des clients"/>
+        <Button Grid.Column="1" Grid.Row="2" Height="70" Cursor="Hand" Click="Button_Click_DisplayClients" FontSize="20" Content="Gestion des clients"/>
 
-        <Button Grid.Column="1" Grid.Row="4" Height="70" Cursor="Hand" Click="Button_Click_DisplayCastings" FontSize="20" Content="Gestion des castings"/>
+        <Button Grid.Column="1" Grid.Row="3" Height="70" Cursor="Hand" Click="Button_Click_DisplayCastings" FontSize="20" Content="Gestion des castings"/>
 
 
-        <Button Grid.Column="1" Grid.Row="5" Height="70" Cursor="Hand" Click="Button_Click_DisplayCollaborators" FontSize="20" Content="Gestion des partenaires"/>
+        <Button Grid.Column="1" Grid.Row="4" Height="70" Cursor="Hand" Click="Button_Click_DisplayCollaborators" FontSize="20" Content="Gestion des partenaires"/>
 
         
 
         <!--GroupBox clients -->
-        <GroupBox x:Name="GroupBoxClients" Header="Clients" Grid.Row="3" Grid.Column="3" Grid.RowSpan="3" Visibility="Hidden">
+        <GroupBox x:Name="GroupBoxClients" Header="Clients" Grid.Row="2" Grid.Column="3" Grid.RowSpan="3" Visibility="Hidden">
             <DataGrid x:Name="DataGridClients" GridLinesVisibility="None" IsReadOnly="True" AutoGenerateColumns="False" ColumnWidth="*" SelectionMode="Single" MouseDoubleClick="DataGridClients_MouseDoubleClick" >
                 <DataGrid.Columns >
                     <DataGridTextColumn Header="Nom" Binding="{Binding Name}"/>
@@ -70,7 +69,7 @@
         </GroupBox>
 
         <!--GroupBox castings -->
-        <GroupBox x:Name="GroupBoxCastings" Header="Castings" Grid.Row="3" Grid.Column="3" Grid.RowSpan="3" Visibility="Hidden">
+        <GroupBox x:Name="GroupBoxCastings" Header="Castings" Grid.Row="2" Grid.Column="3" Grid.RowSpan="3" Visibility="Hidden">
             <DataGrid x:Name="DataGridCastings" GridLinesVisibility="None" IsReadOnly="True" AutoGenerateColumns="False" ColumnWidth="*" SelectionMode="Single" FrozenColumnCount="2" MouseDoubleClick="DataGridClients_MouseDoubleClick" >
                 <DataGrid.Columns >
                     <DataGridTextColumn Header="Intitulé" Binding="{Binding Title}"/>
@@ -89,7 +88,7 @@
 
 
         <!--GroupBox partenaires -->
-        <GroupBox x:Name="GroupBoxCollaborators" Header="Partenaires" Grid.Row="3" Grid.Column="3" Grid.RowSpan="3" Visibility="Hidden">
+        <GroupBox x:Name="GroupBoxCollaborators" Header="Partenaires" Grid.Row="2" Grid.Column="3" Grid.RowSpan="3" Visibility="Hidden">
             <DataGrid x:Name="DataGridCollaborators" GridLinesVisibility="None" IsReadOnly="True" AutoGenerateColumns="False" ColumnWidth="*" SelectionMode="Single" MouseDoubleClick="DataGridClients_MouseDoubleClick" >
                 <DataGrid.Columns >
                     <DataGridTextColumn Header="Login" Binding="{Binding Login}"/>
@@ -103,14 +102,14 @@
         </GroupBox>
 
         <!--Boutons Ajouter, Modifier, Supprimer-->
-        <Button Grid.Column="3" Grid.Row="6" Cursor="Hand"  Click="Button_Click_Add" Width="100" Height="40" HorizontalAlignment="Left" Margin="5.0"  Content="Ajouter" FontSize="20"/>
+        <Button Grid.Column="3" Grid.Row="5" Cursor="Hand"  Click="Button_Click_Add" Width="100" Height="40" HorizontalAlignment="Left" Margin="5.0"  Content="Ajouter" FontSize="20"/>
         
 
         <Button Cursor="Hand"  Click="Button_Click_Manage" 
-                    Width="100" Height="40" Grid.Column="3" Grid.Row="6" FontSize="20" Content="Modifier" />
+                    Width="100" Height="40" Grid.Column="3" Grid.Row="5" FontSize="20" Content="Modifier" />
 
 
-        <Button Cursor="Hand" Click="Button_Click_Delete" Width="100" Height="40" Grid.Column="3" Grid.Row="6" HorizontalAlignment="Right" Margin="5.0" Content="Supprimer" FontSize="20"/>
+        <Button Cursor="Hand" Click="Button_Click_Delete" Width="100" Height="40" Grid.Column="3" Grid.Row="5" HorizontalAlignment="Right" Margin="5.0" Content="Supprimer" FontSize="20"/>
 
     </Grid>
 

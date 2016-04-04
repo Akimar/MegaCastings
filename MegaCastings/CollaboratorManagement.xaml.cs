@@ -43,6 +43,7 @@ namespace MegaCastings
         public CollaboratorManagement()
         {
             InitializeComponent();
+            TbTitle.Text = "Ajouter un collaborateur";
         }
 
 
@@ -52,7 +53,8 @@ namespace MegaCastings
           
             CurrentCollaborator = toModify;
             InitializeComponent();
-           
+            TbTitle.Text = "Modifier un collaborateur";
+
         }
 
         #endregion

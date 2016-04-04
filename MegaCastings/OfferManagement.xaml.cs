@@ -48,6 +48,7 @@ namespace MegaCastings
             DTPFrom.Value = DateTime.Now;
             DTPTo.Value = DateTime.Now.AddMonths(1);
             Loading();
+            TbTitle.Text = "Ajouter une offre";
         }
 
 
@@ -57,6 +58,7 @@ namespace MegaCastings
             CurrentOffer = toModify;
             InitializeComponent();
             Loading();
+            TbTitle.Text = "Modifier une offre";
         }
         #endregion
 

@@ -26,7 +26,9 @@
             <ColumnDefinition Width ="50*"/>
         </Grid.ColumnDefinitions>
 
-
+        <TextBlock x:Name="TbTitle" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="ExtraBlack">Test</TextBlock>
+        
+        
         <TextBlock Grid.Column="1" Grid.Row="1"  Text="Nom :" Margin="5.0"/>
         <TextBlock Grid.Column="1"  Grid.Row="2" Text="Téléphone :" Margin="5.0"/>
         <TextBlock Grid.Column="1"  Grid.Row="3" Text="Adresse :" Margin="5.0"/>

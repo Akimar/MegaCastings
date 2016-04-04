@@ -347,8 +347,6 @@ namespace MegaCastings
             // Démarrage de la session factory
             return config.BuildSessionFactory();
         }
-
-
         #endregion
 
     }

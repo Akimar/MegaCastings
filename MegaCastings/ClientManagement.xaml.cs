@@ -41,6 +41,7 @@ namespace MegaCastings
         public ClientManagement()
         {
             InitializeComponent();
+            TbTitle.Text = "Ajouter un client";
         }
 
         public ClientManagement(Client toModifie)
@@ -53,6 +54,7 @@ namespace MegaCastings
             tbAddress.Text = toModifie.Address;
             tbZipCode.Text = toModifie.ZipCode;
             tbCity.Text = toModifie.City;
+            TbTitle.Text = "Modifier un client";
         }
 
         #endregion

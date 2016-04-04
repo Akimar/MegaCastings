@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MegaCastings" Height="350" Width="525" MinWidth="900" MinHeight="600" WindowState="Maximized" >
 
-    <Grid ShowGridLines="False" Background="#b0b0b0">
+    <Grid ShowGridLines="False" Background="#b0b0b0" >
         <Grid.RowDefinitions>
             <RowDefinition Height="5"/>
             <RowDefinition Height="Auto"/>
@@ -41,20 +41,16 @@
         </Menu>
 
         <!--Boutons d'affichage des clients, castings et partenaires-->
-        <Button Grid.Column="1" Grid.Row="3" Height="70" Cursor="Hand" Click="Button_Click_DisplayClients" >
-            <TextBlock Text="Gestion des clients" FontSize="20"/>
-        </Button>
+        <Button Grid.Column="1" Grid.Row="3" Height="70" Cursor="Hand" Click="Button_Click_DisplayClients" FontSize="20" Content="Gestion des clients"/>
 
-        <Button Grid.Column="1" Grid.Row="4" Height="70" Cursor="Hand" Click="Button_Click_DisplayCastings">
-            <TextBlock Text="Gestion des castings" FontSize="20"/>
-        </Button>
+        <Button Grid.Column="1" Grid.Row="4" Height="70" Cursor="Hand" Click="Button_Click_DisplayCastings" FontSize="20" Content="Gestion des castings"/>
 
-        <Button Grid.Column="1" Grid.Row="5" Height="70" Cursor="Hand" Click="Button_Click_DisplayCollaborators">
-            <TextBlock Text="Gestion des partenaires" FontSize="20"/>
-        </Button>
 
-        
-        
+        <Button Grid.Column="1" Grid.Row="5" Height="70" Cursor="Hand" Click="Button_Click_DisplayCollaborators" FontSize="20" Content="Gestion des partenaires"/>
+
+
+
+
         <!--GroupBox clients -->
         <GroupBox x:Name="GroupBoxClients" Header="Clients" Grid.Row="3" Grid.Column="3" Grid.RowSpan="3" Visibility="Hidden">
             <DataGrid x:Name="DataGridClients" GridLinesVisibility="None" IsReadOnly="True" AutoGenerateColumns="False" ColumnWidth="*" SelectionMode="Single" MouseDoubleClick="DataGridClients_MouseDoubleClick" >
@@ -64,10 +60,10 @@
                     <DataGridTextColumn Header="Adresse" Binding="{Binding Address}"/>
                     <DataGridTextColumn Header="Code Postal" Binding="{Binding ZipCode}"/>
                     <DataGridTextColumn Header="Ville" Binding="{Binding City}"/>
-                    <DataGridTemplateColumn Header="Utilisation">
+                    <DataGridTemplateColumn Header="Représentants">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="btnHistorique" Margin="5.0">Historique</Button>
+                                <Button x:Name="btnHistorique" Margin="5.0">Représentants</Button>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -83,7 +79,7 @@
                     <DataGridTextColumn Header="Référence" Binding="{Binding Reference}"/>
                     <DataGridTextColumn Header="Du" Binding="{Binding StartingDate, StringFormat=\{0:dd/MM/yyyy\}}"/>
                     <DataGridTextColumn Header="Au" Binding="{Binding EndingingDate, StringFormat=\{0:dd/MM/yyyy\}}" />
-                    <DataGridTextColumn Header="N°" Binding="{Binding PostNumber}" />
+                    <DataGridTextColumn Header="Nombre de postes" Binding="{Binding PostNumber}" />
                     <DataGridTextColumn Header="Lieu" Binding="{Binding Location}" />
                     <DataGridTextColumn Header="Description" Binding="{Binding PostDescription}" />
                     <DataGridTextColumn Header="Profil recherché" Binding="{Binding ProfileDescription}" />
@@ -108,20 +104,17 @@
         </GroupBox>
 
         <!--Boutons Ajouter, Modifier, Supprimer-->
-        <Button Grid.Column="3" Grid.Row="6" Cursor="Hand"  Click="Button_Click_Add" Width="100" Height="40" HorizontalAlignment="Left" Margin="5.0">
-            <TextBlock Text="Ajouter" FontSize="20"/>
-        </Button>
+        <Button Grid.Column="3" Grid.Row="6" Cursor="Hand"  Click="Button_Click_Add" Width="100" Height="40" HorizontalAlignment="Left" Margin="5.0"  Content="Ajouter" FontSize="20"/>
+
 
         <Button Cursor="Hand"  Click="Button_Click_Manage" 
-                    Width="100" Height="40" Grid.Column="3" Grid.Row="6" >
-            <TextBlock Text="Modifier" FontSize="20"/>
-        </Button>
+                    Width="100" Height="40" Grid.Column="3" Grid.Row="6" FontSize="20" Content="Modifier" />
 
-        <Button Cursor="Hand" Click="Button_Click_Delete" Width="100" Height="40" Grid.Column="3" Grid.Row="6" HorizontalAlignment="Right" Margin="5.0" >
-            <TextBlock Text="Supprimer" FontSize="20"/>
-        </Button>
+
+        <Button Cursor="Hand" Click="Button_Click_Delete" Width="100" Height="40" Grid.Column="3" Grid.Row="6" HorizontalAlignment="Right" Margin="5.0" Content="Supprimer" FontSize="20"/>
+
     </Grid>
-    
-   
+
+
 
 </Window>

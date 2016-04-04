@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MegaCastings"
-        mc:Ignorable="d"
+        xmlns:WPF="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         Title="MegaCastings" Height="350" Width="525" MinWidth="900" MinHeight="600" WindowState="Maximized" >
 
     <Grid ShowGridLines="False" Background="#b0b0b0" >
@@ -28,7 +28,7 @@
             <ColumnDefinition Width ="10"/>
         </Grid.ColumnDefinitions>
 
-        <Menu Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" ForceCursor="True" FontSize="17">
+        <Menu Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" ForceCursor="True" FontSize="17">
             <MenuItem Header="Fichier">
                 <MenuItem Header="XML"/>
                 <MenuItem Header="Quitter" Click="Button_Click_Close"/>
@@ -48,8 +48,7 @@
 
         <Button Grid.Column="1" Grid.Row="5" Height="70" Cursor="Hand" Click="Button_Click_DisplayCollaborators" FontSize="20" Content="Gestion des partenaires"/>
 
-
-
+        
 
         <!--GroupBox clients -->
         <GroupBox x:Name="GroupBoxClients" Header="Clients" Grid.Row="3" Grid.Column="3" Grid.RowSpan="3" Visibility="Hidden">
@@ -105,7 +104,7 @@
 
         <!--Boutons Ajouter, Modifier, Supprimer-->
         <Button Grid.Column="3" Grid.Row="6" Cursor="Hand"  Click="Button_Click_Add" Width="100" Height="40" HorizontalAlignment="Left" Margin="5.0"  Content="Ajouter" FontSize="20"/>
-
+        
 
         <Button Cursor="Hand"  Click="Button_Click_Manage" 
                     Width="100" Height="40" Grid.Column="3" Grid.Row="6" FontSize="20" Content="Modifier" />

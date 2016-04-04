@@ -41,14 +41,8 @@ namespace MegaCastings
             using (ISession session = isessionfactory.OpenSession())//ouverture
             {
                 BindingClient = new BindingList<Client>(session.QueryOver<Client>().List());
-                BindingCastings = new BindingList<CastingOffer>(session.QueryOver<CastingOffer>().List());
+                BindingCastings = new BindingList<CastingOffer>(session.QueryOver<CastingOffer>().Fetch(x => x.ContractType).Eager.Fetch(x=>x.Profession).Eager.List());
                 BindingCollaborator = new BindingList<Collaborator>(session.QueryOver<Collaborator>().List());
-
-                foreach (CastingOffer cast in BindingCastings)/*a changer => force le chargement*/
-                {
-                    var test = cast.Profession.Name;
-                    test = cast.ContractType.ConType;
-                }
                 isessionfactory.Close();
             }
 
@@ -129,7 +123,7 @@ namespace MegaCastings
                 {
                     if (MessageBox.Show("Voulez-vous supprimer le client " + toDel.Name + " ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
-                       
+
                     }
                 }
             }
@@ -271,13 +265,13 @@ namespace MegaCastings
         {
             if (GroupBoxClients.Visibility == Visibility.Visible)
             {
-                Client toModifie = null;
-                if ((toModifie = (Client)DataGridClients.SelectedItem) != null)
+                Client toModify = null;
+                if ((toModify = (Client)DataGridClients.SelectedItem) != null)
                 {
-                    ClientManagement AddClientFrame = new ClientManagement(toModifie);
+                    ClientManagement AddClientFrame = new ClientManagement(toModify);
                     if (AddClientFrame.ShowDialog().Value == true)
                     {
-                        BindingClient[BindingClient.IndexOf(toModifie)] = AddClientFrame.AddedClient;
+                        BindingClient[BindingClient.IndexOf(toModify)] = AddClientFrame.AddedClient;
                     }
                 }
             }

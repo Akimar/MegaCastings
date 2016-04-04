@@ -119,7 +119,7 @@ namespace MegaCastings
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);    
+                    throw;
                 }
 
                 this.DialogResult = true;

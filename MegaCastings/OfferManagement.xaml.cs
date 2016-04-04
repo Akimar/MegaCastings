@@ -42,7 +42,7 @@ namespace MegaCastings
 
         public OfferManagement()
         {
-            CurrentOffer = new CastingOffer() { PostNumber = 1};
+            CurrentOffer = new CastingOffer() { PostNumber = 1 };
             InitializeComponent();
             tbRef.Text = generatedRef;
             DTPFrom.Value = DateTime.Now;
@@ -88,18 +88,8 @@ namespace MegaCastings
                         {
                             try
                             {
-                                if (CurrentOffer.Id == 0)
-                                {
-                                    session.SaveOrUpdate(CurrentOffer);
-                                }
-
-                                else
-                                {
-                                    session.Flush();
-                                }
-
+                                session.SaveOrUpdate(CurrentOffer);
                                 transaction.Commit();
-
                             }
                             catch (Exception)
                             {
@@ -114,7 +104,7 @@ namespace MegaCastings
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    throw;
                 }
 
                 this.DialogResult = true;

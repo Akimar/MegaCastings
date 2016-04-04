@@ -42,7 +42,7 @@ namespace MegaCastings
             using (ISession session = isessionfactory.OpenSession())//ouverture
             {
                 BindingClient = new BindingList<Client>(session.QueryOver<Client>().List());
-                BindingCastings = new BindingList<CastingOffer>(session.QueryOver<CastingOffer>().Fetch(x => x.ContractType).Eager.Fetch(x=>x.Profession).Eager.List());
+                BindingCastings = new BindingList<CastingOffer>(session.QueryOver<CastingOffer>().Fetch(x => x.ContractType).Eager.Fetch(x => x.Profession).Eager.List());
                 BindingCollaborator = new BindingList<Collaborator>(session.QueryOver<Collaborator>().List());
                 isessionfactory.Close();
             }
@@ -274,9 +274,16 @@ namespace MegaCastings
                 if ((toModify = (Client)DataGridClients.SelectedItem) != null)
                 {
                     ClientManagement AddClientFrame = new ClientManagement(toModify);
-                    if (AddClientFrame.ShowDialog().Value == true)
+                    try
                     {
-                        BindingClient[BindingClient.IndexOf(toModify)] = AddClientFrame.AddedClient;
+                        if (AddClientFrame.ShowDialog().Value == true)
+                        {
+                            BindingClient[BindingClient.IndexOf(toModify)] = AddClientFrame.AddedClient;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
                     }
                 }
             }
@@ -286,9 +293,16 @@ namespace MegaCastings
                 if ((toModify = (CastingOffer)DataGridCastings.SelectedItem) != null)
                 {
                     OfferManagement OfferManagementFrame = new OfferManagement(toModify);
-                    if (OfferManagementFrame.ShowDialog().Value == true)
+                    try
                     {
-                        BindingCastings[BindingCastings.IndexOf(toModify)] = OfferManagementFrame.CurrentOffer;
+                        if (OfferManagementFrame.ShowDialog().Value == true)
+                        {
+                            BindingCastings[BindingCastings.IndexOf(toModify)] = OfferManagementFrame.CurrentOffer;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
                     }
                 }
             }
@@ -299,9 +313,16 @@ namespace MegaCastings
                 if ((toModify = (Collaborator)DataGridCollaborators.SelectedItem) != null)
                 {
                     CollaboratorManagement CollaboratorManagementFrame = new CollaboratorManagement(toModify);
-                    if (CollaboratorManagementFrame.ShowDialog().Value == true)
+                    try
                     {
-                        BindingCollaborator[BindingCollaborator.IndexOf(toModify)] = CollaboratorManagementFrame.CurrentCollaborator;
+                        if (CollaboratorManagementFrame.ShowDialog().Value == true)
+                        {
+                            BindingCollaborator[BindingCollaborator.IndexOf(toModify)] = CollaboratorManagementFrame.CurrentCollaborator;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
                     }
                 }
             }

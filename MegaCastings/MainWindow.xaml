@@ -30,7 +30,6 @@
 
         <Menu Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" ForceCursor="True" FontSize="17">
             <MenuItem Header="Fichier">
-                <MenuItem Header="XML"/>
                 <MenuItem Header="Quitter" Click="Button_Click_Close"/>
             </MenuItem>
 

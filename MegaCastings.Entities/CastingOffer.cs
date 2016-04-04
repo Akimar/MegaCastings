@@ -150,8 +150,6 @@ namespace MegaCastings.Entities
         public virtual ContractType ContractType { get; set; }
 
 
-
-        /*GET HASHCODE, CompareTo et Equals A SURCHARGER*/
         #endregion
 
 
@@ -163,23 +161,7 @@ namespace MegaCastings.Entities
 
         }
 
-        public CastingOffer(String title, String reference, DateTime startingDate, DateTime endingDate, int postNumber, String postDescription, String profileDecription, Client client, ProfessionField profesionField, ContractType contractType, Profession profession)
-        {
-            this.Client = client;
-            this.EndingDate = endingDate;
-            this.PostDescription = postDescription;
-            this.PostNumber = postNumber;
-            this.Profession = profession;
-            this.ProfessionField = ProfessionField;
-            this.ProfileDescription = profileDecription;
-            this.Reference = reference;
-            this.StartingDate = startingDate;
-            this.Title = title;
-            this.ValidityDuration = ValidityDuration;
-            this.ContractType = contractType;
-           
-        }
-
+       
         #endregion
 
         public override int GetHashCode()

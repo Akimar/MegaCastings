@@ -45,37 +45,39 @@ namespace MegaCastings.Entities
         }
 
 
-        private DateTime _StartingDate;
+        private DateTime _BroadcastStartingDate;
 
         /// <summary>
-        /// Affecte ou obtient la date de début de l'offre
+        /// Affecte ou obtient la date de début de publication
         /// </summary>		
-        public virtual DateTime StartingDate
+        public virtual DateTime BroadcastStartingDate
         {
-            get { return _StartingDate; }
-            set { _StartingDate = value; }
+            get { return _BroadcastStartingDate; }
+            set { _BroadcastStartingDate = value; }
         }
 
-        private DateTime _EndingDate;
+
+        private DateTime _ContractStartingDate;
 
         /// <summary>
-        /// Affecte ou obtient la date de fin de l'offre
+        /// Affecte ou obtient la date de début du contrat
         /// </summary>		
-        public virtual DateTime EndingDate
+        public virtual DateTime ContractStartingDate
         {
-            get { return _EndingDate; }
-            set { _EndingDate = value; }
+            get { return _ContractStartingDate; }
+            set { _ContractStartingDate = value; }
         }
 
-        private DateTime _ValidityDuration;
+
+        private String _BroadcastingTime;
 
         /// <summary>
-        /// Affecte ou obtient la durée de validité de l'offre
+        /// Affecte ou obtient la durée de diffusion
         /// </summary>		
-        public virtual DateTime ValidityDuration
+        public virtual String BroadcastingTime
         {
-            get { return _ValidityDuration; }
-            set { _ValidityDuration = value; }
+            get { return _BroadcastingTime; }
+            set { _BroadcastingTime = value; }
         }
 
         private String _Location;

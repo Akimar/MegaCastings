@@ -52,7 +52,7 @@
 
         <TextBox x:Name="tbTitle" Grid.Row="1"  Grid.Column="2" Margin="2" Text="{Binding Path=CurrentOffer.Title, Mode=TwoWay}"/>
         
-        <TextBlock x:Name="tbRef" Grid.Row="2"  Grid.Column="2" Margin="2" Text="{Binding Path=CurrentOffer.Reference, Mode=TwoWay}"/>
+        <TextBlock x:Name="tbRef" Grid.Row="2"  Grid.Column="2" Margin="2" Text="{Binding Path=CurrentOffer.Reference}"/>
         <WPF:DateTimePicker x:Name="DTPFrom" Grid.Row="3"  Grid.Column="2" Margin="2" Value="{Binding Path=CurrentOffer.BroadcastStartingDate, Mode=TwoWay}" Format="ShortDate"/>
         <!-- gauche, droite, haut, bas -->
         

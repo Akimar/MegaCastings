@@ -24,8 +24,8 @@ namespace MegaCastings
 
         #region Attributes & Properties
 
-        private CastingOffer _CurrentOffer;
         private string generatedRef;
+        private CastingOffer _CurrentOffer;
 
         /// <summary>
         /// Affecte ou obtient l'offre en cours de modification
@@ -44,10 +44,10 @@ namespace MegaCastings
         {
             CurrentOffer = new CastingOffer() { PostNumber = 1 };
             InitializeComponent();
+            Loading();
             tbRef.Text = generatedRef;
             DTPFrom.Value = DateTime.Now;
             DTPConFrom.Value = DateTime.Now.AddMonths(1);
-            Loading();
             TbTitle.Text = "Ajouter une offre";
         }
 

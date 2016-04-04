@@ -46,7 +46,7 @@ namespace MegaCastings
             InitializeComponent();
             tbRef.Text = generatedRef;
             DTPFrom.Value = DateTime.Now;
-            DTPTo.Value = DateTime.Now.AddMonths(1);
+            DTPConFrom.Value = DateTime.Now.AddMonths(1);
             Loading();
             TbTitle.Text = "Ajouter une offre";
         }
@@ -77,7 +77,7 @@ namespace MegaCastings
         /// </summary>
         private void b_ok_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(tbTitle.Text) && !string.IsNullOrEmpty(tbProfil.Text) && !string.IsNullOrEmpty(tbDescription.Text) && cbClient.SelectedItem != null && !string.IsNullOrEmpty(cbProfession.Text) && !string.IsNullOrEmpty(cbType.Text))
+            if (!string.IsNullOrEmpty(tbTitle.Text) && !string.IsNullOrEmpty(tbProfil.Text) && !string.IsNullOrEmpty(tbDescription.Text) && cbClient.SelectedItem != null && !string.IsNullOrEmpty(cbProfession.Text) && !string.IsNullOrEmpty(cbType.Text) && !string.IsNullOrEmpty(tbBroadTime.Text))
             {
                 try
                 {
@@ -102,7 +102,7 @@ namespace MegaCastings
                     MessageBox.Show("Effectué avec succès ! ");
                     isessionfactory.Close();
                 }
-                catch (Exception ex)
+                catch
                 {
                     throw;
                 }

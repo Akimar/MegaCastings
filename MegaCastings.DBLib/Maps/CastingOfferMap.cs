@@ -24,7 +24,7 @@ namespace MegaCastings.DBLib.Maps
 
             Map(c => c.ContractStartingDate).Not.Nullable();
 
-            Map(c => c.BroadcastingTime).Not.Nullable().Length(25);
+            Map(c => c.BroadcastingTime).Not.Nullable().Length(75);
 
             Map(c => c.Location).Not.Nullable().Length(100);
 

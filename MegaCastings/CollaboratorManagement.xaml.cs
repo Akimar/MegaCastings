@@ -43,7 +43,7 @@ namespace MegaCastings
         public CollaboratorManagement()
         {
             InitializeComponent();
-            TbTitle.Text = "Ajouter un collaborateur";
+            TbTitle.Text = "Ajouter un partenaire";
         }
 
 
@@ -53,7 +53,7 @@ namespace MegaCastings
           
             CurrentCollaborator = toModify;
             InitializeComponent();
-            TbTitle.Text = "Modifier un collaborateur";
+            TbTitle.Text = "Modifier un partenaire";
 
         }
 
@@ -89,13 +89,13 @@ namespace MegaCastings
                 {
                     //Login => 3 premières lettres du nom + 2 premiers caractères du code postal 
                     //Si le nom fait moins de trois caractères, le nom est pris en entier 
-                    if (CurrentCollaborator.Name.Length < 3)
+                    if (CurrentCollaborator.Name.Length >= 3)
                     {
-                        CurrentCollaborator.Login = String.Format("{0}{1})", CurrentCollaborator.Name.Substring(0, 3), CurrentCollaborator.ZipCode.Substring(0, 2));
+                        CurrentCollaborator.Login = String.Format("{0}{1}", CurrentCollaborator.Name.Substring(0, 3), CurrentCollaborator.ZipCode.Substring(0, 2));
                     }
                     else
                     {
-                        CurrentCollaborator.Login = String.Format("{0}{1})", CurrentCollaborator.Name, CurrentCollaborator.ZipCode.Substring(0, 2));
+                        CurrentCollaborator.Login = String.Format("{0}{1}", CurrentCollaborator.Name, CurrentCollaborator.ZipCode.Substring(0, 2));
                     }
            
                 }
@@ -134,7 +134,7 @@ namespace MegaCastings
                     MessageBox.Show("Effectué avec succès ! ");
 
                 }
-                catch (Exception ex)
+                catch 
                 {
                     throw;
                 }

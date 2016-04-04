@@ -75,9 +75,9 @@
                 <DataGrid.Columns >
                     <DataGridTextColumn Header="Intitulé" Binding="{Binding Title}"/>
                     <DataGridTextColumn Header="Référence" Binding="{Binding Reference}"/>
-                    <DataGridTextColumn Header="Date début de publication" Binding="{Binding StartingDate, StringFormat=\{0:dd/MM/yyyy\}}"/>
+                    <DataGridTextColumn Header="Date début de publication" Binding="{Binding BroadcastStartingDate, StringFormat=\{0:dd/MM/yyyy\}}"/>
                     <DataGridTextColumn Header="Durée de diffusion" Binding="{Binding BroadcastingTime}" />
-                    <DataGridTextColumn Header="Date de début de contrat" Binding="{Binding ContractStartingDate, StringFormat=\{0:dd/MM/yyyy\}}" />
+                    <DataGridTextColumn Header="Date de début du contrat" Binding="{Binding ContractStartingDate, StringFormat=\{0:dd/MM/yyyy\}}" />
                     <DataGridTextColumn Header="Nombre de postes" Binding="{Binding PostNumber}" />
                     <DataGridTextColumn Header="Lieu" Binding="{Binding Location}" />
                     <DataGridTextColumn Header="Description" Binding="{Binding PostDescription}" />

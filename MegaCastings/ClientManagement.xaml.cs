@@ -117,7 +117,7 @@ namespace MegaCastings
                     MessageBox.Show("Effectué avec succès ! ");
 
                 }
-                catch (Exception ex)
+                catch 
                 {
                     throw;
                 }

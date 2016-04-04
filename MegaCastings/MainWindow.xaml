@@ -46,7 +46,7 @@
 
         <Button Grid.Column="1" Grid.Row="4" Height="70" Cursor="Hand" Click="Button_Click_DisplayCollaborators" FontSize="20" Content="Gestion des partenaires"/>
 
-        
+
 
         <!--GroupBox clients -->
         <GroupBox x:Name="GroupBoxClients" Header="Clients" Grid.Row="2" Grid.Column="3" Grid.RowSpan="3" Visibility="Hidden">
@@ -79,10 +79,29 @@
                     <DataGridTextColumn Header="Date de début du contrat" Binding="{Binding ContractStartingDate, StringFormat=\{0:dd/MM/yyyy\}}" />
                     <DataGridTextColumn Header="Nombre de postes" Binding="{Binding PostNumber}" />
                     <DataGridTextColumn Header="Lieu" Binding="{Binding Location}" />
-                    <DataGridTextColumn Header="Description" Binding="{Binding PostDescription}" />
-                    <DataGridTextColumn Header="Profil recherché" Binding="{Binding ProfileDescription}" />
-                    <DataGridTextColumn Header="Contact" Binding="{Binding Contact}" />
+                    <DataGridTemplateColumn Header="Description">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <Hyperlink x:Name="LinkDescription" Click="LinkDescription_RequestNavigate">[...]</Hyperlink>
+                                </TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Profil recherché">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock HorizontalAlignment="Center">
+                                    <Hyperlink x:Name="LinkRecherché" Click="LinkRecherché_RequestNavigate">[...]</Hyperlink>
+                                </TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTextColumn Header="Contact" Binding="{Binding Client.Name}" />
                 </DataGrid.Columns>
+                <!-- <DataGridTextColumn Header="Description" Binding="{Binding PostDescription}" />
+                    <DataGridTextColumn Header="Profil recherché" Binding="{Binding ProfileDescription}" /> -->
             </DataGrid>
         </GroupBox>
 
@@ -103,7 +122,7 @@
 
         <!--Boutons Ajouter, Modifier, Supprimer-->
         <Button Grid.Column="3" Grid.Row="5" Cursor="Hand"  Click="Button_Click_Add" Width="100" Height="40" HorizontalAlignment="Left" Margin="5.0"  Content="Ajouter" FontSize="20"/>
-        
+
 
         <Button Cursor="Hand"  Click="Button_Click_Manage" 
                     Width="100" Height="40" Grid.Column="3" Grid.Row="5" FontSize="20" Content="Modifier" />

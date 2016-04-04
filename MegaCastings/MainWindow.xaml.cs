@@ -372,7 +372,19 @@ namespace MegaCastings
         }
 
         #endregion
+
         #endregion
 
+        private void LinkRecherché_RequestNavigate(object sender, RoutedEventArgs e)
+        {
+            CastingOffer selected = DataGridCastings.SelectedItem as CastingOffer;
+            MessageBox.Show(selected.ProfileDescription, "Profil recherché", MessageBoxButton.OK, MessageBoxImage.None);
+        }
+
+        private void LinkDescription_RequestNavigate(object sender, RoutedEventArgs e)
+        {
+            CastingOffer selected = DataGridCastings.SelectedItem as CastingOffer;
+            MessageBox.Show(selected.PostDescription, "Description", MessageBoxButton.OK, MessageBoxImage.None);
+        }
     }
 }

@@ -40,6 +40,7 @@ namespace MegaCastings
 
         public ClientManagement()
         {
+            CurrentClient = new Client();
             InitializeComponent();
             TbTitle.Text = "Ajouter un client";
         }

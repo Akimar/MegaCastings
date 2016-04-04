@@ -48,9 +48,9 @@
 
         <TextBox x:Name="tbTitle" Grid.Row="1"  Grid.Column="2" Margin="2" Text="{Binding Path=CurrentOffer.Title, Mode=TwoWay}"/>
         <TextBlock x:Name="tbRef" Grid.Row="2"  Grid.Column="2" Margin="2" Text="{Binding Path=CurrentOffer.Reference, Mode=TwoWay}"/>
-        <WPF:DateTimePicker x:Name="DTPDu" Grid.Row="3"  Grid.Column="2" Margin="2" Value="{Binding Path=CurrentOffer.StartingDate, Mode=TwoWay}" Format="ShortDate"/>
+        <WPF:DateTimePicker x:Name="DTPFrom" Grid.Row="3"  Grid.Column="2" Margin="2" Value="{Binding Path=CurrentOffer.StartingDate, Mode=TwoWay}" Format="ShortDate"/>
         <!-- gauche, droite, haut, bas -->
-        <WPF:DateTimePicker x:Name="DTPAu" Grid.Row="4"  Grid.Column="2" Margin="2" Value="{Binding Path=CurrentOffer.EndingDate, Mode=TwoWay}" Format="ShortDate"/>
+        <WPF:DateTimePicker x:Name="DTPTo" Grid.Row="4"  Grid.Column="2" Margin="2" Value="{Binding Path=CurrentOffer.EndingDate, Mode=TwoWay}" Format="ShortDate"/>
         <TextBox x:Name="tbLocation" Grid.Row="5"  Grid.Column="2" Margin="2" Text="{Binding Path=CurrentOffer.Location, Mode=TwoWay}"/>
         <ComboBox x:Name="cbType" Grid.Row="6"  Grid.Column="2" SelectedItem="{Binding Path=CurrentOffer.ContractType, Mode=TwoWay}" />
         <WPF:ByteUpDown Name="Spinner" Grid.Row="7" Grid.Column="2" Margin="0,1,2,3" Minimum="1" Value ="{Binding Path=CurrentOffer.PostNumber, Mode=TwoWay}"/>

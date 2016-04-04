@@ -83,12 +83,19 @@ namespace MegaCastings
                 }
 
 
-               
-
                 if(CurrentCollaborator.Id == 0)
                 {
-                    CurrentCollaborator.Password = "toto";
-                    CurrentCollaborator.Login = String.Format("{0}{1})", CurrentCollaborator.Name.Substring(0, 3), CurrentCollaborator.ZipCode.Substring(0, 2));// à proteger
+                    //Login => 3 premières lettres du nom + 2 premiers caractères du code postal 
+                    //Si le nom fait moins de trois caractères, le nom est pris en entier 
+                    if (CurrentCollaborator.Name.Length < 3)
+                    {
+                        CurrentCollaborator.Login = String.Format("{0}{1})", CurrentCollaborator.Name.Substring(0, 3), CurrentCollaborator.ZipCode.Substring(0, 2));
+                    }
+                    else
+                    {
+                        CurrentCollaborator.Login = String.Format("{0}{1})", CurrentCollaborator.Name, CurrentCollaborator.ZipCode.Substring(0, 2));
+                    }
+           
                 }
 
                 try
@@ -102,13 +109,13 @@ namespace MegaCastings
                             {
                                 if (CurrentCollaborator.Id == 0)
                                 {
-                                    session.Save(CurrentCollaborator);
+                                    session.SaveOrUpdate(CurrentCollaborator);
                                 }
 
                                 else
                                 {
-                                    session.Update(CurrentCollaborator);
-                                    //session.Flush();
+                                   
+                                    session.Flush();
                                 }
                              
                                 transaction.Commit();

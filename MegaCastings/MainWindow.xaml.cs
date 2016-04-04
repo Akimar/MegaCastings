@@ -38,6 +38,7 @@ namespace MegaCastings
             InitializeComponent();
             this.DataContext = this;
 
+            //Récupération des clients, offres et partenaires présents en base
             using (ISession session = isessionfactory.OpenSession())//ouverture
             {
                 BindingClient = new BindingList<Client>(session.QueryOver<Client>().List());
@@ -52,12 +53,14 @@ namespace MegaCastings
             DataGridCastings.ItemsSource = BindingCastings;
             DataGridCollaborators.ItemsSource = BindingCollaborator;
 
+            //affiche par défaut la liste des clients
             ShowDatagrid(GroupBoxClients);
         }
 
         #endregion
 
         #region Methods
+
         #region Button Events
         /// <summary>
         /// Ferme l'application
@@ -237,6 +240,8 @@ namespace MegaCastings
 
         #endregion
 
+
+        #region Member functions
         /// <summary>
         /// Rend visible le datagrid passé en parametre et cache les deux autres.
         /// </summary>
@@ -302,6 +307,9 @@ namespace MegaCastings
             }
         }
 
+        #endregion
+
+        #region Database 
         /// <summary>
         /// Crée l'objet base de donnée et la construit si besoin (connexion string dans app.config)
         /// </summary>
@@ -341,6 +349,8 @@ namespace MegaCastings
             // Démarrage de la session factory
             return config.BuildSessionFactory();
         }
+
+        #endregion
         #endregion
 
     }

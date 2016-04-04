@@ -45,8 +45,9 @@ namespace MegaCastings
             CurrentOffer = new CastingOffer() { PostNumber = 1};
             InitializeComponent();
             tbRef.Text = generatedRef;
-            DTPDu.Value = DateTime.Now;
-            DTPAu.Value = DateTime.Now.AddMonths(1);
+            DTPFrom.Value = DateTime.Now;
+            DTPTo.Value = DateTime.Now.AddMonths(1);
+            Loading();
         }
 
 
@@ -126,7 +127,7 @@ namespace MegaCastings
         #endregion
 
         /// <summary>
-        /// Récupère en base 
+        ///Charge les données dans les listes graphiques via le binding et construit la chaine correspondant à la référence de l'offre
         /// </summary>
         private void Loading()
         {
@@ -134,9 +135,10 @@ namespace MegaCastings
             IList<Profession> ProfList;
             IList<ContractType> TypeList;
 
-            string DateTodayTransformed = (DateTime.Now.Day.ToString() + "." + DateTime.Now.Month.ToString("D2") + "." + DateTime.Now.Year.ToString().Substring(2));
 
-            this.DataContext = this;
+            string DateTodayTransformed = (DateTime.Now.Day.ToString("D2") + "." + DateTime.Now.Month.ToString("D2") + "." + DateTime.Now.Year.ToString().Substring(2));//formate la date pour créer la référence de l'offre
+
+            this.DataContext = this;//binding
 
 
             ISessionFactory isessionfactory = MainWindow.CreateSessionFactory();
@@ -145,10 +147,13 @@ namespace MegaCastings
                 ClientList = session.QueryOver<Client>().List();
                 ProfList = session.QueryOver<Profession>().List();
                 TypeList = session.QueryOver<ContractType>().List();
-                generatedRef = DateTodayTransformed + "-" + (session.QueryOver<CastingOffer>().WhereRestrictionOn(c => c.Reference).IsLike(DateTodayTransformed + "%").RowCount() + 1);
+
+                generatedRef = DateTodayTransformed + "-" + (session.QueryOver<CastingOffer>().WhereRestrictionOn(c => c.Reference).IsLike(DateTodayTransformed + "%").RowCount() + 1);//vérifie le nombre d'offres créées à la même date pour attribuer un incrément à la référence en conséquence
                 session.Close();
             }
             isessionfactory.Close();
+
+            //Bind les données des listes au combobox
             cbClient.ItemsSource = ClientList;
             cbProfession.ItemsSource = ProfList;
             cbType.ItemsSource = TypeList;

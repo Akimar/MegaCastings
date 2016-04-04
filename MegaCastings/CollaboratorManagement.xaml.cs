@@ -111,13 +111,13 @@ namespace MegaCastings
                             {
                                 if (CurrentCollaborator.Id == 0)
                                 {
-                                    session.SaveOrUpdate(CurrentCollaborator);
+                                    session.Save(CurrentCollaborator);
                                 }
 
                                 else
                                 {
                                    
-                                    session.Flush();
+                                    session.Update(CurrentCollaborator);
                                 }
                              
                                 transaction.Commit();

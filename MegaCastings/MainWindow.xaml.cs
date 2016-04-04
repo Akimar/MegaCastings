@@ -84,7 +84,7 @@ namespace MegaCastings
                 ClientManagement AddClientFrame = new ClientManagement();
                 if (AddClientFrame.ShowDialog().Value == true)
                 {
-                    BindingClient.Add(AddClientFrame.AddedClient);
+                    BindingClient.Add(AddClientFrame.CurrentClient);
                 }
             }
             else if (GroupBoxCastings.Visibility == Visibility.Visible)
@@ -278,7 +278,7 @@ namespace MegaCastings
                     {
                         if (AddClientFrame.ShowDialog().Value == true)
                         {
-                            BindingClient[BindingClient.IndexOf(toModify)] = AddClientFrame.AddedClient;
+                            BindingClient[BindingClient.IndexOf(toModify)] = AddClientFrame.CurrentClient;
                         }
                     }
                     catch (Exception ex)

@@ -42,6 +42,7 @@ namespace MegaCastings
 
         public CollaboratorManagement()
         {
+            CurrentCollaborator = new Collaborator();
             InitializeComponent();
             TbTitle.Text = "Ajouter un partenaire";
         }
@@ -78,13 +79,7 @@ namespace MegaCastings
 
             if (!string.IsNullOrEmpty(tbName.Text) && !string.IsNullOrEmpty(tbPhoneNumber.Text) && !string.IsNullOrEmpty(tbAddress.Text) && !string.IsNullOrEmpty(tbZipCode.Text) && !string.IsNullOrEmpty(tbCity.Text))
             {
-                if (CurrentCollaborator == null)
-                {
-                    CurrentCollaborator = new Collaborator(tbName.Text, tbName.Text, tbPhoneNumber.Text, tbZipCode.Text, tbAddress.Text, tbCity.Text);
-
-                }
-
-
+              
                 if(CurrentCollaborator.Id == 0)
                 {
                     //Login => 3 premières lettres du nom + 2 premiers caractères du code postal 

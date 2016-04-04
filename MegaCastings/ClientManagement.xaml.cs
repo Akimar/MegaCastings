@@ -26,12 +26,12 @@ namespace MegaCastings
         #region Attributes & Properties
 
 
-        private Client _AddedClient;
+        private Client _CurrentClient;
 
-        public Client AddedClient
+        public Client CurrentClient
         {
-            get { return _AddedClient; }
-            set { _AddedClient = value; }
+            get { return _CurrentClient; }
+            set { _CurrentClient = value; }
         }
 
         #endregion
@@ -48,12 +48,7 @@ namespace MegaCastings
         {
             InitializeComponent();
 
-            AddedClient = toModifie;
-            tbName.Text = toModifie.Name;
-            tbPhoneNumber.Text = toModifie.PhoneNumber;
-            tbAddress.Text = toModifie.Address;
-            tbZipCode.Text = toModifie.ZipCode;
-            tbCity.Text = toModifie.City;
+            CurrentClient = toModifie;
             TbTitle.Text = "Modifier un client";
         }
 
@@ -74,26 +69,10 @@ namespace MegaCastings
         /// </summary>
         private void b_ok_Click(object sender, RoutedEventArgs e)
         {
-            Client newClient = null;
             if (!string.IsNullOrEmpty(tbName.Text) && !string.IsNullOrEmpty(tbPhoneNumber.Text) && !string.IsNullOrEmpty(tbAddress.Text) && !string.IsNullOrEmpty(tbZipCode.Text) && !string.IsNullOrEmpty(tbCity.Text))
             {
-                if (AddedClient == null)
-                {
-                    newClient = new Client();
-                }
-
-                else
-                {
-                    newClient = AddedClient;
-                }
-
-                newClient.Name = tbName.Text;
-                newClient.PhoneNumber = tbPhoneNumber.Text;
-                newClient.Address = tbAddress.Text;
-                newClient.ZipCode = tbZipCode.Text;
-                newClient.City = tbCity.Text;
-
-                try
+             
+               try
                 {
                     ISessionFactory isessionfactory = MainWindow.CreateSessionFactory();
                     using (ISession session = isessionfactory.OpenSession())//ouverture
@@ -102,9 +81,9 @@ namespace MegaCastings
                         {
                             try
                             {
-                                session.SaveOrUpdate(newClient);
+                                session.SaveOrUpdate(CurrentClient);
                                 transaction.Commit();
-                                AddedClient = newClient;
+                                
                             }
                             catch (Exception)
                             {

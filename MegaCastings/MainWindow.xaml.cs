@@ -55,6 +55,8 @@ namespace MegaCastings
 
             //affiche par défaut la liste des clients
             ShowDatagrid(GroupBoxClients);
+
+            Tb_Name.Text = "Bonjour "+ System.Environment.UserName;
         }
 
         #endregion
@@ -393,10 +395,16 @@ namespace MegaCastings
             return config.BuildSessionFactory();
         }
 
-        #endregion
 
         #endregion
 
-        
+        #endregion
+
+        private void btnRepresentatives_Click(object sender, RoutedEventArgs e)
+        {
+            Client client = (Client) DataGridClients.SelectedItem;
+            RepresentativesWindow windows = new RepresentativesWindow(client);
+            windows.ShowDialog();
+        }
     }
 }

@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MegaCastings"
         mc:Ignorable="d"
-        Title="RepresentativeManagement" Height="300" Width="300">
+        Title="RepresentativeManagement" Height="300" Width="300"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"/>

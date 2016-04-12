@@ -32,8 +32,8 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="BtnAjouter" Grid.Row="3" Width="150" Click="BtnAjouter_Click" Margin="2.0">Ajouter</Button>
-        <Button x:Name="BtnModifier" Grid.Row="4" Width="150" Click="BtnAjouter_Click" Margin="2.0">Modifier </Button>
-        <Button x:Name="BtnSupprimer" Grid.Row="5" Width="150" Click="BtnAjouter_Click" Margin="2.0">Supprimer</Button>
+        <Button x:Name="BtnModifier" Grid.Row="4" Width="150" Click="BtnModifier_Click" Margin="2.0">Modifier </Button>
+        <Button x:Name="BtnSupprimer" Grid.Row="5" Width="150" Click="BtnSupprimer_Click" Margin="2.0">Supprimer</Button>
         <Button x:Name="BtnOK" Grid.Row="6" Width="80" Click="BtnOK_Click" Margin="2.0">OK</Button>
     </Grid>
 </Window>

@@ -285,7 +285,28 @@ namespace MegaCastings
                 {
                     if (MessageBox.Show("Voulez-vous supprimer le client " + toDel.Name + " ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
-
+                        using (ISession session = isessionfactory.OpenSession())
+                        {
+                            using (var transaction = session.BeginTransaction())
+                            {
+                                try
+                                {
+                                    string queryString = string.Format("delete {0} where id = :id", typeof(Client));
+                                    session.CreateQuery(queryString)
+                                           .SetParameter("id", toDel.Id)
+                                           .ExecuteUpdate();
+                                    transaction.Commit();
+                                    BindingClient.RemoveAt(BindingClient.IndexOf(toDel));
+                                    MessageBox.Show("Supprimé avec succès.", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show(ex.Message);
+                                }
+                                transaction.Dispose();
+                            }
+                            isessionfactory.Close();
+                        }
                     }
                 }
             }

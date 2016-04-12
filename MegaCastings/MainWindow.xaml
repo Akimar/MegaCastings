@@ -94,7 +94,7 @@
                     <DataGridTemplateColumn Header="Profil recherché">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock HorizontalAlignment="Center">
+                                <TextBlock HorizontalAlignment="Center" >
                                     <Hyperlink x:Name="LinkProfile" Click="LinkProfile_RequestNavigate">[...]</Hyperlink>
                                 </TextBlock>
                             </DataTemplate>

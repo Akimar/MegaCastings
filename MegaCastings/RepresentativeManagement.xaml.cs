@@ -23,17 +23,17 @@ namespace MegaCastings
     {
         public Representative CurrentRepresentative{ get; set; }
 
-
         public RepresentativeManagement(Client client)
         {
+            CurrentRepresentative = new Representative();
+            CurrentRepresentative.Client = client;
             InitializeComponent();
-            CurrentRepresentative = new Representative() {Client = client };
         }
 
         public RepresentativeManagement(Client client, Representative rp)
         {
-            InitializeComponent();
             CurrentRepresentative = rp;
+            InitializeComponent();
         }
 
         private void b_ok_Click(object sender, RoutedEventArgs e)

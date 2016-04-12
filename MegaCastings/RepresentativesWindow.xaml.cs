@@ -57,6 +57,16 @@ namespace MegaCastings
 
         private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            Modify();
+        }
+
+        private void BtnModifier_Click(object sender, RoutedEventArgs e)
+        {
+            Modify();
+        }
+
+        private void Modify()
+        {
             if (DataGrid.SelectedItem != null)
             {
                 Representative toModify = DataGrid.SelectedItem as Representative;
@@ -72,6 +82,38 @@ namespace MegaCastings
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+        }
+
+        private void BtnSupprimer_Click(object sender, RoutedEventArgs e)
+        {
+            Representative toDel = null;
+            if ((toDel = (Representative)DataGrid.SelectedItem) != null)
+            {
+                if (MessageBox.Show("Voulez-vous supprimer le représentant " + toDel.FirstName + " - "+ toDel.LastName +" ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    using (ISession session = MainWindow.CreateSessionFactory().OpenSession())
+                    {
+                        using (var transaction = session.BeginTransaction())
+                        {
+                            try
+                            {
+                                string queryString = string.Format("delete {0} where id = :id", typeof(Representative));
+                                session.CreateQuery(queryString)
+                                       .SetParameter("id", toDel.Id)
+                                       .ExecuteUpdate();
+                                transaction.Commit();
+                                BindingRepresentatives.RemoveAt(BindingRepresentatives.IndexOf(toDel));
+                                MessageBox.Show("Supprimé avec succès.", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                            }
+                            transaction.Dispose();
+                        }
                     }
                 }
             }

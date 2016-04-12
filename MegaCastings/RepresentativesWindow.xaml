@@ -5,12 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MegaCastings"
         mc:Ignorable="d"
-        Title="Representatives" Height="300" Width="300">
+        Title="Représentants" Height="300" Width="300">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="*" MaxHeight="280" MinHeight="80"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <!-- * signifie % -->
             <RowDefinition Height="5"/>
@@ -21,7 +24,16 @@
         </Grid.ColumnDefinitions>
         
         <TextBlock x:Name="TbName" Grid.Row="1"></TextBlock>
-        <DataGrid x:Name="DataGrid" Grid.Row="2"/>
-        <Button x:Name="BtnOK" Grid.Row="3" Width="80" Click="BtnOK_Click">OK</Button>
+        <DataGrid x:Name="DataGrid" Grid.Row="2" GridLinesVisibility="Horizontal" Margin="2.0" AutoGenerateColumns="False" CanUserResizeRows="False" SelectionMode="Single"  IsReadOnly="True" MouseDoubleClick="DataGrid_MouseDoubleClick" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Prénom" Binding="{Binding FirstName}" Width="*"/>
+                <DataGridTextColumn Header="Nom" Binding="{Binding LastName}" Width="*"/>
+                <DataGridTextColumn Header="Téléphone" Binding="{Binding PhoneNumber}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="BtnAjouter" Grid.Row="3" Width="150" Click="BtnAjouter_Click" Margin="2.0">Ajouter</Button>
+        <Button x:Name="BtnModifier" Grid.Row="4" Width="150" Click="BtnAjouter_Click" Margin="2.0">Modifier </Button>
+        <Button x:Name="BtnSupprimer" Grid.Row="5" Width="150" Click="BtnAjouter_Click" Margin="2.0">Supprimer</Button>
+        <Button x:Name="BtnOK" Grid.Row="6" Width="80" Click="BtnOK_Click" Margin="2.0">OK</Button>
     </Grid>
 </Window>

@@ -76,7 +76,6 @@ namespace MegaCastings
         private void b_ok_Click(object sender, RoutedEventArgs e)
         {
            
-
             if (!string.IsNullOrEmpty(tbName.Text) && !string.IsNullOrEmpty(tbPhoneNumber.Text) && !string.IsNullOrEmpty(tbAddress.Text) && !string.IsNullOrEmpty(tbZipCode.Text) && !string.IsNullOrEmpty(tbCity.Text))
             {
               

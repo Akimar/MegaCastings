@@ -121,83 +121,7 @@ namespace MegaCastings
         /// Ouvre une fenêtre modale pour supprimer un client ou bien une offre de casting, ou encore un partenaire
         private void Button_Click_Delete(object sender, RoutedEventArgs e)
         {
-            if (GroupBoxClients.Visibility == Visibility.Visible)
-            {
-                Client toDel = null;
-                if ((toDel = (Client)DataGridClients.SelectedItem) != null)
-                {
-                    if (MessageBox.Show("Voulez-vous supprimer le client " + toDel.Name + " ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-                    {
-
-                    }
-                }
-            }
-            else if (GroupBoxCastings.Visibility == Visibility.Visible)
-            {
-                CastingOffer toDel = null;
-                if ((toDel = (CastingOffer)DataGridCastings.SelectedItem) != null)
-                {
-                    if (MessageBox.Show("Voulez-vous supprimer l'offre " + toDel.Reference + " ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-                    {
-                        using (ISession session = isessionfactory.OpenSession())
-                        {
-                            using (var transaction = session.BeginTransaction())
-                            {
-                                try
-                                {
-                                    string queryString = string.Format("delete {0} where id = :id", typeof(CastingOffer));
-                                    session.CreateQuery(queryString)
-                                           .SetParameter("id", toDel.Id)
-                                           .ExecuteUpdate();
-                                    transaction.Commit();
-                                    BindingCastings.RemoveAt(BindingCastings.IndexOf(toDel));
-                                    MessageBox.Show("Supprimé avec succès.", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
-                                }
-                                catch (Exception ex)
-                                {
-                                    MessageBox.Show(ex.Message);
-                                }
-                                transaction.Dispose();
-                            }
-                            isessionfactory.Close();
-                        }
-                    }
-                }
-
-            }
-
-            else if (GroupBoxCollaborators.Visibility == Visibility.Visible)
-            {
-                Collaborator toDel = null;
-                if ((toDel = (Collaborator)DataGridCollaborators.SelectedItem) != null)
-                {
-                    if (MessageBox.Show("Voulez-vous supprimer le partenaire " + toDel.Name + " ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-                    {
-                        using (ISession session = isessionfactory.OpenSession())
-                        {
-                            using (var transaction = session.BeginTransaction())
-                            {
-                                try
-                                {
-                                    string queryString = string.Format("delete {0} where id = :id", typeof(Collaborator));
-                                    session.CreateQuery(queryString)
-                                           .SetParameter("id", toDel.Id)
-                                           .ExecuteUpdate();
-                                    transaction.Commit();
-                                    BindingCollaborator.RemoveAt(BindingCollaborator.IndexOf(toDel));
-                                    MessageBox.Show("Supprimé avec succès.", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
-                                }
-                                catch (Exception ex)
-                                {
-                                    MessageBox.Show(ex.Message);
-                                }
-                                transaction.Dispose();
-                            }
-                            isessionfactory.Close();
-                        }
-                    }
-                }
-            }
+            Delete();
         }
 
         /// <summary>
@@ -352,6 +276,86 @@ namespace MegaCastings
             }
         }
 
+        private void Delete()
+        {
+            if (GroupBoxClients.Visibility == Visibility.Visible)
+            {
+                Client toDel = null;
+                if ((toDel = (Client)DataGridClients.SelectedItem) != null)
+                {
+                    if (MessageBox.Show("Voulez-vous supprimer le client " + toDel.Name + " ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+
+                    }
+                }
+            }
+            else if (GroupBoxCastings.Visibility == Visibility.Visible)
+            {
+                CastingOffer toDel = null;
+                if ((toDel = (CastingOffer)DataGridCastings.SelectedItem) != null)
+                {
+                    if (MessageBox.Show("Voulez-vous supprimer l'offre " + toDel.Reference + " ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        using (ISession session = isessionfactory.OpenSession())
+                        {
+                            using (var transaction = session.BeginTransaction())
+                            {
+                                try
+                                {
+                                    string queryString = string.Format("delete {0} where id = :id", typeof(CastingOffer));
+                                    session.CreateQuery(queryString)
+                                           .SetParameter("id", toDel.Id)
+                                           .ExecuteUpdate();
+                                    transaction.Commit();
+                                    BindingCastings.RemoveAt(BindingCastings.IndexOf(toDel));
+                                    MessageBox.Show("Supprimé avec succès.", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show(ex.Message);
+                                }
+                                transaction.Dispose();
+                            }
+                            isessionfactory.Close();
+                        }
+                    }
+                }
+
+            }
+
+            else if (GroupBoxCollaborators.Visibility == Visibility.Visible)
+            {
+                Collaborator toDel = null;
+                if ((toDel = (Collaborator)DataGridCollaborators.SelectedItem) != null)
+                {
+                    if (MessageBox.Show("Voulez-vous supprimer le partenaire " + toDel.Name + " ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        using (ISession session = isessionfactory.OpenSession())
+                        {
+                            using (var transaction = session.BeginTransaction())
+                            {
+                                try
+                                {
+                                    string queryString = string.Format("delete {0} where id = :id", typeof(Collaborator));
+                                    session.CreateQuery(queryString)
+                                           .SetParameter("id", toDel.Id)
+                                           .ExecuteUpdate();
+                                    transaction.Commit();
+                                    BindingCollaborator.RemoveAt(BindingCollaborator.IndexOf(toDel));
+                                    MessageBox.Show("Supprimé avec succès.", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show(ex.Message);
+                                }
+                                transaction.Dispose();
+                            }
+                            isessionfactory.Close();
+                        }
+                    }
+                }
+            }
+        }
         #endregion
 
         #region Database 

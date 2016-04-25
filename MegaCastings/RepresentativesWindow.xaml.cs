@@ -22,10 +22,12 @@ namespace MegaCastings
     /// </summary>
     public partial class RepresentativesWindow : Window
     {
+        #region attributs
         private BindingList<Representative> BindingRepresentatives;
-
+        #endregion
         private Client _Client;
 
+        #region constructeur
         public RepresentativesWindow(Client client)
         {
             InitializeComponent();
@@ -39,7 +41,31 @@ namespace MegaCastings
             DataGrid.ItemsSource = BindingRepresentatives;
 
         }
+        #endregion
+        #region methodes
+        private void Modify()
+        {
+            if (DataGrid.SelectedItem != null)
+            {
+                Representative toModify = DataGrid.SelectedItem as Representative;
 
+                RepresentativeManagement windows = new RepresentativeManagement(_Client, toModify);
+                if (windows.ShowDialog() == true)
+                {
+                    try
+                    {
+                        BindingRepresentatives[BindingRepresentatives.IndexOf(toModify)] = windows.CurrentRepresentative;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+        }
+
+        #region evenements
         private void BtnOK_Click(object sender, RoutedEventArgs e)
         {
             Close();
@@ -65,34 +91,12 @@ namespace MegaCastings
             Modify();
         }
 
-        private void Modify()
-        {
-            if (DataGrid.SelectedItem != null)
-            {
-                Representative toModify = DataGrid.SelectedItem as Representative;
-
-                RepresentativeManagement windows = new RepresentativeManagement(_Client, toModify);
-                if (windows.ShowDialog() == true)
-                {
-                    try
-                    {
-                        BindingRepresentatives[BindingRepresentatives.IndexOf(toModify)] = windows.CurrentRepresentative;
-
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                }
-            }
-        }
-
         private void BtnSupprimer_Click(object sender, RoutedEventArgs e)
         {
             Representative toDel = null;
             if ((toDel = (Representative)DataGrid.SelectedItem) != null)
             {
-                if (MessageBox.Show("Voulez-vous supprimer le représentant " + toDel.FirstName + " - "+ toDel.LastName +" ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                if (MessageBox.Show("Voulez-vous supprimer le représentant " + toDel.FirstName + " - " + toDel.LastName + " ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     using (ISession session = MainWindow.CreateSessionFactory().OpenSession())
                     {
@@ -118,5 +122,8 @@ namespace MegaCastings
                 }
             }
         }
+        #endregion
+
+        #endregion
     }
 }

@@ -21,8 +21,11 @@ namespace MegaCastings
     /// </summary>
     public partial class RepresentativeManagement : Window
     {
+        #region attributs
         public Representative CurrentRepresentative{ get; set; }
+        #endregion
 
+        #region constructeurs
         public RepresentativeManagement(Client client)
         {
             CurrentRepresentative = new Representative();
@@ -36,6 +39,9 @@ namespace MegaCastings
             InitializeComponent();
         }
 
+        #endregion
+
+        #region evenements
         private void b_ok_Click(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrEmpty(tbFirstName.Text) && !string.IsNullOrEmpty(tbPhoneNumber.Text) && !string.IsNullOrEmpty(tbLastName.Text))
@@ -75,9 +81,6 @@ namespace MegaCastings
         }
 
         private void b_cancel_Click(object sender, RoutedEventArgs e)
-        {
-            this.DialogResult = false;
-            this.Close();
-        }
+            #endregion
     }
 }

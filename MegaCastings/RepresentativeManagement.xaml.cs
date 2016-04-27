@@ -81,6 +81,10 @@ namespace MegaCastings
         }
 
         private void b_cancel_Click(object sender, RoutedEventArgs e)
-            #endregion
+        {
+            this.DialogResult = false;
+            this.Close();
+        }
+        #endregion
     }
 }

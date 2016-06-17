@@ -59,8 +59,12 @@
         
         <WPF:DateTimePicker x:Name="DTPFrom" Grid.Row="3"  Grid.Column="2" Margin="2" Value="{Binding Path=CurrentOffer.BroadcastStartingDate, Mode=TwoWay}" Format="ShortDate"/>
         <!-- gauche, droite, haut, bas -->
-        
-        <WPF:WatermarkTextBox  Watermark="Années, mois, jours" x:Name="tbBroadTime" Grid.Row="4"  Grid.Column="2" Margin="2" Text="{Binding Path=CurrentOffer.BroadcastingTime, Mode=TwoWay}"/>
+
+        <StackPanel x:Name="tbBroadTime" Grid.Row="4"  Grid.Column="2" Margin="2" Orientation="Horizontal">
+            <WPF:ByteUpDown x:Name="Diff_jour" Margin="5" Width="50px" Height="auto"></WPF:ByteUpDown>
+            <WPF:ByteUpDown x:Name="Diff_mois" Margin="5" Width="50px" Height="auto"></WPF:ByteUpDown>
+            <WPF:ByteUpDown x:Name="Diff_année" Margin="5" Width="50px" Height="auto"></WPF:ByteUpDown>
+        </StackPanel>
 
         <WPF:DateTimePicker x:Name="DTPConFrom" Grid.Row="5"  Grid.Column="2" Margin="2" Value="{Binding Path=CurrentOffer.ContractStartingDate, Mode=TwoWay}" Format="ShortDate"/>
         
@@ -78,7 +82,7 @@
         
         <WPF:MultiLineTextEditor x:Name="tbDescription" Grid.Row="12" Grid.Column="2" Margin="0,1,2,3" Text="{Binding Path=CurrentOffer.PostDescription, Mode=TwoWay}"/>
 
-        <ComboBox x:Name="cbDomaine" Grid.Row="9" Grid.Column="2" Margin="0,1,2,3" SelectedItem="{Binding Path=CurrentOffer.DomaineOffer, Mode=TwoWay}"/>
+        <ComboBox x:Name="cbDomaine" Grid.Row="13" Grid.Column="2" Margin="0,1,2,3" SelectedItem="{Binding Path=CurrentOffer.DomaineOffer, Mode=TwoWay}"/>
         
         <StackPanel Grid.Row="14" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal" FlowDirection="RightToLeft" VerticalAlignment="Bottom">
             <Button x:Name="b_cancel" Content="Annuler" Margin="5.0" Width="60" Click="b_cancel_Click"/>

@@ -69,12 +69,12 @@ namespace MegaCastings.Entities
         }
 
 
-        private String _BroadcastingTime;
+        private int _BroadcastingTime;
 
         /// <summary>
         /// Affecte ou obtient la durée de diffusion
         /// </summary>		
-        public virtual String BroadcastingTime
+        public virtual int BroadcastingTime
         {
             get { return _BroadcastingTime; }
             set { _BroadcastingTime = value; }

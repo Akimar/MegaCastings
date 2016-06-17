@@ -77,34 +77,42 @@ namespace MegaCastings
         /// </summary>
         private void b_ok_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(tbTitle.Text) && !string.IsNullOrEmpty(tbProfil.Text) && !string.IsNullOrEmpty(tbDescription.Text) && cbClient.SelectedItem != null && !string.IsNullOrEmpty(cbProfession.Text) && !string.IsNullOrEmpty(cbType.Text) && !string.IsNullOrEmpty(tbBroadTime.Text))
+            CurrentOffer.BroadcastingTime = Int32.Parse(Diff_jour.Value.ToString()) + Int32.Parse(Diff_mois.Value.ToString()) * 31 + Int32.Parse(Diff_année.Value.ToString()) * 365;
+            if (!string.IsNullOrEmpty(tbTitle.Text) && !string.IsNullOrEmpty(tbProfil.Text) && !string.IsNullOrEmpty(tbDescription.Text) && cbClient.SelectedItem != null && !string.IsNullOrEmpty(cbProfession.Text) && !string.IsNullOrEmpty(cbType.Text))
             {
-                try
+                if (DateTime.Compare(DTPFrom.Value.Value, DTPConFrom.Value.Value) < 0)
                 {
-                    ISessionFactory isessionfactory = MainWindow.CreateSessionFactory();
-                    using (ISession session = isessionfactory.OpenSession())//ouverture
+                    try
                     {
-                        using (ITransaction transaction = session.BeginTransaction())
+                        ISessionFactory isessionfactory = MainWindow.CreateSessionFactory();
+                        using (ISession session = isessionfactory.OpenSession())//ouverture
                         {
-                            try
+                            using (ITransaction transaction = session.BeginTransaction())
                             {
-                                session.SaveOrUpdate(CurrentOffer);
-                                transaction.Commit();
+                                try
+                                {
+                                    session.SaveOrUpdate(CurrentOffer);
+                                    transaction.Commit();
+                                }
+                                catch (Exception)
+                                {
+                                    transaction.Rollback();
+                                    throw;
+                                }
                             }
-                            catch (Exception)
-                            {
-                                transaction.Rollback();
-                                throw;
-                            }
+                            session.Close();
                         }
-                        session.Close();
+                        MessageBox.Show("Effectué avec succès ! ");
+                        isessionfactory.Close();
                     }
-                    MessageBox.Show("Effectué avec succès ! ");
-                    isessionfactory.Close();
+                    catch
+                    {
+                        throw;
+                    }
                 }
-                catch
+                else
                 {
-                    throw;
+                    MessageBox.Show("Problème de Date");
                 }
 
                 this.DialogResult = true;
@@ -126,7 +134,7 @@ namespace MegaCastings
             IList<Client> ClientList;
             IList<Profession> ProfList;
             IList<ContractType> TypeList;
-
+            IList<DomaineOffer> DomaineList;
 
             string DateTodayTransformed = (DateTime.Now.Day.ToString("D2") + "." + DateTime.Now.Month.ToString("D2") + "." + DateTime.Now.Year.ToString().Substring(2));//formate la date pour créer la référence de l'offre
 
@@ -139,6 +147,7 @@ namespace MegaCastings
                 ClientList = session.QueryOver<Client>().List();
                 ProfList = session.QueryOver<Profession>().List();
                 TypeList = session.QueryOver<ContractType>().List();
+                DomaineList = session.QueryOver<DomaineOffer>().List();
 
                 generatedRef = DateTodayTransformed + "-" + (session.QueryOver<CastingOffer>().WhereRestrictionOn(c => c.Reference).IsLike(DateTodayTransformed + "%").RowCount() + 1);//vérifie le nombre d'offres créées à la même date pour attribuer un incrément à la référence en conséquence
                 session.Close();
@@ -149,6 +158,7 @@ namespace MegaCastings
             cbClient.ItemsSource = ClientList;
             cbProfession.ItemsSource = ProfList;
             cbType.ItemsSource = TypeList;
+            cbDomaine.ItemsSource = DomaineList;
         }
     }
 }

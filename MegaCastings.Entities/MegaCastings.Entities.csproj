@@ -11,6 +11,7 @@
     <AssemblyName>MegaCastings.Entities</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,6 +46,7 @@
     <Compile Include="ContactDetails.cs" />
     <Compile Include="ContractType.cs" />
     <Compile Include="Collaborator.cs" />
+    <Compile Include="DomaineOffer.cs" />
     <Compile Include="Profession.cs" />
     <Compile Include="ProfessionField.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

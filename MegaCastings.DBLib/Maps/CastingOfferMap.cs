@@ -36,12 +36,13 @@ namespace MegaCastings.DBLib.Maps
 
             References(c => c.Client).Not.Nullable().Index("IxCastingOfferClient");
 
-            References(c => c.Profession).Nullable().Index("IxCastingOfferProfession"); ;
+            References(c => c.Profession).Nullable().Index("IxCastingOfferProfession"); 
 
-            References(c => c.ProfessionField).Nullable().Index("IxCastingOfferProfessionField"); ;
+            References(c => c.ProfessionField).Nullable().Index("IxCastingOfferProfessionField"); 
 
-            References(c => c.ContractType).Not.Nullable().Index("IxCastingOfferContractType"); ;
+            References(c => c.ContractType).Not.Nullable().Index("IxCastingOfferContractType");
 
+            References(c => c.DomaineOffer).Not.Nullable().Index("IxCastingOfferDomaineOffer"); ;
         }
     }
 }

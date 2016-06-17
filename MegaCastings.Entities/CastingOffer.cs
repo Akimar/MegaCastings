@@ -149,6 +149,11 @@ namespace MegaCastings.Entities
         /// </summary>
         public virtual ContractType ContractType { get; set; }
 
+        /// <summary>
+        /// Affecte ou obtient le Domaine de contrat de l'offre
+        /// </summary>
+        public virtual DomaineOffer DomaineOffer { get; set; }
+
 
         #endregion
 

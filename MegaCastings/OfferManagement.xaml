@@ -24,6 +24,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <!-- * signifie % -->
             <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
@@ -50,7 +51,7 @@
         <TextBlock Grid.Column="1"  Grid.Row="10" Text="Profession :" Margin="5.0"/>
         <TextBlock Grid.Column="1"  Grid.Row="11" Text="Profil Recherché :" Margin="5.0"/>
         <TextBlock Grid.Column="1"  Grid.Row="12" Text="Description :" Margin="5.0"/>
-
+        <TextBlock Grid.Column="1"  Grid.Row="13" Text="Domaine :" Margin="5.0"/>
 
         <TextBox x:Name="tbTitle" Grid.Row="1"  Grid.Column="2" Margin="2" Text="{Binding Path=CurrentOffer.Title, Mode=TwoWay}"/>
 
@@ -77,7 +78,9 @@
         
         <WPF:MultiLineTextEditor x:Name="tbDescription" Grid.Row="12" Grid.Column="2" Margin="0,1,2,3" Text="{Binding Path=CurrentOffer.PostDescription, Mode=TwoWay}"/>
 
-        <StackPanel Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal" FlowDirection="RightToLeft" VerticalAlignment="Bottom">
+        <ComboBox x:Name="cbDomaine" Grid.Row="9" Grid.Column="2" Margin="0,1,2,3" SelectedItem="{Binding Path=CurrentOffer.DomaineOffer, Mode=TwoWay}"/>
+        
+        <StackPanel Grid.Row="14" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal" FlowDirection="RightToLeft" VerticalAlignment="Bottom">
             <Button x:Name="b_cancel" Content="Annuler" Margin="5.0" Width="60" Click="b_cancel_Click"/>
             <Button x:Name="b_ok" Content="Ok" Margin="5.0" Width="60" Click="b_ok_Click"/>
         </StackPanel>

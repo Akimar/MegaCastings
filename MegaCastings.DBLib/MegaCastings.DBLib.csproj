@@ -59,6 +59,7 @@
     <Compile Include="Maps\ClientMap.cs" />
     <Compile Include="Maps\CollaboratorMap.cs" />
     <Compile Include="Maps\ContractTypeMap.cs" />
+    <Compile Include="Maps\DomaineOffer.cs" />
     <Compile Include="Maps\ProfessionFieldMap.cs" />
     <Compile Include="Maps\ProfessionMap.cs" />
     <Compile Include="Maps\RepresentativeMap.cs" />

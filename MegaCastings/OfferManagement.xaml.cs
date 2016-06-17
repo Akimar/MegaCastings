@@ -109,14 +109,14 @@ namespace MegaCastings
                     {
                         throw;
                     }
+                    this.DialogResult = true;
+                    this.Close();
                 }
                 else
                 {
                     MessageBox.Show("Problème de Date");
                 }
 
-                this.DialogResult = true;
-                this.Close();
             }
 
             else

@@ -61,9 +61,9 @@
         <!-- gauche, droite, haut, bas -->
 
         <StackPanel x:Name="tbBroadTime" Grid.Row="4"  Grid.Column="2" Margin="2" Orientation="Horizontal">
-            <WPF:ByteUpDown x:Name="Diff_jour" Margin="5" Width="50px" Height="auto"></WPF:ByteUpDown>
-            <WPF:ByteUpDown x:Name="Diff_mois" Margin="5" Width="50px" Height="auto"></WPF:ByteUpDown>
-            <WPF:ByteUpDown x:Name="Diff_année" Margin="5" Width="50px" Height="auto"></WPF:ByteUpDown>
+            <WPF:ByteUpDown x:Name="Diff_jour" Margin="5" Width="50px" Height="auto" Value="0"></WPF:ByteUpDown>
+            <WPF:ByteUpDown x:Name="Diff_mois" Margin="5" Width="50px" Height="auto" Value="0"></WPF:ByteUpDown>
+            <WPF:ByteUpDown x:Name="Diff_année" Margin="5" Width="50px" Height="auto" Value="0"></WPF:ByteUpDown>
         </StackPanel>
 
         <WPF:DateTimePicker x:Name="DTPConFrom" Grid.Row="5"  Grid.Column="2" Margin="2" Value="{Binding Path=CurrentOffer.ContractStartingDate, Mode=TwoWay}" Format="ShortDate"/>
